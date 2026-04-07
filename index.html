@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PP7360 Psychopharm Study Tool — Quiz 4 Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #232733;
+  --border: #2e3346;
+  --text: #e4e6f0;
+  --text-dim: #8b8fa8;
+  --accent: #4ecdc4;
+  --accent2: #45b7aa;
+  --danger: #ff6b6b;
+  --warning: #ffd166;
+  --success: #06d6a0;
+  --purple: #a78bfa;
+  --blue: #60a5fa;
+  --orange: #fb923c;
+  --pink: #f472b6;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+header {
+  text-align: center;
+  padding: 30px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+header h1 {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+}
+
+header p { color: var(--text-dim); font-size: 0.85em; margin-top: 4px; }
+
+/* Nav */
+.nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.nav button {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85em;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.nav button:hover { border-color: var(--accent); color: var(--text); }
+.nav button.active { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+
+/* Progress bar */
+.progress-bar {
+  background: var(--surface);
+  border-radius: 20px;
+  height: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--success));
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+/* Stats row */
+.stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+.stat .num { font-size: 1.4em; font-weight: 700; color: var(--accent); }
+.stat .label { font-size: 0.72em; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+.card h2 { font-size: 1.1em; font-weight: 600; margin-bottom: 16px; color: var(--accent); }
+.card h3 { font-size: 0.95em; font-weight: 600; margin: 16px 0 8px; color: var(--purple); }
+
+/* Topic badge */
+.topic-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.topic-serotonin { background: rgba(244,114,182,0.15); color: var(--pink); }
+.topic-tyramine { background: rgba(251,146,60,0.15); color: var(--orange); }
+.topic-hypertensive { background: rgba(255,107,107,0.15); color: var(--danger); }
+.topic-benzo { background: rgba(167,139,250,0.15); color: var(--purple); }
+.topic-discontinuation { background: rgba(96,165,250,0.15); color: var(--blue); }
+.topic-snri { background: rgba(78,205,196,0.15); color: var(--accent); }
+.topic-antipsychotics { background: rgba(255,209,102,0.15); color: var(--warning); }
+.topic-bipolar { background: rgba(6,214,160,0.15); color: var(--success); }
+
+/* Flashcard */
+.flashcard-container { perspective: 1000px; min-height: 280px; margin: 16px 0; }
+
+.flashcard {
+  width: 100%;
+  min-height: 280px;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flashcard.flipped { transform: rotateY(180deg); }
+
+.flashcard-face {
+  position: absolute;
+  width: 100%;
+  min-height: 280px;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flashcard-front {
+  background: linear-gradient(135deg, var(--surface), var(--surface2));
+  border: 1px solid var(--border);
+}
+
+.flashcard-back {
+  background: linear-gradient(135deg, #1a2a2a, #1a2030);
+  border: 1px solid var(--accent);
+  transform: rotateY(180deg);
+}
+
+.flashcard-front .question {
+  font-size: 1.1em;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.flashcard-back .answer {
+  font-size: 0.92em;
+  line-height: 1.7;
+}
+
+.flashcard-back .answer strong { color: var(--accent); font-weight: 600; }
+.flashcard-back .answer .highlight { color: var(--warning); font-weight: 600; }
+.flashcard-back .answer .danger { color: var(--danger); font-weight: 600; }
+
+.flip-hint {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.75em;
+  margin-top: 8px;
+}
+
+/* Confidence buttons */
+.confidence-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.confidence-btns button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-again { background: rgba(255,107,107,0.2); color: var(--danger); }
+.btn-hard { background: rgba(251,146,60,0.2); color: var(--orange); }
+.btn-good { background: rgba(78,205,196,0.2); color: var(--accent); }
+.btn-easy { background: rgba(6,214,160,0.2); color: var(--success); }
+
+.confidence-btns button:hover { transform: translateY(-1px); filter: brightness(1.2); }
+
+/* Quiz mode */
+.quiz-option {
+  display: block;
+  width: 100%;
+  padding: 14px 18px;
+  margin: 8px 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.88em;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.5;
+}
+
+.quiz-option:hover { border-color: var(--accent); background: rgba(78,205,196,0.05); }
+.quiz-option.correct { background: rgba(6,214,160,0.15); border-color: var(--success); color: var(--success); }
+.quiz-option.incorrect { background: rgba(255,107,107,0.15); border-color: var(--danger); color: var(--danger); }
+.quiz-option.show-correct { background: rgba(6,214,160,0.1); border-color: var(--success); }
+.quiz-option:disabled { cursor: default; }
+
+.explanation {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(78,205,196,0.05);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.88em;
+  line-height: 1.6;
+}
+
+/* Reference mode */
+.ref-section {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.ref-section h2 {
+  font-size: 1.05em;
+  color: var(--accent);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ref-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ref-section li {
+  padding: 6px 0 6px 16px;
+  position: relative;
+  font-size: 0.88em;
+  line-height: 1.6;
+}
+
+.ref-section li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.ref-section .must-know {
+  background: rgba(6,214,160,0.08);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border-left: 2px solid var(--success);
+}
+
+.key-value { display: flex; gap: 8px; margin: 4px 0; }
+.key-value .k { color: var(--text-dim); min-width: 140px; font-size: 0.82em; }
+.key-value .v { font-weight: 500; font-size: 0.88em; }
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { background: var(--accent2); }
+.btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { border-color: var(--accent); }
+
+.btn-row { display: flex; gap: 8px; margin-top: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* Topic filter */
+.filter-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.filter-btn {
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 0.72em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.filter-btn:hover { border-color: var(--accent); }
+
+/* Share section */
+.share-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.share-section h3 { color: var(--accent); margin-bottom: 8px; }
+.share-section p { color: var(--text-dim); font-size: 0.85em; margin-bottom: 12px; }
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--bg);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8em;
+  color: var(--accent);
+  word-break: break-all;
+  display: block;
+  margin: 8px 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container { padding: 12px; }
+  header h1 { font-size: 1.2em; }
+  .card { padding: 18px; }
+  .flashcard-face { padding: 20px; }
+  .stats { gap: 6px; }
+  .stat { padding: 8px 10px; min-width: 80px; }
+  .stat .num { font-size: 1.1em; }
+}
+
+/* Mnemonic callout */
+.mnemonic {
+  background: rgba(167,139,250,0.1);
+  border: 1px solid rgba(167,139,250,0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 0.88em;
+}
+
+.mnemonic .title { color: var(--purple); font-weight: 600; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.hidden { display: none !important; }
+
+/* Scroll to top */
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: 100;
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+  <header>
+    <h1>PP7360 Psychopharm — Quiz 4 Cram Session</h1>
+    <p>Active Recall + Spaced Retrieval • Antidepressants, Anxiolytics, Antipsychotics & Mood Stabilizers</p>
+  </header>
+
+  <div class="nav" id="mainNav">
+    <button onclick="setMode('flash')" id="nav-flash" class="active">Flashcards</button>
+    <button onclick="setMode('quiz')" id="nav-quiz">Quiz Me</button>
+    <button onclick="setMode('ref')" id="nav-ref">Quick Reference</button>
+    <button onclick="setMode('share')" id="nav-share">Share</button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats" id="statsBar">
+    <div class="stat"><div class="num" id="statSeen">0</div><div class="label">Reviewed</div></div>
+    <div class="stat"><div class="num" id="statCorrect">0</div><div class="label">Correct</div></div>
+    <div class="stat"><div class="num" id="statStreak">0</div><div class="label">Streak</div></div>
+    <div class="stat"><div class="num" id="statRemain">0</div><div class="label">Remaining</div></div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+  <!-- Topic filters -->
+  <div class="filter-row" id="filterRow">
+    <button class="filter-btn active" onclick="filterTopic('all')">All Topics</button>
+    <button class="filter-btn" onclick="filterTopic('serotonin')">Serotonin Syndrome</button>
+    <button class="filter-btn" onclick="filterTopic('tyramine')">Tyramine / MAOI</button>
+    <button class="filter-btn" onclick="filterTopic('hypertensive')">Hypertensive Crisis</button>
+    <button class="filter-btn" onclick="filterTopic('benzo')">Benzo Withdrawal</button>
+    <button class="filter-btn" onclick="filterTopic('discontinuation')">Discontinuation Syn.</button>
+    <button class="filter-btn" onclick="filterTopic('snri')">SNRIs</button>
+    <button class="filter-btn" onclick="filterTopic('antipsychotics')">Antipsychotics</button>
+    <button class="filter-btn" onclick="filterTopic('bipolar')">Bipolar / Mood Stab.</button>
+  </div>
+
+  <!-- Content area -->
+  <div id="content"></div>
+</div>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ========== DATA ==========
+const ALL_CARDS = [
+  // === SEROTONIN SYNDROME ===
+  {topic:'serotonin', q:"What is serotonin syndrome and what causes it?", a:"A potentially <span class='danger'>life-threatening</span> condition caused by <strong>excess serotonergic activity</strong> in the CNS. Caused by combining serotonergic drugs (SSRIs + MAOIs, SSRIs + triptans, SNRIs + tramadol, etc.) or overdose of a single serotonergic agent. NOT an allergic reaction — it's a <strong>predictable toxicity</strong>."},
+  {topic:'serotonin', q:"What is the classic triad of serotonin syndrome?", a:"<strong>1) Neuromuscular hyperactivity</strong> — clonus (especially ankle), hyperreflexia, myoclonus, rigidity, tremor<br><strong>2) Autonomic instability</strong> — hyperthermia, tachycardia, diaphoresis, diarrhea, labile BP<br><strong>3) Altered mental status</strong> — agitation, confusion, restlessness<br><br><span class='highlight'>Key differentiator from NMS:</span> Clonus & hyperreflexia (SS) vs. 'lead pipe' rigidity (NMS)"},
+  {topic:'serotonin', q:"How does serotonin syndrome differ from NMS (Neuroleptic Malignant Syndrome)?", a:"<strong>Serotonin Syndrome:</strong> Rapid onset (hours), clonus/hyperreflexia, diarrhea, caused by serotonergic drugs, resolves in 24-72h with drug removal<br><br><strong>NMS:</strong> Slow onset (days-weeks), <span class='danger'>'lead pipe' rigidity</span>, elevated CK, caused by dopamine blockers (antipsychotics), takes days-weeks to resolve<br><br><span class='highlight'>Both share:</span> hyperthermia, altered mental status, autonomic instability"},
+  {topic:'serotonin', q:"What drug combinations most commonly cause serotonin syndrome?", a:"<span class='danger'>MOST DANGEROUS:</span> MAOI + SSRI/SNRI (requires 14-day washout between, or 5 weeks for fluoxetine→MAOI)<br><br><strong>Other combos:</strong> SSRI + tramadol, SSRI + triptans, SSRI + St. John's Wort, SSRI + linezolid (antibiotic with MAOI activity), SSRI + dextromethorphan (cough suppressant), SSRI + lithium<br><br><span class='highlight'>Test pearl:</span> Linezolid and methylene blue have MAOI activity — watch for drug interactions!"},
+  {topic:'serotonin', q:"What is the treatment for serotonin syndrome?", a:"<strong>1) Discontinue ALL serotonergic agents</strong> immediately<br><strong>2) Supportive care:</strong> IV fluids, cooling, cardiac monitoring, benzodiazepines for agitation/seizures<br><strong>3) Cyproheptadine</strong> — serotonin antagonist (5-HT2A blocker), first-line pharmacologic treatment<br><strong>4) Avoid:</strong> physical restraints (worsen hyperthermia), antipyretics (ineffective — hyperthermia is muscular, not hypothalamic)<br><br>Most cases resolve within <strong>24-72 hours</strong> of drug removal"},
+  {topic:'serotonin', q:"What is the required washout period when switching from an SSRI to an MAOI?", a:"<strong>General rule: 14 days</strong> (at least 5 half-lives of the SSRI)<br><br><span class='danger'>Exception — Fluoxetine:</span> Requires <strong>5 weeks (35 days)</strong> washout before starting MAOI because its active metabolite (norfluoxetine) has a very long half-life (~4-16 days)<br><br><strong>MAOI → SSRI:</strong> Also requires <strong>14 days</strong> washout<br><br><span class='highlight'>Quiz pearl:</span> Always remember fluoxetine's long washout — this is a classic test question"},
+
+  // === TYRAMINE RESTRICTED DIET ===
+  {topic:'tyramine', q:"Why must patients on MAOIs follow a tyramine-restricted diet?", a:"MAOIs inhibit monoamine oxidase in the gut wall and liver. <strong>MAO-A normally breaks down tyramine</strong> in food before it enters systemic circulation.<br><br>Without MAO-A activity → dietary tyramine is absorbed intact → causes massive <strong>norepinephrine release</strong> from sympathetic nerve terminals → <span class='danger'>hypertensive crisis</span><br><br>This is called the <strong>'cheese reaction'</strong> because aged cheese was one of the first foods identified as a trigger."},
+  {topic:'tyramine', q:"Which foods must be AVOIDED on an MAOI tyramine-restricted diet?", a:"<strong>HIGH TYRAMINE (AVOID):</strong><br>• Aged cheeses (cheddar, Swiss, parmesan, blue, brie)<br>• Cured/smoked meats (salami, pepperoni, summer sausage)<br>• Fermented foods (sauerkraut, kimchi, miso, soy sauce)<br>• Aged/pickled fish<br>• Draft/tap beer, red wine (especially Chianti)<br>• Fava/broad beans<br>• Concentrated yeast extracts (Marmite)<br>• Overripe bananas/avocados<br><br><span class='highlight'>Memory tip:</span> Think 'AGED, CURED, FERMENTED, SPOILED' — the aging/fermentation process creates tyramine"},
+  {topic:'tyramine', q:"How long must a tyramine-restricted diet continue after stopping an MAOI?", a:"The diet must continue for <strong>at least 2 weeks (14 days)</strong> after the last MAOI dose.<br><br>Reason: Irreversible MAOIs (phenelzine, tranylcypromine) permanently inactivate MAO enzyme. The body needs ~14 days to synthesize new MAO enzymes.<br><br><span class='highlight'>Key distinction:</span> Selegiline transdermal patch at lowest dose (6mg/24hr) does NOT require dietary restrictions because it mainly inhibits MAO-B at that dose. Higher doses require full dietary restrictions."},
+  {topic:'tyramine', q:"What are the classic MAOIs used in psychiatry?", a:"<strong>Irreversible, nonselective:</strong><br>• <strong>Phenelzine (Nardil)</strong> — most commonly prescribed MAOI<br>• <strong>Tranylcypromine (Parnate)</strong><br>• Isocarboxazid (Marplan)<br><br><strong>Selective MAO-B inhibitor:</strong><br>• <strong>Selegiline transdermal (EMSAM)</strong> — FDA-approved for depression; at 6mg/24hr patch, no dietary restrictions needed<br><br><span class='highlight'>Clinical pearl:</span> MAOIs are typically reserved for treatment-resistant depression, atypical depression, or after multiple medication failures"},
+
+  // === HYPERTENSIVE CRISIS ===
+  {topic:'hypertensive', q:"What are the signs and symptoms of a hypertensive crisis from tyramine-MAOI interaction?", a:"<span class='danger'>MEDICAL EMERGENCY:</span><br>• Severe occipital headache ('thunderclap' headache — starts at back of head)<br>• Markedly elevated BP (can exceed 180/120 mmHg)<br>• Neck stiffness/soreness<br>• Nausea/vomiting<br>• Diaphoresis (profuse sweating)<br>• Dilated pupils<br>• Palpitations, chest pain<br>• Photophobia<br><br><span class='danger'>Complications:</span> Intracranial hemorrhage, stroke, cardiac arrhythmias, death<br><br><span class='highlight'>Onset:</span> Usually within 15-90 minutes of ingesting tyramine-rich food"},
+  {topic:'hypertensive', q:"What is the emergency treatment for MAOI-induced hypertensive crisis?", a:"<strong>1) ER immediately</strong> — this is a medical emergency<br><strong>2) Phentolamine</strong> (alpha-adrenergic blocker) IV — first-line for acute management<br><strong>3) Nifedipine</strong> — some clinicians prescribe sublingual nifedipine (10mg capsule, bite & swallow) as an emergency rescue; controversial but still used<br><strong>4) Nitroprusside</strong> IV for severe cases<br><br><span class='danger'>AVOID beta-blockers alone</span> — can worsen hypertension via unopposed alpha stimulation<br><br>Patients on MAOIs should be educated to <strong>go to ER for any sudden severe headache</strong>"},
+  {topic:'hypertensive', q:"Besides tyramine-rich foods, what other substances can trigger hypertensive crisis with MAOIs?", a:"<strong>Sympathomimetic drugs:</strong><br>• OTC decongestants (pseudoephedrine, phenylephrine)<br>• Stimulants (amphetamines, methylphenidate)<br>• Cocaine<br>• Dopamine<br>• Epinephrine (caution with dental anesthetics containing epi)<br><br><strong>Other serotonergic drugs:</strong> Can cause serotonin syndrome AND hypertensive crisis<br>• Meperidine (Demerol) — <span class='danger'>NEVER combine with MAOIs</span><br>• Dextromethorphan (in OTC cough meds)<br><br><span class='highlight'>Educate patients:</span> Always tell ALL providers and pharmacists about MAOI use"},
+
+  // === BENZO WITHDRAWAL ===
+  {topic:'benzo', q:"Why is benzodiazepine withdrawal potentially life-threatening?", a:"Benzos enhance GABA-A activity (inhibitory). With chronic use, the brain <strong>downregulates GABA receptors</strong> and <strong>upregulates excitatory glutamate (NMDA) receptors</strong>.<br><br>Sudden removal → <span class='danger'>unopposed excitatory neurotransmission</span> →<br>• <span class='danger'>Seizures (grand mal)</span> — can be fatal<br>• <span class='danger'>Delirium tremens-like syndrome</span><br>• Psychosis<br>• Status epilepticus<br><br><span class='highlight'>Key concept:</span> Same mechanism as alcohol withdrawal — both enhance GABA. Cross-tolerance exists between them."},
+  {topic:'benzo', q:"What are the symptoms of benzodiazepine withdrawal (timeline)?", a:"<strong>Short-acting (alprazolam, lorazepam):</strong> Onset 6-8 hours, peak 1-3 days<br><strong>Long-acting (diazepam, clonazepam):</strong> Onset 1-7 days, peak 1-2 weeks<br><br><strong>Symptoms by severity:</strong><br>Mild: Anxiety, insomnia, irritability, tremor, diaphoresis<br>Moderate: Panic attacks, tachycardia, hypertension, muscle spasms, perceptual disturbances<br>Severe: <span class='danger'>Seizures, psychosis, delirium, death</span><br><br><span class='highlight'>Rebound effect:</span> Original symptoms (anxiety, insomnia) return WORSE than baseline"},
+  {topic:'benzo', q:"What is the proper protocol for benzodiazepine discontinuation?", a:"<strong>TAPER SLOWLY — never abrupt discontinuation</strong><br><br><strong>General guidelines:</strong><br>• Reduce dose by <strong>10-25% every 1-2 weeks</strong><br>• Slower taper for last 25% of dose<br>• Total taper period: often 2-6 months (longer for high doses/long use)<br><br><strong>Switch strategy:</strong> Convert short-acting benzo → equivalent dose of long-acting (diazepam or clonazepam) → taper the long-acting<br><br><strong>Adjuncts:</strong> Carbamazepine, gabapentin, or valproate can help manage withdrawal symptoms<br><br><span class='highlight'>Clinical pearl:</span> Lorazepam is first-line for catatonia (from your psychosis lecture!)"},
+  {topic:'benzo', q:"Which benzodiazepines are short-acting vs. long-acting? Why does it matter?", a:"<strong>Short-acting (higher withdrawal risk):</strong><br>• Alprazolam (Xanax) — t½ 6-12h<br>• Lorazepam (Ativan) — t½ 10-20h<br>• Oxazepam (Serax) — t½ 5-15h<br>• Triazolam (Halcion) — t½ 1.5-5h<br><br><strong>Long-acting (smoother withdrawal):</strong><br>• Diazepam (Valium) — t½ 20-100h<br>• Clonazepam (Klonopin) — t½ 18-50h<br>• Chlordiazepoxide (Librium) — t½ 24-48h<br><br><span class='highlight'>Why it matters:</span> Short-acting = more intense/rapid withdrawal. Long-acting = gentler offset. This is why we convert to long-acting for tapers."},
+
+  // === DISCONTINUATION SYNDROME ===
+  {topic:'discontinuation', q:"What is antidepressant discontinuation syndrome? How is it different from withdrawal?", a:"A syndrome of physical and psychological symptoms from abrupt cessation or rapid dose reduction of antidepressants (especially SSRIs/SNRIs).<br><br><strong>Technically NOT 'withdrawal'</strong> because it does not involve craving, tolerance, or drug-seeking behavior. However, the symptoms are real and can be debilitating.<br><br><strong>Onset:</strong> Within 1-3 days of stopping<br><strong>Duration:</strong> Usually 1-3 weeks (can be longer)<br><br><span class='highlight'>Highest risk:</span> Paroxetine (Paxil) and venlafaxine (Effexor) — both have SHORT half-lives"},
+  {topic:'discontinuation', q:"What is the FINISH mnemonic for antidepressant discontinuation syndrome?", a:"<strong class='highlight'>F</strong> — Flu-like symptoms (fatigue, lethargy, myalgia, chills)<br><strong class='highlight'>I</strong> — Insomnia (sleep disturbances, vivid dreams)<br><strong class='highlight'>N</strong> — Nausea (GI distress, diarrhea)<br><strong class='highlight'>I</strong> — Imbalance (dizziness, vertigo, lightheadedness, ataxia)<br><strong class='highlight'>S</strong> — Sensory disturbances ('brain zaps' / electric shock sensations, paresthesias, visual disturbances)<br><strong class='highlight'>H</strong> — Hyperarousal (anxiety, irritability, agitation, crying spells)<br><br><span class='danger'>'Brain zaps'</span> are virtually pathognomonic — patients describe brief electric shock-like sensations in the head"},
+  {topic:'discontinuation', q:"Which antidepressants have the HIGHEST and LOWEST risk of discontinuation syndrome?", a:"<strong>HIGHEST RISK (short half-life):</strong><br>• <span class='danger'>Paroxetine (Paxil)</span> — t½ ~21h, worst offender among SSRIs<br>• <span class='danger'>Venlafaxine (Effexor)</span> — t½ ~5h, very high risk<br>• Desvenlafaxine (Pristiq)<br>• Duloxetine (Cymbalta)<br><br><strong>LOWEST RISK (long half-life):</strong><br>• <span class='highlight'>Fluoxetine (Prozac)</span> — t½ 4-6 days (active metabolite 4-16 days), essentially self-tapers<br><br><strong>Moderate risk:</strong> Sertraline, citalopram, escitalopram<br><br><span class='highlight'>Rule of thumb:</span> Shorter half-life = higher discontinuation risk"},
+  {topic:'discontinuation', q:"How do you prevent and manage antidepressant discontinuation syndrome?", a:"<strong>PREVENTION (always first):</strong><br>• Taper gradually over <strong>2-4 weeks minimum</strong><br>• Slower taper for high-risk drugs (paroxetine, venlafaxine): 4-8 weeks<br>• Educate patients NEVER to stop abruptly<br><br><strong>MANAGEMENT (if symptoms occur):</strong><br>• Reinstate the original antidepressant at last effective dose<br>• Resume slower taper<br>• For severe cases: switch to fluoxetine (long t½) then taper fluoxetine<br><br><span class='highlight'>Key distinction from relapse:</span> Discontinuation symptoms start within days, respond to reinstatement within 24h. Relapse typically takes 2-3 weeks to develop."},
+
+  // === SNRIs ===
+  {topic:'snri', q:"What are the SNRIs and what is their mechanism of action?", a:"<strong>Serotonin-Norepinephrine Reuptake Inhibitors</strong> — block reuptake of BOTH serotonin AND norepinephrine, increasing availability of both neurotransmitters.<br><br><strong>Medications:</strong><br>• <strong>Venlafaxine (Effexor)</strong> — first SNRI; at low doses primarily serotonergic, NE effects at ≥150mg<br>• <strong>Desvenlafaxine (Pristiq)</strong> — active metabolite of venlafaxine<br>• <strong>Duloxetine (Cymbalta)</strong> — balanced 5-HT/NE; also FDA-approved for pain<br>• <strong>Levomilnacipran (Fetzima)</strong> — more NE selectivity<br>• <strong>Milnacipran (Savella)</strong> — FDA-approved for fibromyalgia only"},
+  {topic:'snri', q:"What are the unique clinical advantages of SNRIs (dual mechanism)?", a:"The norepinephrine component gives SNRIs advantages over SSRIs for:<br><br><strong>Pain conditions:</strong><br>• Duloxetine — FDA-approved for diabetic neuropathy, fibromyalgia, chronic musculoskeletal pain<br>• Venlafaxine — migraine prophylaxis (off-label)<br><br><strong>Other advantages:</strong><br>• May be more effective for severe depression (dual mechanism)<br>• Fatigue/low energy (NE is activating)<br>• Stress urinary incontinence (duloxetine)<br>• Hot flashes in menopause (venlafaxine, desvenlafaxine — off-label)<br><br><span class='highlight'>Clinical pearl:</span> If a depressed patient also has chronic pain → SNRI is a rational first choice"},
+  {topic:'snri', q:"What are the key side effects of SNRIs?", a:"<strong>Serotonergic side effects (shared with SSRIs):</strong><br>• Nausea (most common early SE), GI upset<br>• Sexual dysfunction<br>• Insomnia or somnolence<br>• Headache<br><br><strong>Noradrenergic side effects (unique to SNRIs):</strong><br>• <span class='danger'>Dose-dependent hypertension</span> — must monitor BP regularly, especially venlafaxine at higher doses<br>• Increased heart rate<br>• Diaphoresis (sweating)<br>• Urinary hesitancy<br>• Mydriasis (dilated pupils) — caution in narrow-angle glaucoma<br><br><strong>Black Box Warning:</strong> Increased suicidality in children, adolescents, young adults (age <25)"},
+  {topic:'snri', q:"Why is venlafaxine (Effexor) one of the most challenging antidepressants to discontinue?", a:"<strong>Very short half-life</strong> (~5 hours; active metabolite ~11 hours)<br><br>Patients may feel withdrawal symptoms even when <strong>a few hours late</strong> taking a dose.<br><br><strong>Discontinuation is severe:</strong><br>• Brain zaps are extremely common<br>• GI distress<br>• Dizziness, vertigo<br>• Emotional lability<br><br><strong>Taper strategy:</strong> Very gradual reduction over 4+ weeks. Some clinicians use 'bead counting' with capsules to make tiny reductions.<br><br><span class='highlight'>For switching:</span> Some clinicians cross-taper to fluoxetine first (long t½), then stop fluoxetine, which self-tapers"},
+  {topic:'snri', q:"What baseline labs and monitoring are needed for SNRIs?", a:"<strong>Before starting:</strong><br>• Blood pressure and heart rate (baseline)<br>• Hepatic function (especially duloxetine — avoid in hepatic impairment)<br>• Renal function for dose adjustments<br><br><strong>Ongoing monitoring:</strong><br>• <span class='danger'>Blood pressure regularly</span> — especially venlafaxine at doses ≥150mg<br>• Signs of serotonin syndrome if combining with other serotonergic drugs<br>• Suicidality assessment in youth<br>• Sodium levels in elderly (risk of SIADH/hyponatremia — same as SSRIs)<br>• Bleeding risk if on anticoagulants (serotonin affects platelet aggregation)"},
+
+  // === ANTIPSYCHOTICS (from lecture slides) ===
+  {topic:'antipsychotics', q:"What are the 4 dopaminergic pathways and their clinical significance?", a:"<strong>1) Mesolimbic</strong> (VTA → nucleus accumbens): <span class='highlight'>Positive symptoms</span> (delusions, hallucinations). Hyperactive in psychosis. Target of antipsychotics.<br><br><strong>2) Mesocortical</strong> (VTA → frontal cortex): <span class='highlight'>Negative & cognitive symptoms</span>. Hypoactive in schizophrenia. Blocking here worsens negative symptoms.<br><br><strong>3) Nigrostriatal</strong> (substantia nigra → striatum): <span class='highlight'>Motor control</span>. Blocking D2 here → EPS and tardive dyskinesia.<br><br><strong>4) Tuberoinfundibular</strong> (hypothalamus → pituitary): <span class='highlight'>Prolactin regulation</span>. Blocking D2 → hyperprolactinemia (amenorrhea, galactorrhea, gynecomastia)."},
+  {topic:'antipsychotics', q:"What distinguishes typical (1st gen) from atypical (2nd gen) antipsychotics?", a:"<strong>Typicals (1st gen):</strong> Block D2 receptors primarily. Effective for positive symptoms but MORE EPS, tardive dyskinesia, hyperprolactinemia. Can worsen negative symptoms.<br><br><strong>Atypicals (2nd gen):</strong> Block BOTH D2 and 5-HT2A. The serotonin blockade releases more dopamine in striatal/cortical areas → <strong>less EPS</strong>, may help negative symptoms.<br><br><strong>'Fast-off' theory:</strong> Atypicals briefly block D2 then release, allowing endogenous dopamine to bind → fewer motor side effects.<br><br><span class='highlight'>Trade-off:</span> Atypicals cause more <span class='danger'>metabolic syndrome</span> (weight gain, diabetes, dyslipidemia)"},
+  {topic:'antipsychotics', q:"What is NMS (Neuroleptic Malignant Syndrome)?", a:"<span class='danger'>MEDICAL EMERGENCY — potentially fatal</span><br><br><strong>Symptoms:</strong> 'Lead pipe' rigidity, high fever (>38°C), dehydration, diaphoresis, elevated BP, tachycardia, tachypnea, agitation, elevated WBC, elevated CK, difficulty swallowing, autonomic instability<br><br><strong>Caused by:</strong> Dopamine blockade (especially high-potency typicals, but any antipsychotic). Also reported with abrupt withdrawal of dopamine agonists.<br><br><strong>Treatment:</strong> Immediate discontinuation, hospitalization, dantrolene (muscle relaxant), bromocriptine (dopamine agonist), cooling measures, IV fluids<br><br><strong>Risk factors:</strong> High-potency antipsychotics, polypharmacy with multiple antipsychotics, dehydration"},
+  {topic:'antipsychotics', q:"What are EPS subtypes and which antipsychotics cause them most?", a:"<strong>EPS types:</strong><br>• <strong>Acute dystonia</strong> — muscle spasms (torticollis, oculogyric crisis). Treat with benztropine/diphenhydramine<br>• <strong>Parkinsonism</strong> — shuffling gait, bradykinesia, pill-rolling tremor, drooling<br>• <strong>Akathisia</strong> — intense internal restlessness. Treat with propranolol or benzodiazepines<br>• <strong>Tardive dyskinesia</strong> — involuntary movements (lip smacking, tongue protrusion, 'piano fingers'). <span class='danger'>Often irreversible</span>. Treat with valbenazine (Ingrezza) or deutetrabenazine<br><br><strong>Highest EPS risk:</strong> High-potency typicals (haloperidol, fluphenazine)<br><strong>Lowest EPS risk:</strong> Clozapine, quetiapine, olanzapine"},
+  {topic:'antipsychotics', q:"What makes Clozapine (Clozaril) the gold standard for treatment-resistant schizophrenia?", a:"<strong>Unique benefits:</strong><br>• Only drug proven effective for treatment-resistant schizophrenia<br>• Reduces suicidality (one of only 3 drugs to do so — along with lithium and ketamine)<br>• Minimal EPS, virtually no tardive dyskinesia<br>• Improves negative and cognitive symptoms<br>• Reduces aggression<br><br><span class='danger'>Why not first-line?</span><br>• <strong>Agranulocytosis</strong> — potentially fatal WBC suppression. Requires mandatory blood monitoring (weekly × 6 months, biweekly × 6 months, then monthly)<br>• Metabolic syndrome (high risk with olanzapine)<br>• Seizure risk at higher doses<br>• Myocarditis risk<br>• Severe sedation, drooling, constipation"},
+
+  // === BIPOLAR / MOOD STABILIZERS (from lecture slides) ===
+  {topic:'bipolar', q:"What are lithium's key clinical facts?", a:"<strong>Gold standard</strong> for bipolar mania. First mood stabilizer ever used.<br><br>• MOA: Alters sodium transport (hyperpolarization), reduces glutamate & dopamine, increases GABA & BDNF<br>• <strong>Narrow therapeutic window: 0.6-1.2 mEq/L</strong>. Critical value >1.5<br>• Reduces suicide risk by <strong>60-80%</strong><br>• Onset: 5-14 days (delayed)<br>• FDA approved ages 12-18<br>• Requires baseline labs + EKG if >50 years old<br>• Monitor: Thyroid (hypothyroidism risk), renal function, serum levels twice weekly during acute phase<br><br><span class='danger'>Toxicity signs:</span> Diarrhea, vomiting, tremor, ataxia, slurred speech, confusion. >3.0 = seizures, coma → consider dialysis"},
+  {topic:'bipolar', q:"What is Stevens-Johnson Syndrome and which bipolar drug is most associated with it?", a:"<span class='danger'>Life-threatening necrotizing rash</span> — rare but potentially fatal<br><br><strong>Most associated with:</strong> <span class='danger'>Lamotrigine (Lamictal)</span><br>Also: Carbamazepine (especially in patients with HLA-B*1502 allele — almost exclusively in patients of Asian ancestry, risk 10x greater)<br><br><strong>Early signs:</strong> Flu-like symptoms, fever, sore throat, cough, burning eyes → followed by painful red/purple rash → blisters → skin shedding<br><br><span class='highlight'>Prevention:</span> SLOW titration of lamotrigine is mandatory. Any new rash during titration = stop drug immediately and evaluate<br><br>Lamotrigine is first-line for <strong>bipolar depression prevention</strong> (NOT acute depression or mania)"},
+  {topic:'bipolar', q:"Compare Valproic Acid (Depakote) and Carbamazepine (Tegretol) monitoring requirements.", a:"<strong>Valproic Acid (Depakote):</strong><br>• Therapeutic level: 50-125 ug/mL<br>• Monitor: Platelets, LFTs (hepatotoxicity risk — <span class='danger'>fatal in children <2</span>)<br>• Monitor ammonia if lethargy/mental status changes<br>• Women: Monitor for PCOS; teratogenic — must be on birth control<br>• Watch for pancreatitis (rare but fatal)<br><br><strong>Carbamazepine (Tegretol):</strong><br>• Therapeutic level: 6-12 mcg/mL<br>• Monitor: CBC weekly × 12 weeks, then monthly × 2-3 years<br>• <span class='danger'>Bone marrow suppression</span> → aplastic anemia, agranulocytosis<br>• HLA-B*1502 genetic testing (Asian ancestry) for SJS risk<br>• Extended-release (Equetro) doesn't require blood monitoring"},
+];
+
+// === QUIZ QUESTIONS ===
+const QUIZ_QUESTIONS = [
+  {topic:'serotonin', q:"A patient on sertraline develops agitation, clonus, diaphoresis, and hyperthermia within hours of adding tramadol. The most likely diagnosis is:", opts:["Neuroleptic Malignant Syndrome","Serotonin Syndrome","Malignant Hyperthermia","Anticholinergic Toxicity"], correct:1, explain:"Serotonin syndrome: rapid onset (hours), clonus/hyperreflexia, caused by combining serotonergic drugs (SSRI + tramadol). NMS has slow onset, lead-pipe rigidity, and is caused by dopamine blockers."},
+  {topic:'serotonin', q:"Which finding best distinguishes serotonin syndrome from NMS?", opts:["Hyperthermia","Clonus and hyperreflexia","Altered mental status","Autonomic instability"], correct:1, explain:"Clonus and hyperreflexia are the key differentiators. Both conditions share hyperthermia, altered mental status, and autonomic instability. NMS features 'lead pipe' rigidity instead."},
+  {topic:'serotonin', q:"What is the first-line pharmacologic treatment for serotonin syndrome?", opts:["Dantrolene","Bromocriptine","Cyproheptadine","Diphenhydramine"], correct:2, explain:"Cyproheptadine is a serotonin antagonist (5-HT2A blocker). Dantrolene and bromocriptine are used for NMS. The most important intervention is discontinuing all serotonergic agents."},
+  {topic:'serotonin', q:"When switching from fluoxetine to an MAOI, the required washout period is:", opts:["7 days","14 days","21 days","5 weeks (35 days)"], correct:3, explain:"Fluoxetine's active metabolite norfluoxetine has a very long half-life (4-16 days), requiring 5 weeks washout. All other SSRIs → MAOI require 14 days."},
+  {topic:'tyramine', q:"The 'cheese reaction' with MAOIs occurs because:", opts:["Tyramine blocks serotonin reuptake","MAO-A normally degrades dietary tyramine before systemic absorption","Cheese contains high levels of serotonin","Tyramine directly stimulates dopamine receptors"], correct:1, explain:"MAO-A in the gut wall and liver normally breaks down tyramine from food. When MAO is inhibited, tyramine enters the bloodstream and triggers massive norepinephrine release → hypertensive crisis."},
+  {topic:'tyramine', q:"How long after discontinuing an irreversible MAOI must tyramine dietary restrictions continue?", opts:["3 days","7 days","14 days","30 days"], correct:2, explain:"Irreversible MAOIs permanently inactivate MAO enzymes. The body needs approximately 14 days to synthesize new MAO enzymes, so dietary restrictions must continue for at least 2 weeks after stopping."},
+  {topic:'hypertensive', q:"A patient on phenelzine presents with sudden severe occipital headache, BP 210/130, diaphoresis, and nausea after eating at a deli. The FIRST priority is:", opts:["Administer propranolol","Administer phentolamine and prepare for ER transfer","Give sublingual nitroglycerin","Discontinue the MAOI and observe"], correct:1, explain:"This is a hypertensive crisis from tyramine-MAOI interaction (deli = cured meats). Phentolamine (alpha-blocker) is first-line. AVOID beta-blockers alone (unopposed alpha stimulation worsens crisis). This is a medical emergency requiring ER care."},
+  {topic:'hypertensive', q:"Which of the following OTC medications should patients on MAOIs AVOID?", opts:["Acetaminophen","Pseudoephedrine","Ibuprofen","Famotidine"], correct:1, explain:"Pseudoephedrine is a sympathomimetic that can trigger hypertensive crisis when combined with MAOIs. Patients must avoid all OTC decongestants, stimulants, and dextromethorphan-containing cough medicines."},
+  {topic:'benzo', q:"Benzodiazepine withdrawal can be life-threatening primarily because of:", opts:["Severe depression leading to suicide","Seizures from unopposed excitatory neurotransmission","Cardiac arrhythmias from rebound sympathetic surge","Respiratory depression from compensatory CNS changes"], correct:1, explain:"Chronic benzo use downregulates GABA receptors and upregulates glutamate/NMDA receptors. Abrupt removal → unopposed excitatory neurotransmission → potentially fatal grand mal seizures, similar to alcohol withdrawal."},
+  {topic:'benzo', q:"The preferred strategy for benzodiazepine discontinuation is:", opts:["Abrupt cessation with seizure prophylaxis","Switch to short-acting benzo and taper rapidly","Convert to equivalent long-acting benzo (diazepam) and taper gradually","Replace with gabapentin and stop benzo immediately"], correct:2, explain:"Converting to a long-acting benzo (diazepam or clonazepam) provides smoother plasma levels. Then taper 10-25% every 1-2 weeks. Abrupt cessation can cause fatal seizures. Short-acting benzos have more withdrawal intensity."},
+  {topic:'benzo', q:"Which benzodiazepine has the SHORTEST half-life and highest interdose withdrawal risk?", opts:["Diazepam (Valium)","Clonazepam (Klonopin)","Triazolam (Halcion)","Chlordiazepoxide (Librium)"], correct:2, explain:"Triazolam has the shortest half-life (1.5-5 hours). Shorter half-life = more rapid/intense withdrawal between doses. Diazepam (20-100h) and chlordiazepoxide (24-48h) are long-acting."},
+  {topic:'discontinuation', q:"The FINISH mnemonic for antidepressant discontinuation syndrome stands for:", opts:["Fatigue, Irritability, Numbness, Insomnia, Seizures, Hallucinations","Flu-like symptoms, Insomnia, Nausea, Imbalance, Sensory disturbances, Hyperarousal","Fever, Insomnia, Nausea, Impaired cognition, Sweating, Headache","Fatigue, Insomnia, Neuropathy, Imbalance, Syncope, Hypertension"], correct:1, explain:"FINISH: Flu-like symptoms, Insomnia, Nausea, Imbalance (dizziness/vertigo), Sensory disturbances ('brain zaps'), Hyperarousal (anxiety/agitation). Brain zaps are virtually pathognomonic for this syndrome."},
+  {topic:'discontinuation', q:"Which antidepressant has the HIGHEST risk of discontinuation syndrome?", opts:["Fluoxetine (Prozac)","Sertraline (Zoloft)","Paroxetine (Paxil)","Bupropion (Wellbutrin)"], correct:2, explain:"Paroxetine has the highest discontinuation risk among SSRIs due to its relatively short half-life (~21h), anticholinergic rebound effects, and potent serotonin reuptake inhibition. Fluoxetine has the LOWEST risk (t½ 4-6 days, self-tapers)."},
+  {topic:'discontinuation', q:"A patient who abruptly stopped venlafaxine 3 days ago reports 'electric shock sensations' in her head, dizziness, and flu-like symptoms. Management includes:", opts:["Start a different SSRI immediately","Reinstate venlafaxine at the last effective dose and begin gradual taper","Prescribe benzodiazepines for symptom management","Reassure that symptoms will resolve and take no action"], correct:1, explain:"The standard approach is to reinstate the original antidepressant at the last effective dose, then begin a proper gradual taper over 4+ weeks. 'Brain zaps' with venlafaxine are classic discontinuation symptoms. The very short half-life (~5h) makes venlafaxine especially prone to this."},
+  {topic:'snri', q:"At what dose does venlafaxine begin to significantly inhibit norepinephrine reuptake?", opts:["37.5 mg","75 mg","150 mg","225 mg"], correct:2, explain:"At low doses, venlafaxine acts primarily as a serotonin reuptake inhibitor. The norepinephrine reuptake inhibition becomes clinically significant at doses ≥150 mg/day, making the dual mechanism dose-dependent."},
+  {topic:'snri', q:"Which SNRI is FDA-approved for diabetic neuropathic pain, fibromyalgia, AND chronic musculoskeletal pain?", opts:["Venlafaxine (Effexor)","Desvenlafaxine (Pristiq)","Duloxetine (Cymbalta)","Levomilnacipran (Fetzima)"], correct:2, explain:"Duloxetine has the broadest FDA-approved pain indications among SNRIs: diabetic neuropathy, fibromyalgia, and chronic musculoskeletal pain. This makes it a rational choice when depression coexists with chronic pain."},
+  {topic:'snri', q:"The most important vital sign to monitor in patients on SNRIs, especially venlafaxine at higher doses, is:", opts:["Temperature","Blood pressure","Respiratory rate","Oxygen saturation"], correct:1, explain:"SNRIs can cause dose-dependent hypertension due to norepinephrine reuptake inhibition. Blood pressure should be monitored at baseline and regularly during treatment, especially with venlafaxine at doses ≥150 mg."},
+  {topic:'antipsychotics', q:"Blocking D2 receptors in the tuberoinfundibular pathway leads to:", opts:["Extrapyramidal symptoms","Worsening of negative symptoms","Hyperprolactinemia","Tardive dyskinesia"], correct:2, explain:"The tuberoinfundibular pathway projects from hypothalamus to pituitary. Dopamine normally INHIBITS prolactin release. Blocking D2 here → prolactin rises → amenorrhea, galactorrhea, gynecomastia, sexual dysfunction. Risperidone causes the most prolactin elevation among atypicals."},
+  {topic:'antipsychotics', q:"Which atypical antipsychotic requires mandatory WBC monitoring due to risk of agranulocytosis?", opts:["Olanzapine (Zyprexa)","Quetiapine (Seroquel)","Risperidone (Risperdal)","Clozapine (Clozaril)"], correct:3, explain:"Clozapine can cause potentially fatal agranulocytosis, requiring mandatory blood monitoring: weekly × 6 months, biweekly × 6 months, then monthly indefinitely. Despite this risk, it's the gold standard for treatment-resistant schizophrenia."},
+  {topic:'antipsychotics', q:"The 'fast-off theory' explains why atypical antipsychotics have lower EPS. This theory describes:", opts:["Rapid metabolism of the drug","Brief D2 receptor blockade allowing endogenous dopamine to bind","Fast clearance from the CNS","Quick dissociation from 5-HT2A receptors"], correct:1, explain:"Atypical antipsychotics briefly block D2 receptors then dissociate quickly, allowing endogenous dopamine to bind in between. This transient blockade (vs. the sustained blockade of typicals) produces fewer motor side effects."},
+  {topic:'bipolar', q:"Lithium's therapeutic range is narrow. What is the therapeutic plasma level?", opts:["0.2-0.6 mEq/L","0.6-1.2 mEq/L","1.2-1.8 mEq/L","1.5-2.5 mEq/L"], correct:1, explain:"Lithium's therapeutic range is 0.6-1.2 mEq/L. Levels >1.5 are considered critical. Levels >3.0 can cause seizures, delirium, and coma, potentially requiring dialysis. Monitor twice weekly during acute phase."},
+  {topic:'bipolar', q:"Which mood stabilizer is first-line for PREVENTING bipolar depression recurrence (not treating acute depression)?", opts:["Lithium","Valproic Acid","Lamotrigine","Carbamazepine"], correct:2, explain:"Lamotrigine is first-line for maintenance and prophylaxis of bipolar depression. It is NOT FDA-approved for acute bipolar depression or mania. Key risk: Stevens-Johnson Syndrome (requires slow titration)."},
+  {topic:'bipolar', q:"Valproic acid monitoring should include checking ammonia levels when a patient develops:", opts:["Weight gain","Unexplained lethargy or changes in mental status","Hair loss","Tremor"], correct:1, explain:"Unexplained lethargy, vomiting, or changes in mental status in a patient on valproic acid should prompt ammonia level measurement (hyperammonemic encephalopathy). Also monitor LFTs (fatal hepatotoxicity, especially in children <2) and platelets."},
+];
+
+// ========== STATE ==========
+let mode = 'flash';
+let currentFilter = 'all';
+let flashIndex = 0;
+let flashDeck = [];
+let quizIndex = 0;
+let quizDeck = [];
+let stats = { seen: 0, correct: 0, streak: 0 };
+let cardFlipped = false;
+
+function getFiltered(arr) {
+  if (currentFilter === 'all') return [...arr];
+  return arr.filter(c => c.topic === currentFilter);
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-' + m).classList.add('active');
+  if (m === 'flash') { resetFlash(); }
+  else if (m === 'quiz') { resetQuiz(); }
+  else if (m === 'ref') { renderRef(); }
+  else if (m === 'share') { renderShare(); }
+  updateStats();
+}
+
+function filterTopic(t) {
+  currentFilter = t;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  if (mode === 'flash') resetFlash();
+  else if (mode === 'quiz') resetQuiz();
+  else if (mode === 'ref') renderRef();
+}
+
+function updateStats() {
+  const total = mode === 'quiz' ? quizDeck.length : flashDeck.length;
+  const idx = mode === 'quiz' ? quizIndex : flashIndex;
+  document.getElementById('statSeen').textContent = stats.seen;
+  document.getElementById('statCorrect').textContent = stats.correct;
+  document.getElementById('statStreak').textContent = stats.streak;
+  document.getElementById('statRemain').textContent = Math.max(0, total - idx);
+  const pct = total > 0 ? (idx / total * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// ========== FLASHCARD MODE ==========
+function resetFlash() {
+  flashDeck = shuffle(getFiltered(ALL_CARDS));
+  flashIndex = 0;
+  cardFlipped = false;
+  renderFlashcard();
+}
+
+function renderFlashcard() {
+  const el = document.getElementById('content');
+  if (flashIndex >= flashDeck.length) {
+    el.innerHTML = `<div class="card" style="text-align:center;padding:40px;">
+      <h2>Round Complete!</h2>
+      <p style="color:var(--text-dim);margin:12px 0;">You reviewed ${flashDeck.length} cards. Reviewed: ${stats.seen} | Correct: ${stats.correct}</p>
+      <div class="btn-row"><button class="btn btn-primary" onclick="resetFlash();stats={seen:0,correct:0,streak:0};updateStats();">Shuffle & Restart</button></div>
+    </div>`;
+    return;
+  }
+  const card = flashDeck[flashIndex];
+  const topicClass = 'topic-' + card.topic;
+  const topicLabel = {serotonin:'Serotonin Syndrome',tyramine:'Tyramine / MAOI',hypertensive:'Hypertensive Crisis',benzo:'Benzo Withdrawal',discontinuation:'Discontinuation Syn.',snri:'SNRIs',antipsychotics:'Antipsychotics',bipolar:'Bipolar / Mood Stab.'}[card.topic];
+
+  el.innerHTML = `
+    <div style="text-align:center;margin-bottom:8px;">
+      <span class="topic-badge ${topicClass}">${topicLabel}</span>
+      <span style="color:var(--text-dim);font-size:0.8em;margin-left:8px;">${flashIndex+1} / ${flashDeck.length}</span>
+    </div>
+    <div class="flashcard-container" onclick="flipCard()">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-face flashcard-front">
+          <div class="question">${card.q}</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="answer">${card.a}</div>
+        </div>
+      </div>
+    </div>
+    <p class="flip-hint" id="flipHint">tap card to reveal answer</p>
+    <div class="confidence-btns hidden" id="confBtns">
+      <button class="btn-again" onclick="rateCard(0)">Again</button>
+      <button class="btn-hard" onclick="rateCard(1)">Hard</button>
+      <button class="btn-good" onclick="rateCard(2)">Good</button>
+      <button class="btn-easy" onclick="rateCard(3)">Easy</button>
+    </div>`;
+  cardFlipped = false;
+  updateStats();
+}
+
+function flipCard() {
+  const fc = document.getElementById('flashcard');
+  if (!cardFlipped) {
+    fc.classList.add('flipped');
+    cardFlipped = true;
+    document.getElementById('flipHint').textContent = 'rate your confidence ↓';
+    document.getElementById('confBtns').classList.remove('hidden');
+  }
+}
+
+function rateCard(rating) {
+  stats.seen++;
+  if (rating >= 2) { stats.correct++; stats.streak++; }
+  else {
+    stats.streak = 0;
+    // Put "Again" cards back in deck for later review
+    if (rating === 0) flashDeck.push(flashDeck[flashIndex]);
+  }
+  flashIndex++;
+  renderFlashcard();
+}
+
+// ========== QUIZ MODE ==========
+function resetQuiz() {
+  quizDeck = shuffle(getFiltered(QUIZ_QUESTIONS));
+  quizIndex = 0;
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
+  const el = document.getElementById('content');
+  if (quizIndex >= quizDeck.length) {
+    const pct = quizDeck.length > 0 ? Math.round(stats.correct / quizDeck.length * 100) : 0;
+    el.innerHTML = `<div class="card" style="text-align:center;padding:40px;">
+      <h2>Quiz Complete!</h2>
+      <p style="font-size:2em;font-weight:700;color:${pct>=80?'var(--success)':pct>=60?'var(--warning)':'var(--danger)'}">${pct}%</p>
+      <p style="color:var(--text-dim);margin:8px 0;">${stats.correct} / ${quizDeck.length} correct</p>
+      <div class="btn-row"><button class="btn btn-primary" onclick="stats={seen:0,correct:0,streak:0};resetQuiz();">Retake Quiz</button></div>
+    </div>`;
+    return;
+  }
+  const q = quizDeck[quizIndex];
+  const topicClass = 'topic-' + q.topic;
+  const topicLabel = {serotonin:'Serotonin Syndrome',tyramine:'Tyramine / MAOI',hypertensive:'Hypertensive Crisis',benzo:'Benzo Withdrawal',discontinuation:'Discontinuation Syn.',snri:'SNRIs',antipsychotics:'Antipsychotics',bipolar:'Bipolar / Mood Stab.'}[q.topic];
+
+  el.innerHTML = `
+    <div class="card">
+      <span class="topic-badge ${topicClass}">${topicLabel}</span>
+      <span style="color:var(--text-dim);font-size:0.8em;float:right;">${quizIndex+1} / ${quizDeck.length}</span>
+      <h2 style="color:var(--text);font-size:1em;margin-top:8px;">${q.q}</h2>
+      <div id="quizOpts">
+        ${q.opts.map((o,i) => `<button class="quiz-option" onclick="answerQuiz(${i})" data-idx="${i}">${String.fromCharCode(65+i)}) ${o}</button>`).join('')}
+      </div>
+      <div id="quizExplain" class="hidden"></div>
+      <div id="quizNext" class="hidden btn-row">
+        <button class="btn btn-primary" onclick="quizIndex++;renderQuizQuestion();updateStats();">Next Question →</button>
+      </div>
+    </div>`;
+  updateStats();
+}
+
+function answerQuiz(idx) {
+  const q = quizDeck[quizIndex];
+  const btns = document.querySelectorAll('.quiz-option');
+  btns.forEach(b => {
+    b.disabled = true;
+    const bIdx = parseInt(b.dataset.idx);
+    if (bIdx === q.correct) b.classList.add('correct');
+    if (bIdx === idx && idx !== q.correct) b.classList.add('incorrect');
+  });
+  stats.seen++;
+  if (idx === q.correct) { stats.correct++; stats.streak++; }
+  else { stats.streak = 0; }
+  document.getElementById('quizExplain').classList.remove('hidden');
+  document.getElementById('quizExplain').innerHTML = `<div class="explanation"><strong>${idx === q.correct ? '✓ Correct!' : '✗ Incorrect'}</strong><br>${q.explain}</div>`;
+  document.getElementById('quizNext').classList.remove('hidden');
+  updateStats();
+}
+
+// ========== REFERENCE MODE ==========
+function renderRef() {
+  const el = document.getElementById('content');
+  const sections = [
+    {title:'Serotonin Syndrome', topic:'serotonin', color:'var(--pink)', items:[
+      {t:'Definition', v:'Life-threatening excess serotonergic activity from drug combinations or overdose'},
+      {t:'Classic Triad', v:'Neuromuscular hyperactivity (CLONUS) + Autonomic instability + Altered mental status', must:true},
+      {t:'vs NMS', v:'SS = rapid onset, clonus, hyperreflexia. NMS = slow onset, lead-pipe rigidity, elevated CK', must:true},
+      {t:'Worst combo', v:'MAOI + SSRI/SNRI. Also: SSRI + tramadol, SSRI + linezolid, SSRI + dextromethorphan', must:true},
+      {t:'Treatment', v:'Stop all serotonergic drugs → supportive care → cyproheptadine (5-HT2A antagonist)', must:true},
+      {t:'Washout SSRI→MAOI', v:'14 days standard. Fluoxetine = 5 WEEKS (35 days) due to long-acting metabolite', must:true},
+      {t:'Resolution', v:'Usually 24-72 hours after drug removal'},
+    ]},
+    {title:'Tyramine-Restricted Diet (MAOIs)', topic:'tyramine', color:'var(--orange)', items:[
+      {t:'Mechanism', v:'MAO-A normally degrades dietary tyramine. Without it → tyramine absorbed → massive NE release → hypertensive crisis', must:true},
+      {t:'Avoid foods', v:'Aged cheese, cured meats, fermented foods, soy sauce, tap beer, red wine, fava beans, yeast extract, overripe bananas/avocado', must:true},
+      {t:'Memory rule', v:'AGED, CURED, FERMENTED, SPOILED = high tyramine'},
+      {t:'Diet duration', v:'Continue 14 days AFTER stopping MAOI (time to regenerate MAO enzymes)', must:true},
+      {t:'Exception', v:'Selegiline patch 6mg/24hr — no dietary restrictions (mainly MAO-B at that dose)'},
+      {t:'Classic MAOIs', v:'Phenelzine (Nardil), Tranylcypromine (Parnate), Selegiline patch (EMSAM)'},
+    ]},
+    {title:'Hypertensive Crisis', topic:'hypertensive', color:'var(--danger)', items:[
+      {t:'Presentation', v:'Severe OCCIPITAL headache, BP >180/120, neck stiffness, nausea, diaphoresis, dilated pupils', must:true},
+      {t:'Onset', v:'Within 15-90 minutes of tyramine ingestion'},
+      {t:'Complications', v:'Intracranial hemorrhage, stroke, cardiac arrhythmias, death', must:true},
+      {t:'Treatment', v:'ER immediately. Phentolamine (alpha-blocker) IV first-line. AVOID beta-blockers alone', must:true},
+      {t:'Other triggers', v:'Pseudoephedrine, stimulants, cocaine, meperidine (Demerol — NEVER with MAOIs)', must:true},
+      {t:'Patient ed', v:'Report ANY sudden severe headache. Tell ALL providers about MAOI use'},
+    ]},
+    {title:'Benzodiazepine Withdrawal', topic:'benzo', color:'var(--purple)', items:[
+      {t:'Why dangerous', v:'Chronic use downregulates GABA-A, upregulates glutamate/NMDA. Abrupt stop → unopposed excitation → SEIZURES, death', must:true},
+      {t:'Symptoms', v:'Mild: anxiety, insomnia, tremor. Moderate: panic, tachycardia, perceptual changes. Severe: seizures, psychosis, delirium', must:true},
+      {t:'Short-acting onset', v:'Alprazolam/lorazepam: 6-8 hours, peak 1-3 days'},
+      {t:'Long-acting onset', v:'Diazepam/clonazepam: 1-7 days, peak 1-2 weeks'},
+      {t:'Taper protocol', v:'Reduce 10-25% every 1-2 weeks. Convert short-acting → long-acting (diazepam) first, then taper', must:true},
+      {t:'Cross-tolerance', v:'Benzos and alcohol share GABA mechanism — cross-tolerant'},
+      {t:'Catatonia pearl', v:'Lorazepam = first-line treatment for catatonia (from psychosis lecture)', must:true},
+    ]},
+    {title:'Antidepressant Discontinuation Syndrome', topic:'discontinuation', color:'var(--blue)', items:[
+      {t:'FINISH mnemonic', v:'Flu-like, Insomnia, Nausea, Imbalance, Sensory disturbances (brain zaps), Hyperarousal', must:true},
+      {t:'NOT withdrawal', v:'No craving, tolerance, or drug-seeking. But symptoms are real and debilitating'},
+      {t:'Onset / Duration', v:'Within 1-3 days of stopping. Usually resolves in 1-3 weeks'},
+      {t:'Highest risk', v:'Paroxetine (Paxil) and Venlafaxine (Effexor) — short half-lives', must:true},
+      {t:'Lowest risk', v:'Fluoxetine (Prozac) — t½ 4-6 days, essentially self-tapers', must:true},
+      {t:'Brain zaps', v:'Virtually pathognomonic — brief electric shock sensations in head', must:true},
+      {t:'Management', v:'Reinstate at last effective dose → restart gradual taper. Or switch to fluoxetine then taper', must:true},
+      {t:'vs Relapse', v:'Discontinuation = days onset, resolves with reinstatement in 24h. Relapse = 2-3 weeks to develop'},
+    ]},
+    {title:'SNRIs', topic:'snri', color:'var(--accent)', items:[
+      {t:'Mechanism', v:'Block reuptake of BOTH serotonin AND norepinephrine'},
+      {t:'Medications', v:'Venlafaxine (Effexor), Desvenlafaxine (Pristiq), Duloxetine (Cymbalta), Levomilnacipran (Fetzima), Milnacipran (Savella — fibromyalgia only)', must:true},
+      {t:'Venlafaxine dose effect', v:'Low dose = primarily serotonergic. NE effects kick in at ≥150mg', must:true},
+      {t:'Pain advantage', v:'Duloxetine FDA-approved for diabetic neuropathy, fibromyalgia, chronic musculoskeletal pain', must:true},
+      {t:'Key side effect', v:'DOSE-DEPENDENT HYPERTENSION — monitor BP regularly, especially venlafaxine', must:true},
+      {t:'NE side effects', v:'Hypertension, tachycardia, diaphoresis, urinary hesitancy, mydriasis'},
+      {t:'Black Box Warning', v:'Increased suicidality in patients <25 years old'},
+      {t:'Monitoring', v:'BP, hepatic function (especially duloxetine), renal function, sodium in elderly (SIADH risk)'},
+      {t:'Venlafaxine t½', v:'~5 hours — causes severe discontinuation syndrome, patients notice missed doses quickly', must:true},
+    ]},
+    {title:'Antipsychotics (Lecture Highlights)', topic:'antipsychotics', color:'var(--warning)', items:[
+      {t:'4 DA pathways', v:'Mesolimbic (positive sx), Mesocortical (negative/cognitive sx), Nigrostriatal (motor/EPS), Tuberoinfundibular (prolactin)', must:true},
+      {t:'Typical vs Atypical', v:'Typicals = D2 block → more EPS. Atypicals = D2 + 5-HT2A → less EPS, more metabolic effects', must:true},
+      {t:'Fast-off theory', v:'Atypicals briefly block D2 then release → endogenous DA can still bind → less motor SE', must:true},
+      {t:'NMS', v:'Lead-pipe rigidity, high fever, elevated CK, autonomic instability. STOP drug, dantrolene + bromocriptine', must:true},
+      {t:'EPS types', v:'Dystonia, Parkinsonism, Akathisia, Tardive dyskinesia (irreversible)', must:true},
+      {t:'Clozapine', v:'Gold standard refractory schizophrenia. Reduces suicide. No EPS. BUT: agranulocytosis (mandatory WBC monitoring)', must:true},
+      {t:'Highest metabolic risk', v:'Olanzapine and Clozapine. Lowest: Aripiprazole, Ziprasidone, Lurasidone'},
+      {t:'Highest prolactin', v:'Risperidone — causes most prolactin elevation. >6mg also causes EPS', must:true},
+      {t:'Cobenfy (new)', v:'Xanomeline + Trospium. Cholinergic mechanism (not dopamine). No TD, no metabolic effects'},
+    ]},
+    {title:'Bipolar / Mood Stabilizers (Lecture Highlights)', topic:'bipolar', color:'var(--success)', items:[
+      {t:'Lithium', v:'Gold standard for mania. Range 0.6-1.2 mEq/L. Critical >1.5. Reduces suicide 60-80%. Onset 5-14 days', must:true},
+      {t:'Lithium MOA', v:'Alters Na+ transport (hyperpolarization), reduces glutamate & dopamine, increases GABA & BDNF', must:true},
+      {t:'Lithium toxicity', v:'Diarrhea, vomiting, tremor, ataxia, slurred speech → confusion → seizures/coma at >3.0', must:true},
+      {t:'Lithium monitoring', v:'Renal, thyroid (hypothyroidism risk), EKG if >50, levels twice weekly acute phase'},
+      {t:'Valproate', v:'Effective acute mania. Level 50-125. Monitor LFTs, platelets, ammonia. Hepatotoxicity fatal in kids <2', must:true},
+      {t:'Valproate in women', v:'Teratogenic — must use birth control. Monitor for PCOS', must:true},
+      {t:'Lamotrigine', v:'First-line PREVENT bipolar depression. NOT for acute depression or mania. Risk: Stevens-Johnson Syndrome', must:true},
+      {t:'Carbamazepine', v:'Acute mania/mixed. Level 6-12. Bone marrow suppression. HLA-B*1502 test in Asian patients (SJS risk)', must:true},
+      {t:'SJS early signs', v:'Flu-like → fever, sore throat, burning eyes → painful red/purple rash → blisters → skin shedding', must:true},
+      {t:'Kindling hypothesis', v:'Episodes worsen over time, become less tied to stressors, may become spontaneous'},
+    ]},
+  ];
+
+  let html = '';
+  const filter = currentFilter;
+  const filtered = filter === 'all' ? sections : sections.filter(s => s.topic === filter);
+  
+  for (const sec of filtered) {
+    html += `<div class="ref-section">
+      <h2 style="border-color:${sec.color}">${sec.title}</h2>
+      <ul>
+        ${sec.items.map(it => `<li ${it.must ? 'class="must-know"' : ''}><strong style="color:${sec.color}">${it.t}:</strong> ${it.v}</li>`).join('')}
+      </ul>
+    </div>`;
+  }
+  
+  html += `<div class="mnemonic"><div class="title">Cramming Strategy (Evidence-Based)</div>
+    <p style="margin-top:6px;font-size:0.85em;">
+    <strong>1. Active Recall > Re-reading:</strong> Use flashcards and quiz mode — testing yourself is 2-3x more effective than re-reading.<br>
+    <strong>2. Interleave topics:</strong> Mix all topics (default "All") rather than studying one at a time.<br>
+    <strong>3. Spaced retrieval:</strong> Do a round now → take a 15-min break → do another round → sleep on it → review in morning.<br>
+    <strong>4. Rate honestly:</strong> Cards you mark "Again" return later in the deck for re-testing.<br>
+    <strong>5. Teach it:</strong> Explain a concept out loud as if teaching someone — if you stumble, that's your weak spot.</p>
+  </div>`;
+  
+  el.innerHTML = html;
+  updateStats();
+}
+
+// ========== SHARE MODE ==========
+function renderShare() {
+  const el = document.getElementById('content');
+  el.innerHTML = `
+    <div class="share-section">
+      <h3>Share This Study Tool</h3>
+      <p>This is a self-contained HTML file. Here's how to share it with classmates:</p>
+      <div style="text-align:left;max-width:600px;margin:16px auto;font-size:0.88em;line-height:1.8;">
+        <strong style="color:var(--accent);">Option 1 — Direct File Share:</strong><br>
+        Download this file using the download button above, then share the .html file via email, Slack, Google Drive, or text message. Recipients just double-click to open in any browser. No internet required after download.<br><br>
+        <strong style="color:var(--accent);">Option 2 — Cloud Hosting (free):</strong><br>
+        1. Upload the .html file to Google Drive<br>
+        2. Right-click → Share → "Anyone with link can view"<br>
+        3. Share the link — classmates can download and open locally<br><br>
+        <strong style="color:var(--accent);">Option 3 — GitHub Pages (free, instant web link):</strong><br>
+        1. Create a free GitHub account (github.com)<br>
+        2. Create a new repository, upload this .html file as <code style="color:var(--accent);">index.html</code><br>
+        3. Go to Settings → Pages → set Source to "main" branch<br>
+        4. Your study tool will be live at <code style="color:var(--accent);">https://yourusername.github.io/repo-name/</code><br><br>
+        <strong style="color:var(--warning);">Important:</strong> This file runs entirely in the browser — no server needed, no data sent anywhere. All progress is session-only (resets on page reload). Works on phones, tablets, and computers.
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;">
+      <h2>Study Stats This Session</h2>
+      <p style="color:var(--text-dim);font-size:0.88em;">Cards reviewed: ${stats.seen} | Correct: ${stats.correct} | Best streak: ${stats.streak}</p>
+      <p style="color:var(--text-dim);font-size:0.85em;margin-top:8px;">Content covers: Serotonin Syndrome, Tyramine/MAOI Diet, Hypertensive Crisis, Benzo Withdrawal, Discontinuation Syndrome, SNRIs, Antipsychotics (4 DA pathways, EPS, NMS, Clozapine), Bipolar/Mood Stabilizers (Lithium, Valproate, Lamotrigine, Carbamazepine, SJS)</p>
+    </div>`;
+  
+  document.getElementById('statsBar').classList.add('hidden');
+  document.getElementById('filterRow').classList.add('hidden');
+}
+
+// Initialize
+resetFlash();
+updateStats();
+</script>
+</body>
+</html>
