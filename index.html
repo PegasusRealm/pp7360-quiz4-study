@@ -2,248 +2,896 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PP7360 Quiz 5 — Opiates, Alcohol, Nicotine</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PP7360 Final Exam Study Tool</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
-:root{--bg:#0c0e14;--surface:#151821;--surface2:#1e2230;--border:#2a2f42;--text:#e2e4ee;--text-dim:#7e8399;--accent:#f59e0b;--accent2:#d97706;--danger:#ef4444;--warning:#fbbf24;--success:#10b981;--purple:#8b5cf6;--blue:#3b82f6;--teal:#14b8a6;--pink:#ec4899;--radius:12px;--shadow:0 4px 24px rgba(0,0,0,0.4)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
-.container{max-width:900px;margin:0 auto;padding:20px}
-header{text-align:center;padding:30px 0 20px;border-bottom:1px solid var(--border);margin-bottom:24px}
-header h1{font-size:1.5em;font-weight:700;color:var(--accent);letter-spacing:-0.5px}
-header p{color:var(--text-dim);font-size:.85em;margin-top:4px}
-.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
-.nav button{background:var(--surface);border:1px solid var(--border);color:var(--text-dim);padding:10px 18px;border-radius:var(--radius);cursor:pointer;font-family:inherit;font-size:.85em;font-weight:500;transition:all .2s}
-.nav button:hover{border-color:var(--accent);color:var(--text)}
-.nav button.active{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:600}
-.pbar{background:var(--surface);border-radius:20px;height:8px;margin-bottom:20px;overflow:hidden}
-.pfill{height:100%;background:linear-gradient(90deg,var(--accent),var(--success));border-radius:20px;transition:width .5s}
-.stats{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;flex:1;min-width:100px;text-align:center}
-.stat .n{font-size:1.4em;font-weight:700;color:var(--accent)}
-.stat .l{font-size:.72em;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:16px;box-shadow:var(--shadow)}
-.card h2{font-size:1.1em;font-weight:600;margin-bottom:16px;color:var(--accent)}
-.tb{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.7em;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
-.t-nic{background:rgba(139,92,246,.15);color:var(--purple)}.t-opi{background:rgba(236,72,153,.15);color:var(--pink)}.t-dts{background:rgba(239,68,68,.15);color:var(--danger)}.t-tox{background:rgba(245,158,11,.15);color:var(--accent)}.t-ant{background:rgba(20,184,166,.15);color:var(--teal)}
-.fc-wrap{perspective:1000px;min-height:280px;margin:16px 0}
-.fc{width:100%;min-height:280px;position:relative;transition:transform .6s;transform-style:preserve-3d;cursor:pointer}.fc.flipped{transform:rotateY(180deg)}
-.face{position:absolute;width:100%;min-height:280px;backface-visibility:hidden;border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;justify-content:center}
-.ff{background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--border)}
-.fb{background:linear-gradient(135deg,#1a1e2e,#1a2028);border:1px solid var(--accent);transform:rotateY(180deg)}
-.ff .q{font-size:1.1em;font-weight:500;text-align:center;line-height:1.7}
-.fb .a{font-size:.9em;line-height:1.7}
-.fb .a strong{color:var(--accent);font-weight:600}
-.fb .a .hi{color:var(--warning);font-weight:600}
-.fb .a .dg{color:var(--danger);font-weight:600}
-.fhint{text-align:center;color:var(--text-dim);font-size:.75em;margin-top:8px}
-.cb{display:flex;gap:8px;margin-top:12px}
-.cb button{flex:1;padding:10px;border:none;border-radius:8px;font-family:inherit;font-weight:600;font-size:.8em;cursor:pointer;transition:all .2s}
-.ba{background:rgba(239,68,68,.2);color:var(--danger)}.bh{background:rgba(245,158,11,.2);color:var(--accent)}.bg{background:rgba(20,184,166,.2);color:var(--teal)}.be{background:rgba(16,185,129,.2);color:var(--success)}
-.cb button:hover{transform:translateY(-1px);filter:brightness(1.2)}
-.qo{display:block;width:100%;padding:14px 18px;margin:8px 0;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:inherit;font-size:.88em;text-align:left;cursor:pointer;transition:all .2s;line-height:1.5}
-.qo:hover{border-color:var(--accent);background:rgba(245,158,11,.05)}
-.qo.correct{background:rgba(16,185,129,.15);border-color:var(--success);color:var(--success)}
-.qo.incorrect{background:rgba(239,68,68,.15);border-color:var(--danger);color:var(--danger)}
-.qo:disabled{cursor:default}
-.expl{margin-top:16px;padding:16px;background:rgba(245,158,11,.05);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;font-size:.88em;line-height:1.6}
-.rs{margin-bottom:24px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
-.rs h2{font-size:1.05em;color:var(--accent);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.rs ul{list-style:none;padding:0}
-.rs li{padding:6px 0 6px 16px;position:relative;font-size:.88em;line-height:1.6}
-.rs li::before{content:'\25B8';position:absolute;left:0;color:var(--accent)}
-.rs .mk{background:rgba(16,185,129,.08);padding:4px 8px;border-radius:4px;border-left:2px solid var(--success)}
-.btn{padding:10px 20px;border:none;border-radius:8px;font-family:inherit;font-weight:600;font-size:.85em;cursor:pointer;transition:all .2s}
-.bp{background:var(--accent);color:var(--bg)}.bp:hover{background:var(--accent2)}
-.br{display:flex;gap:8px;margin-top:16px;justify-content:center;flex-wrap:wrap}
-.fr{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.flt{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-dim);font-family:inherit;font-size:.72em;font-weight:500;cursor:pointer;transition:all .2s}
-.flt.active{background:var(--accent);color:var(--bg);border-color:var(--accent)}.flt:hover{border-color:var(--accent)}
-.mn{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.88em}
-.mn .mt{color:var(--purple);font-weight:600;font-size:.8em;text-transform:uppercase;letter-spacing:.5px}
-.hidden{display:none!important}
-.stt{position:fixed;bottom:20px;right:20px;background:var(--accent);color:var(--bg);border:none;border-radius:50%;width:44px;height:44px;font-size:1.2em;cursor:pointer;box-shadow:var(--shadow);z-index:100}
-.quiz-config{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:16px}
-.quiz-config p{color:var(--text-dim);font-size:.85em;margin:8px 0 16px}
-.pool-info{color:var(--text-dim);font-size:.78em;margin-top:8px;font-style:italic}
-@media(max-width:600px){.container{padding:12px}header h1{font-size:1.2em}.card{padding:18px}.face{padding:20px}.stats{gap:6px}.stat{padding:8px 10px;min-width:80px}.stat .n{font-size:1.1em}}
+:root{
+  --bg:#0f1419;--surface:#1a2028;--surface2:#222a35;--border:#2d3947;
+  --text:#e8eef5;--text-dim:#9aabbe;--accent:#5eb3ff;--accent2:#7dd3a3;
+  --warning:#ffb86c;--danger:#ff6b8a;--known:#7dd3a3;--unknown:#ffb86c;
+  --gold:#ffd166;--radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:12px;max-width:980px;margin:0 auto;-webkit-font-smoothing:antialiased}
+h1{font-size:1.4em;color:var(--accent);text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:var(--text-dim);font-size:.85em;margin-bottom:14px}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;justify-content:center}
+.tab{background:var(--surface);border:1px solid var(--border);color:var(--text-dim);padding:9px 14px;border-radius:8px;cursor:pointer;font-size:.88em;font-weight:500;transition:all .15s}
+.tab:hover{border-color:var(--accent);color:var(--text)}
+.tab.active{background:var(--accent);color:#0f1419;border-color:var(--accent);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.btn{background:var(--accent);color:#0f1419;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-size:.9em;font-weight:600;transition:all .15s}
+.btn:hover{filter:brightness(1.1)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-sec{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-sec:hover{border-color:var(--accent)}
+.btn-warn{background:var(--warning);color:#0f1419}
+.btn-known{background:var(--known);color:#0f1419}
+.btn-unknown{background:var(--unknown);color:#0f1419}
+.btn-mix{background:var(--gold);color:#0f1419}
+.btn-ai{background:linear-gradient(135deg,#a78bfa,#5eb3ff);color:#fff}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.hidden{display:none}
+.statbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;font-size:.82em}
+.stat{background:var(--surface);border:1px solid var(--border);padding:6px 10px;border-radius:6px;color:var(--text-dim)}
+.stat strong{color:var(--accent)}
+
+/* FLASHCARDS */
+.flash{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;min-height:230px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;text-align:center;transition:all .2s;position:relative}
+.flash:hover{border-color:var(--accent)}
+.flash .lbl{position:absolute;top:10px;left:14px;font-size:.7em;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.flash .topic{position:absolute;top:10px;right:14px;font-size:.7em;color:var(--accent);text-transform:uppercase}
+.flash .q{font-size:1.05em;color:var(--text);font-weight:500}
+.flash .a{font-size:.95em;color:var(--text);text-align:left;line-height:1.6}
+.flash .a strong{color:var(--accent2)}
+.flash .hint{position:absolute;bottom:10px;font-size:.72em;color:var(--text-dim);width:100%;left:0;text-align:center}
+.rate{display:flex;gap:6px;margin-top:10px}
+.rate button{flex:1;padding:9px;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600}
+.rate .again{background:var(--danger);color:#fff}
+.rate .hard{background:var(--warning);color:#0f1419}
+.rate .good{background:var(--accent2);color:#0f1419}
+.rate .easy{background:var(--accent);color:#0f1419}
+
+/* QUIZ */
+.qmode{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+@media(max-width:520px){.qmode{grid-template-columns:1fr}}
+.qmode button{padding:14px 10px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;cursor:pointer;font-size:.85em;font-weight:600;text-align:center;transition:all .15s}
+.qmode button:hover{border-color:var(--accent)}
+.qmode .known-btn:hover{border-color:var(--known)}
+.qmode .unknown-btn:hover{border-color:var(--unknown)}
+.qmode .mix-btn:hover{border-color:var(--gold)}
+.qmode .desc{display:block;font-size:.72em;color:var(--text-dim);font-weight:400;margin-top:3px}
+.q-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.q-meta{display:flex;justify-content:space-between;margin-bottom:10px;font-size:.78em;color:var(--text-dim)}
+.q-source{padding:2px 8px;border-radius:4px;font-size:.75em;font-weight:600}
+.q-source.known{background:rgba(125,211,163,.15);color:var(--known)}
+.q-source.unknown{background:rgba(255,184,108,.15);color:var(--unknown)}
+.q-text{font-size:1em;margin-bottom:14px;line-height:1.5}
+.opt{display:block;width:100%;text-align:left;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:8px;margin-bottom:7px;cursor:pointer;font-size:.9em;transition:all .15s;line-height:1.4}
+.opt:hover:not(:disabled){border-color:var(--accent);background:#2a3340}
+.opt.correct{background:rgba(125,211,163,.18);border-color:var(--accent2);color:var(--accent2);font-weight:600}
+.opt.wrong{background:rgba(255,107,138,.18);border-color:var(--danger);color:var(--danger)}
+.opt:disabled{cursor:default}
+.expl{margin-top:10px;padding:11px;background:var(--surface2);border-left:3px solid var(--accent);border-radius:6px;font-size:.85em;line-height:1.55;color:var(--text-dim)}
+.expl strong{color:var(--accent)}
+
+/* QUICK REF */
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filter-row button{background:var(--surface);border:1px solid var(--border);color:var(--text-dim);padding:5px 10px;border-radius:6px;cursor:pointer;font-size:.78em;transition:all .15s}
+.filter-row button.active{background:var(--accent);color:#0f1419;border-color:var(--accent)}
+.ref-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:10px}
+.ref-section h2{font-size:1em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid;color:var(--text)}
+.ref-section ul{list-style:none}
+.ref-section li{padding:7px 0 7px 12px;border-left:2px solid var(--border);margin-bottom:5px;font-size:.86em;line-height:1.55}
+.ref-section li.must{border-left:3px solid var(--gold);background:rgba(255,209,102,.06);padding-left:10px}
+.ref-section li strong{color:var(--text)}
+
+/* AI MODAL */
+.ai-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:100;padding:14px}
+.ai-modal.show{display:flex}
+.ai-content{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto}
+.ai-content h3{color:var(--accent);margin-bottom:10px;font-size:1.1em}
+.ai-loading{text-align:center;padding:24px;color:var(--text-dim)}
+.spinner{display:inline-block;width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* SHARE */
+.share-step{background:var(--surface2);padding:10px 12px;border-radius:6px;margin-bottom:8px;font-size:.85em;line-height:1.55}
+.share-step strong{color:var(--accent)}
+code{background:#0a0e13;padding:2px 6px;border-radius:3px;color:var(--accent2);font-size:.85em}
+
+/* MUST KNOW BADGE */
+.mk-badge{display:inline-block;background:var(--gold);color:#0f1419;font-size:.65em;padding:2px 6px;border-radius:3px;font-weight:700;margin-left:6px;vertical-align:middle}
 </style>
 </head>
 <body>
-<div class="container">
-<header><h1>PP7360 — Quiz 5 Cram Session</h1><p>Opiates, Alcohol/Delirium Tremens (DTs), &amp; Nicotine Lectures &bull; Randomized Question Pool</p></header>
-<div class="nav"><button onclick="setMode('flash')" id="nf" class="active">Flashcards</button><button onclick="setMode('quiz')" id="nq">Quiz Me</button><button onclick="setMode('ref')" id="nr">Quick Reference</button><button onclick="setMode('share')" id="ns">Share</button></div>
-<div class="stats"><div class="stat"><div class="n" id="s1">0</div><div class="l">Reviewed</div></div><div class="stat"><div class="n" id="s2">0</div><div class="l">Correct</div></div><div class="stat"><div class="n" id="s3">0</div><div class="l">Streak</div></div><div class="stat"><div class="n" id="s4">0</div><div class="l">Remaining</div></div></div>
-<div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div>
-<div class="fr" id="fR"><button class="flt active" onclick="ft('all')">All Topics</button><button class="flt" onclick="ft('nic')">Nicotine Withdrawal</button><button class="flt" onclick="ft('opi')">Opiate Withdrawal</button><button class="flt" onclick="ft('dts')">Delirium Tremens (DTs)</button><button class="flt" onclick="ft('tox')">Opiate Toxicity</button><button class="flt" onclick="ft('ant')">Antidotes / Medications</button></div>
-<div id="ct"></div>
+
+<h1>PP7360 Final Exam Study Tool</h1>
+<div class="sub">Clinical Psychopharmacology · Quizzes 3–5 + Final Topics</div>
+
+<div class="tabs">
+  <button class="tab active" data-tab="quiz">Practice Quiz</button>
+  <button class="tab" data-tab="flash">Flashcards</button>
+  <button class="tab" data-tab="ref">Quick Reference</button>
+  <button class="tab" data-tab="share">Share</button>
 </div>
-<button class="stt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
+
+<div id="ct"></div>
+
+<!-- AI Modal -->
+<div class="ai-modal" id="aiModal">
+  <div class="ai-content">
+    <h3>AI Adaptive Quiz</h3>
+    <div id="aiBody"></div>
+    <button class="btn btn-sec" style="margin-top:10px;width:100%" onclick="closeAi()">Close</button>
+  </div>
+</div>
+
 <script>
-const TL={nic:'Nicotine Withdrawal / Cessation',opi:'Opiate Withdrawal',dts:'Delirium Tremens (DTs) / Alcohol Withdrawal',tox:'Opiate Toxicity',ant:'Antidotes / Withdrawal Medications'};
-const TC={nic:'t-nic',opi:'t-opi',dts:'t-dts',tox:'t-tox',ant:'t-ant'};
-const QUIZ_SIZE=10;
+// =================== KNOWN POOL (from Psychopharm Quizzes.md - Quizzes 3-5 only) ===================
+// Bold = correct answer in source. DO NOT ALTER.
+const KNOWN = [
+  // QUIZ 3
+  {q:"Extrapyramidal side effects are believed to be the result of a reduction of dopamine in the:",
+   o:["Mesocortical pathway","Mesolimbic pathway","Tuberoinfundibular pathway","Nigrostriatal pathway"],a:3,
+   e:"EPS results from dopamine blockade in the nigrostriatal pathway, which controls movement.",src:"Q3"},
+  {q:"Symptoms of drug-induced Parkinsonism (pseudoparkinsonism) consist of:",
+   o:["Muscle spasms and rigidity","Abnormal rhythmic movements of the mouth, jaw, and face","Extreme internal restlessness","Shuffling gait and bradykinesia"],a:3,
+   e:"Drug-induced Parkinsonism mimics Parkinson's disease: shuffling gait, bradykinesia, tremor, rigidity.",src:"Q3"},
+  {q:"Conventional or atypical antipsychotics can make the negative symptoms of schizophrenia worse by blocking dopamine in the?",
+   o:["Nigrostriatal pathway","Mesolimbic pathway","Tuberoinfundibular pathway","Mesocortical pathway"],a:3,
+   e:"Mesocortical pathway dopamine blockade worsens negative/cognitive symptoms.",src:"Q3"},
+  {q:"Hyperprolactinemia can result from dopamine blockade in the tuberoinfundibular pathway and result in the following symptoms:",
+   o:["Amenorrhea, galactorrhea, and gynecomastia","Dysmenorrhea, mastitis, and polycystic ovarian syndrome","Weight gain, insulin resistance, and high triglycerides","Sore throat, fever, chills, and muscle rigidity"],a:0,
+   e:"Dopamine normally inhibits prolactin. Blockade → prolactin rises → amenorrhea, galactorrhea, gynecomastia.",src:"Q3"},
+  {q:"Atypical antipsychotics are chemically classified as:",
+   o:["Dopamine antagonists","Serotonin-dopamine antagonists","Dopamine agonists","Serotonin reuptake inhibitors"],a:1,
+   e:"Atypicals (2nd-gen) block both 5-HT2A and D2 — hence 'serotonin-dopamine antagonists' (SDAs).",src:"Q3"},
+  {q:"A rhythmic, repetitive sucking and smacking movement of the lips; thrusting of the tongue in and out; movements may progress to limbs and can be irreversible. This is considered one of the most serious complications of antipsychotic drug treatment and is known as:",
+   o:["Delirium tremens","Muscular dystrophy","Tardive dyskinesia","Akathisia"],a:2,
+   e:"Tardive dyskinesia: late-onset, often irreversible involuntary movements from chronic D2 blockade.",src:"Q3"},
+  {q:"Depakote (valproic acid) can be associated with these life-threatening side effects:",
+   o:["Pancreatitis and hepatotoxicity","Appendicitis and endocarditis","Kidney failure and thrombocytopenia","Infertility and ovarian cysts"],a:0,
+   e:"Valproate's two black box warnings: pancreatitis and hepatotoxicity (plus teratogenicity).",src:"Q3"},
+  {q:"With acute lithium toxicity, which symptoms are prominent?",
+   o:["Increased thirst, urination, and weight gain","Headache, cognitive slowing, and tremor","Diarrhea, vomiting, and ataxia","Acne, nausea, and hyperthyroidism"],a:2,
+   e:"Acute lithium toxicity GI/neuro triad: diarrhea, vomiting, ataxia (then tremor, confusion, seizures).",src:"Q3"},
+  {q:"Before administering Tegretol (carbamazepine) to patients of Asian ancestry, they should receive genetic testing because of their increased risk of:",
+   o:["SJ syndrome and toxic epidermal necrolysis","Water intoxication and cardiac arrhythmias","Thrombocytopenia and gout","Aplastic anemia and agranulocytosis"],a:0,
+   e:"HLA-B*1502 allele (common in Asian populations) → SJS/TEN risk with carbamazepine.",src:"Q3"},
+  {q:"Which anticonvulsant is used for bipolar depression maintenance?",
+   o:["Trileptal (oxcarbazepine)","Topamax (topiramate)","Lamictal (lamotrigine)","Depakote (valproic acid)"],a:2,
+   e:"Lamotrigine is the go-to for bipolar depression maintenance. Watch for SJS — slow titration.",src:"Q3"},
 
-const C=[
-// NICOTINE WITHDRAWAL
-{t:'nic',q:"When do nicotine withdrawal symptoms begin and when do they peak? (from lecture)",a:"From lecture: Acute withdrawal can begin in <strong>2 hours</strong> after quitting smoking.<br><br>Symptoms <strong>peak within 24-48 hours</strong> and decline over the next 10 days to several weeks.<br><br><span class='hi'>Long-term effects:</span> Dysphoria and anhedonia may linger for <strong>several months</strong>."},
-{t:'nic',q:"What are the symptoms of nicotine withdrawal? (from lecture)",a:"From lecture:<br>&bull; Severe cravings<br>&bull; Irritability<br>&bull; Difficulty concentrating<br>&bull; Restlessness<br>&bull; Impatience<br>&bull; Anger<br>&bull; Anxiety<br>&bull; Increased appetite<br>&bull; Weight gain<br>&bull; Insomnia<br><br><span class='hi'>Key:</span> Dysphoria and anhedonia may persist for months after acute withdrawal resolves."},
-{t:'nic',q:"How does Bupropion (Wellbutrin/Zyban) help with smoking cessation? (from lecture)",a:"From lecture: Bupropion is an <strong>antidepressant</strong> classified as a reuptake inhibitor of <strong>dopamine and norepinephrine</strong> (Norepinephrine-Dopamine Reuptake Inhibitor (NDRI)).<br><br>&bull; <strong>Food and Drug Administration (FDA)-approved</strong> for smoking cessation<br>&bull; Delays smoking relapse<br>&bull; Reduces <strong>weight gain</strong> associated with smoking cessation<br>&bull; Acts as an <strong>antagonist at specific subtypes of nicotinic receptors</strong>"},
-{t:'nic',q:"What is Varenicline and how does it work for smoking cessation? (from lecture)",a:"From lecture: Varenicline is classified as a <strong>partial nicotine agonist</strong>.<br><br>It <strong>partially stimulates</strong> the nicotine receptor &mdash; which helps <strong>reduce withdrawal symptoms</strong> &mdash; yet simultaneously <strong>minimizes the satisfaction</strong> (reward) associated with smoking.<br><br>Studies have found conflicting information on long-term cessation results."},
-{t:'nic',q:"What is nicotine and what does it do in the brain? (from lecture)",a:"From lecture: Nicotine is the primary psychoactive compound in tobacco leaves. It is a <strong>Central Nervous System (CNS) stimulant</strong> that:<br><br>&bull; Activates <strong>acetylcholine receptors</strong><br>&bull; Enhances alertness, cognitive performance, and muscle control<br>&bull; Increases <strong>dopamine</strong> levels in the mesocorticolimbic reward system<br><br><span class='dg'>Toxicity:</span> 60 milligrams (mg) of nicotine can be fatal in an adult due to respiratory failure (paralysis of breathing muscles)"},
-{t:'nic',q:"What are Nicotine Replacement Therapies (NRTs)? (from lecture)",a:"From lecture: Also called <strong>Potentially Reduced Exposure Products (PREPs)</strong>. Include gum, patches, and lozenges.<br><br><strong>Other products:</strong><br>&bull; Snus &mdash; moist powdered tobacco in pouches. Reduced smoking in Sweden but may increase pancreatic cancer risk.<br>&bull; Electronic cigarettes &mdash; initially thought safer, but cases of <strong>lung injury</strong> raised concerns.<br>&bull; <span class='hi'>Vitamin E acetate</span> (additive in some THC-containing vaping products) is strongly linked to lung injury.<br>&bull; Cigarette smoke and vaping aerosol are linked to <strong>lung inflammation and lowered immune function</strong>."},
+  // QUIZ 4
+  {q:"What are the symptoms of serotonin syndrome?",
+   o:["Fever, confusion, muscle rigidity, tachycardia (fast heart rate), tremor, shivering, dilated pupils, and diarrhea","'Lead pipe rigidity,' high fever, dehydration, sweating, elevated blood pressure, agitation, fast heart rate, and respiration","Miosis (excessive pupil constriction), urinary frequency, diarrhea, vomiting, salivation, bradycardia (slow heart rate)","Diarrhea, runny nose, muscle aches, abdominal cramping, and mydriasis (dilated pupils)"],a:0,
+   e:"Serotonin syndrome triad: mental status changes, autonomic hyperactivity, neuromuscular abnormalities. Note: option B describes NMS, C describes cholinergic toxicity, D describes opioid withdrawal.",src:"Q4"},
+  {q:"Which foods should be avoided in a tyramine-restricted diet?",
+   o:["Green leafy vegetables, chicken, and milk","Grapefruit juice, tuna, and squash","Fava beans, sauerkraut, and aged cheese","Whole grains, red meats, and carbonated soda"],a:2,
+   e:"MAOI patients must avoid tyramine-rich foods: aged cheese, fava beans, sauerkraut, cured meats, soy.",src:"Q4"},
+  {q:"Serotonin Syndrome results when high serotonin levels accumulate in the body. What is the greatest risk for developing Serotonin Syndrome?",
+   o:["High dose range of an antidepressant","Abrupt discontinuation of an antidepressant","Long-term treatment with an antidepressant","Taking two or more antidepressants together"],a:3,
+   e:"Combining serotonergic agents (e.g., SSRI + MAOI, SSRI + tramadol) is the biggest risk factor.",src:"Q4"},
+  {q:"Identify the symptoms of a hypertensive crisis:",
+   o:["Lethargy, facial edema, vomiting, and yellowing of the skin","Electric shock, vertigo, chills, and myalgia","Explosive headache, elevated blood pressure, fever, and diaphoresis","Fever, muscle rigidity, shivering, and confusion"],a:2,
+   e:"Hypertensive crisis (often MAOI + tyramine): explosive occipital headache, severe HTN, fever, sweating.",src:"Q4"},
+  {q:"Benzodiazepines potentiate the effects of this neurotransmitter?",
+   o:["Glutamate","Glycine","Glutathione","GABA"],a:3,
+   e:"Benzos are GABA-A receptor positive allosteric modulators → ↑Cl⁻ influx → CNS inhibition.",src:"Q4"},
+  {q:"Patients with comorbid depression who are treated with sedatives should be closely monitored for the risk of _______?",
+   o:["Mania","Psychosis","Suicide","Agitation"],a:2,
+   e:"Sedatives + depression = elevated suicide risk. Disinhibition + lethal overdose potential.",src:"Q4"},
+  {q:"Benzodiazepines should not be abruptly discontinued after long-term usage due to the risk of _______?",
+   o:["Rebound Anxiety","Delirium Tremens","Diaphoresis","Withdrawal Seizures"],a:3,
+   e:"Benzo withdrawal can cause life-threatening seizures (similar to alcohol withdrawal — both GABAergic).",src:"Q4"},
+  {q:"Discontinuation Syndrome occurs more frequently in the following antidepressants:",
+   o:["Antidepressants with a short half-life","Antidepressants with a long half-life","MAOIs","SNRIs"],a:0,
+   e:"Short half-life = rapid drop in serum levels → discontinuation syndrome (Paxil/Effexor are notorious).",src:"Q4"},
+  {q:"Hypertensive crisis and possible death can occur when MAOIs are combined with certain medications. Which medications are contraindicated?",
+   o:["OTC cold medications","Anticonvulsants","Antibiotics","Antifungals"],a:0,
+   e:"OTC decongestants (pseudoephedrine, phenylephrine) + MAOI → hypertensive crisis.",src:"Q4"},
+  {q:"SNRIs are effective in the treatment of depression and _______?",
+   o:["Opiate withdrawal","Sexual dysfunction","Bipolar disorder","Chronic Pain"],a:3,
+   e:"SNRIs (duloxetine, venlafaxine) are FDA-approved for chronic pain — neuropathic, fibromyalgia.",src:"Q4"},
 
-// OPIATE WITHDRAWAL
-{t:'opi',q:"What are the signs and symptoms of opiate withdrawal? (from lecture)",a:"From lecture: Creates <strong>profound physical illness and emotional distress</strong>.<br><br><strong>Signs/Symptoms:</strong><br>&bull; Vomiting<br>&bull; Clammy skin<br>&bull; Nasal sniffles<br>&bull; Diarrhea<br>&bull; Irritability<br>&bull; Agitation<br>&bull; Constant rubbing of leg muscles<br>&bull; <span class='hi'>Goose bumps</span><br>&bull; Restless legs<br>&bull; Flu-like symptoms, body aches, abdominal cramping<br><br><span class='hi'>Key from lecture:</span> Acute opioid withdrawal is <strong>NOT considered life-threatening</strong> (unlike alcohol/benzo withdrawal)."},
-{t:'opi',q:"What is Opiate Abstinence Syndrome? (from lecture)",a:"From lecture: Following acute opioid withdrawal, there is a <strong>protracted opiate abstinence syndrome</strong> that can persist for <strong>up to six months</strong>.<br><br><strong>Symptoms include:</strong><br>&bull; Depression<br>&bull; Abnormal responses to stressful situations<br>&bull; <strong>Drug hunger</strong> (cravings)<br>&bull; Anxiety"},
-{t:'opi',q:"What medications are given for specific opiate withdrawal symptoms? (from lecture)",a:"From lecture &mdash; <strong>Symptomatic relief:</strong><br><br>&bull; <strong>Vomiting:</strong> Promethazine<br>&bull; <strong>Diarrhea:</strong> Loperamide<br>&bull; <strong>Abdominal cramping:</strong> Dicyclomine<br>&bull; <strong>Irritability/agitation:</strong> Benzodiazepines<br>&bull; <strong>Nasal sniffles:</strong> Diphenhydramine (Benadryl)"},
-{t:'opi',q:"What is the difference between opiates and opioids? (from lecture)",a:"From lecture:<br><br><strong>Opiates</strong> &mdash; Natural drugs derived from alkaloids of the poppy plant (morphine, codeine).<br><br><strong>Opioids</strong> &mdash; A broader class that includes opiates, opiopeptins, and all <strong>semisynthetic and synthetic</strong> drugs that mimic opiate actions.<br><br><strong>Semisynthetic:</strong> Heroin (diacetylmorphine), Oxycodone (Percodan/OxyContin)<br><strong>Synthetic:</strong> Fentanyl (Sublimaze), Methadone (Dolophine)"},
-{t:'opi',q:"What are the three types of opioid receptors and their effects? (from lecture)",a:"From lecture:<br><br>&bull; <strong>Mu Receptors</strong> &mdash; High affinity for morphine. Found throughout brain, spinal cord, brainstem. Responsible for most clinical effects: <strong>analgesia, euphoria, sedation, respiratory depression, constipation</strong><br><br>&bull; <strong>Kappa Receptors</strong> &mdash; Located in amygdala, hypothalamus, pituitary gland. Involved in body temperature, fertility<br><br>&bull; <strong>Delta Receptors</strong> &mdash; Thought to have hallucinogenic effects. Play role in olfaction, motor integration, reinforcement, cognition"},
-
-// DTs / ALCOHOL WITHDRAWAL
-{t:'dts',q:"What is Delirium Tremens (DTs) and when does it occur? (from lecture)",a:"From lecture: Delirium Tremens is the <strong>most severe manifestation of alcohol withdrawal syndrome</strong>.<br><br><strong>Timing:</strong> Usually occurs within the first <strong>24-72 hours</strong> after cessation of alcohol.<br><br><strong>Presentation:</strong><br>&bull; Profound confusion<br>&bull; Agitation<br>&bull; Insomnia<br>&bull; Fever<br>&bull; Tachycardia<br>&bull; Diaphoresis (sweating)<br>&bull; Restlessness<br><br><span class='dg'>From lecture: Alcohol withdrawal carries a HIGH RISK OF MORTALITY.</span>"},
-{t:'dts',q:"What are the four basic signs of alcohol withdrawal assessment? (from lecture)",a:"From lecture &mdash; Four basic steps to a simple assessment:<br><br><strong>1) Tachycardia</strong> (rapid heart rate)<br><strong>2) Hypertension</strong> (elevated blood pressure)<br><strong>3) Tremors</strong><br><strong>4) Diaphoresis</strong> (sweating)<br><br>The <strong>Clinical Institute Withdrawal Assessment (CIWA)</strong> for alcohol is used to predict risk for mild, moderate, severe withdrawal, or possible Delirium Tremens (DTs).<br><br><span class='hi'>Risk factor:</span> An individual who drinks heavily and in a steady manner is at greater risk for seizures or DTs."},
-{t:'dts',q:"What medications are used for acute alcohol withdrawal/detox? (from lecture)",a:"From lecture:<br><br>&bull; <strong>Benzodiazepines</strong> (multiple daily doses on fixed schedule, gradually tapered over several days)<br>&bull; <strong>Chlordiazepoxide (Librium)</strong> &mdash; first choice, metabolized by liver<br>&bull; <strong>Lorazepam (Ativan)</strong> &mdash; used when liver cirrhosis is present (does NOT require hepatic metabolism)<br>&bull; Blood pressure medications for hypertension<br>&bull; <strong>Thiamine (Vitamin B-1)</strong> &mdash; 100 mg Intramuscular (IM) or by mouth (PO), essential for neuroprotection<br>&bull; <strong>Folate (Vitamin B-9)</strong><br>&bull; <strong>Magnesium sulfate</strong> &mdash; for post-withdrawal seizures<br><br><span class='hi'>DTs require:</span> Intensive Care Unit (ICU) admission with Intravenous (IV) benzodiazepines, thiamine, cardiac monitoring, seizure precautions."},
-{t:'dts',q:"What medications are used for maintaining alcohol sobriety? (from lecture)",a:"<strong>1) Disulfiram (Antabuse)</strong> &mdash; inhibits acetaldehyde dehydrogenase enzyme. Stops liver from metabolizing alcohol &rarr; circulating acetaldehyde causes flushing, sweating, nausea, vomiting, difficulty breathing. Considered aversive therapy; requires full consent. Must be alcohol-free for 12 hours before starting. Avoid ANYTHING containing alcohol (vinegar, aftershave, mouthwash, cough meds) while taking and for 2 weeks after stopping.<br><br><strong>2) Acamprosate (Campral)</strong> &mdash; Gamma-Aminobutyric Acid (GABA) agonist + glutamate receptor inhibitor. Reduces cravings.<br><br><strong>3) Naltrexone (Vivitrol)</strong> &mdash; opioid antagonist. Blocks rewarding effects of alcohol. Patient must be opioid-free 7-10 days. Monthly Intramuscular (IM) injection ($1,294/vial). Monitor for depression/suicidality."},
-{t:'dts',q:"How does alcohol affect the brain? (from lecture)",a:"From lecture: Alcohol activates <strong>Gamma-Aminobutyric Acid (GABA) and serotonin receptors</strong> in the Central Nervous System (CNS) and <strong>inhibits glutamate receptors</strong>.<br><br>&bull; Influences GABA-mediated chloride ion flow &rarr; neuronal inhibition &rarr; sedation, muscle relaxation, cognitive/motor impairment<br>&bull; Inhibits <strong>N-Methyl-D-Aspartate (NMDA) subtype of glutamate receptors</strong> in hippocampus, amygdala, and striatum &rarr; memory and motor impairment<br>&bull; Can cause <strong>blackouts</strong> by suppressing memory protein formation<br>&bull; GABAergic anxiolytic effects &rarr; high comorbidity of Alcohol Use Disorder (AUD) and anxiety disorders, especially panic attacks"},
-{t:'dts',q:"What substances have the most pronounced withdrawal syndromes? (from lecture)",a:"From lecture &mdash; <strong>Categories with pronounced withdrawal:</strong><br><br>&bull; Alcohol<br>&bull; Opioids<br>&bull; Sedatives<br>&bull; Hypnotics<br>&bull; Anxiolytics<br><br>All GABA-influencing medicines show <strong>cross-tolerance</strong> and similar withdrawal patterns.<br><br><span class='dg'>Abrupt GABA withdrawal can cause:</span> Tachycardia, hypertension, diaphoresis, tremors, hyperthermia, <strong>seizures</strong>.<br><br>Withdrawal usually occurs within <strong>8-36 hours</strong>, can appear up to a week later."},
-
-// OPIATE TOXICITY
-{t:'tox',q:"What is the triad of opioid toxicity? (from lecture, green highlighted)",a:"From lecture &mdash; <strong>Opioid toxicity triad:</strong><br><br><strong>1) Miosis (pupillary constriction)</strong> &mdash; characteristic of ALL opiates <span class='dg'>except Meperidine (Demerol)</span>. Receptors in the oculomotor nerve control pupillary constriction.<br><br><strong>2) Stupor or comatose state</strong><br><br><strong>3) Respiratory failure</strong> &mdash; opiates cause profound respiratory depression by <strong>decreasing the brainstem's sensitivity to carbon dioxide (CO2)</strong>.<br><br><span class='hi'>Clinical pearl:</span> Respirations less than <strong>12 breaths per minute</strong> suggest acute opioid intoxication."},
-{t:'tox',q:"What are the common side effects of opioids? (from lecture)",a:"From lecture:<br>&bull; Sedation<br>&bull; Nausea<br>&bull; <strong>Constipation</strong> (Opiate-Induced Constipation (OIC) is a major problem with long-term use)<br>&bull; <strong>Respiratory depression</strong><br>&bull; Pruritus (itching)<br>&bull; Endocrine dysfunction<br>&bull; Depression<br>&bull; Nightmares<br><br><span class='hi'>From lecture:</span> More than a million Americans have died from overdoses during the opioid epidemic. Fentanyl is the <strong>leading cause of death</strong> for Americans ages 18-45."},
-{t:'tox',q:"What are the classifications of opioid drugs? (from lecture)",a:"From lecture:<br><br><strong>Full agonists</strong> (strong analgesic): Fentanyl, morphine, methadone, meperidine, heroin<br><br><strong>Partial agonist:</strong> Produces partial opiate effect (e.g., Buprenorphine)<br><br><strong>Mixed agonist-antagonist:</strong> Activates some receptor subtypes while blocking others<br><br><strong>Antagonist:</strong> Competes with Mu receptor, reverses analgesia from opioid agonist (e.g., Naloxone)<br><br><span class='hi'>Key concept:</span> Opioids work by binding to Mu, Delta, and Kappa receptors. <strong>Mu receptor</strong> is responsible for MOST clinical effects."},
-
-// ANTIDOTES / MEDICATIONS
-{t:'ant',q:"What is Naloxone (Narcan) and how does it work? (from lecture, green highlighted)",a:"From lecture: Naloxone is an <strong>opioid antagonist</strong> that quickly blocks Mu receptors in the brain. Effectively reverses opioid overdose, helping restore normal breathing.<br><br>&bull; <span class='hi'>Duration of action is SHORT: 1-2 hours</span> &mdash; multiple doses may be necessary<br>&bull; <strong>Narcan</strong> (brand name) is available as nasal spray, can be given by anyone without medical training<br>&bull; <strong>No prescription required</strong><br>&bull; Naloxone and <strong>Nalmefene</strong> can also be given Intravenously (IV)<br>&bull; <span class='hi'>Nalmefene has LONGER duration: 8-12 hours</span>"},
-{t:'ant',q:"How does Clonidine (Catapres) work for opiate withdrawal? (from lecture)",a:"From lecture: Clonidine is a <strong>presynaptic alpha-2 receptor agonist</strong> used outpatient (usually <strong>7 days</strong>) for opiate withdrawal.<br><br>Mechanism of Action (MOA): <strong>Inhibits the activation of noradrenergic pathways stemming from the Locus Coeruleus Nucleus</strong> &rarr; beneficial in quieting/dulling withdrawal symptoms.<br><br><span class='dg'>Important:</span> Must be <strong>tapered over 2-4 days</strong> when discontinuing to avoid <strong>rebound hypertension</strong>."},
-{t:'ant',q:"What is Buprenorphine (Subutex) and how does it work? (from lecture)",a:"From lecture: Buprenorphine is a <strong>synthetic opiate</strong> that acts as both an <strong>agonist AND antagonist</strong> at the Mu opiate receptor &mdash; meaning 50% binds to and 50% blocks the receptor.<br><br>&bull; Does NOT produce euphoria like other opiates<br>&bull; Lower risk of drug overdose<br>&bull; Dosed according to signs/symptoms of withdrawal<br>&bull; Tapered over <strong>5-10 days</strong><br>&bull; <strong>Schedule III</strong> controlled drug<br>&bull; Practitioners must meet Drug Enforcement Administration (DEA) qualifications to prescribe"},
-{t:'ant',q:"What is Buprenorphine-Naloxone (Suboxone) and how is it different from Subutex? (from lecture)",a:"From lecture: Suboxone adds <strong>Naloxone (Narcan)</strong> to Buprenorphine.<br><br>The Food and Drug Administration (FDA) added Narcan as an <strong>additional safeguard against injectable overdose</strong> &mdash; if someone tries to inject Suboxone, the Naloxone component precipitates withdrawal.<br><br><strong>Naltrexone:</strong> FDA-approved to <strong>prevent opioid use relapse</strong> in people with NO physical dependence. Patients must:<br>&bull; Be advised analgesics will NOT be effective<br>&bull; Stop medication <strong>36 hours before surgery</strong> or situations requiring pain medications"},
-{t:'ant',q:"What is Methadone and how is it used? (from lecture)",a:"From lecture: Methadone is classified as an <strong>opiate agonist</strong>, producing analgesia and sedation.<br><br>&bull; <strong>Schedule II</strong> controlled drug with separate registration<br>&bull; Patients usually go to <strong>methadone clinics</strong> or narcotic treatment centers<br>&bull; <span class='dg'>Overdoses can be fatal</span><br>&bull; Requires physical exam, Electrocardiogram (EKG), lab work, and routine Urine Drug Screen (UDS)<br>&bull; Half-life is very long (<strong>24 hours</strong>) with dangerous drug-to-drug interactions<br><br><span class='hi'>Pregnancy:</span> Methadone maintenance is the <strong>standard of care</strong> for pregnant women with active opiate addiction. Buprenorphine should also be considered (lower overdose risk, fewer interactions, outpatient)."},
-{t:'ant',q:"What is Rapid Anesthesia-Aided Detoxification? (from lecture)",a:"From lecture: Narcan/Naltrexone and Clonidine are given <strong>Intravenously (IV)</strong> to an opioid-dependent person while under <strong>general anesthesia</strong>.<br><br>&bull; Anesthesia lasts approximately <strong>4-6 hours</strong><br>&bull; Rationale: allows patient to tolerate high doses of opioid antagonist and undergo detox while unconscious<br>&bull; Must be performed by a <strong>trained anesthesiologist</strong><br>&bull; Useful for patients who are <strong>detox-phobic</strong>"},
-{t:'ant',q:"What are the risks of opiate withdrawal during pregnancy? (from lecture)",a:"From lecture: Stress from opiate withdrawal can cause:<br>&bull; Miscarriage<br>&bull; Preterm labor<br>&bull; Fetal distress<br>&bull; Fetal demise<br><br><strong>Treatment:</strong><br>&bull; <strong>Methadone maintenance</strong> = standard of care for pregnant women with active opiate addiction<br>&bull; <strong>Buprenorphine</strong> should also be considered: lower overdose risk, fewer drug interactions, outpatient basis<br>&bull; Disadvantages of buprenorphine: hepatic dysfunction, diversion risk<br><br><span class='dg'>Neonatal Abstinence Syndrome (NAS):</span> Newborns exposed to opioids &mdash; uncoordinated sucking, poor feeding, irritability, high-pitched crying, diarrhea, seizures. Increased 82% from 2010-2017."},
+  // QUIZ 5
+  {q:"When do you start to see nicotine withdrawal?",
+   o:["2-4 hours","12 hours","24-48 hours","72-96 hours"],a:2,
+   e:"Acute symptoms begin ~2 hours after quitting; PEAK at 24–48 hours, decline over 10 days to weeks. Dysphoria/anhedonia can linger months.",src:"Q5"},
+  {q:"Medications for smoking cessation:",
+   o:["Methadone and Suboxone","Chantix and Wellbutrin","Naltrexone and Antabuse","Clonidine and Buspirone"],a:1,
+   e:"Chantix (varenicline, partial nicotinic agonist) and Wellbutrin/Zyban (bupropion, NDRI) are the two FDA-approved smoking cessation medications.",src:"Q5"},
+  {q:"Rapid-acting detox medications for opioid use:",
+   o:["Methadone and Buprenorphine","Vivitrol and Antabuse","Narcan and Clonidine","Suboxone and Wellbutrin"],a:2,
+   e:"Rapid Anesthesia-Aided Detoxification uses Narcan (naloxone)/Naltrexone + Clonidine IV under general anesthesia. Patient tolerates high antagonist doses while unconscious.",src:"Q5"},
+  {q:"Which opiate receptor primarily mediates the somatic responses to opioids (analgesia, euphoria, respiratory depression, miosis)?",
+   o:["Kappa","Delta","Sigma","Mu"],a:3,
+   e:"Mu (μ) receptors mediate the somatic effects: analgesia, euphoria, sedation, respiratory depression, miosis, and constipation. This is also the receptor naloxone targets to reverse overdose.",src:"Q5"},
+  {q:"Which medication is given to treat the diarrhea component of opiate withdrawal?",
+   o:["Promethazine","Loperamide","Dicyclomine","Benadryl (diphenhydramine)"],a:1,
+   e:"Loperamide (Imodium) — itself a peripheral mu-agonist that doesn't cross the BBB — treats opiate withdrawal diarrhea. Per lecture symptomatic relief: Vomiting → Promethazine; Diarrhea → Loperamide; Abdominal cramping → Dicyclomine; Irritability → Benzodiazepine; Nasal sniffles → Benadryl.",src:"Q5"},
+  {q:"What was promoted as the '5th vital sign' — a screening practice that contributed to the opioid epidemic?",
+   o:["Blood glucose level","Pain","Body temperature variability","Sleep quality"],a:1,
+   e:"PAIN was designated the '5th vital sign' (after temp, pulse, respirations, BP) starting in the late 1990s. The mandate to screen and aggressively treat pain — combined with reassurances that opioids were not addictive — drove the prescribing surge that fueled the opioid epidemic.",src:"Q5"},
+  {q:"What is the most common cause of death in opioid/opiate overdose?",
+   o:["Cardiac arrest from arrhythmia","Respiratory failure","Massive hemorrhage","Hyperthermia"],a:1,
+   e:"Opioid overdose kills via RESPIRATORY FAILURE — opioids decrease the brainstem's sensitivity to carbon dioxide, suppressing respiratory drive. Respirations <12/min suggest acute intoxication. The full toxicity triad: miosis, stupor/coma, respiratory depression.",src:"Q5"},
+  {q:"Which of the following is a sign or symptom of opiate withdrawal?",
+   o:["Pinpoint pupils and respiratory depression","Vomiting, clammy skin, nasal sniffles, diarrhea, goose bumps, and restless legs","Hyperthermia and muscle rigidity","Sedation and bradycardia"],a:1,
+   e:"Opiate withdrawal symptoms: vomiting, clammy skin, nasal sniffles (rhinorrhea), diarrhea, irritability, agitation, leg muscle rubbing, goose bumps (piloerection), restless legs, flu-like body aches, abdominal cramping. Note: option A describes opioid TOXICITY, not withdrawal — they are opposites.",src:"Q5"},
+  {q:"What dose of nicotine is considered fatal in an adult?",
+   o:["6 mg","60 mg","600 mg","6 grams"],a:1,
+   e:"60 mg of nicotine can be fatal in an adult — death by RESPIRATORY FAILURE (paralysis of the muscles that control breathing). Toxicity occurs via inhalation, swallowing tobacco/vape products, or skin absorption. The first-pass effect can slow absorption by triggering vomiting.",src:"Q5"},
+  {q:"Which clinical tool helps predict a patient's risk for alcohol withdrawal severity and Delirium Tremens (DTs)?",
+   o:["CAGE Questionnaire","AUDIT Score","Clinical Institute Withdrawal Assessment for Alcohol (CIWA-Ar)","Beers Criteria"],a:2,
+   e:"CIWA-Ar (Clinical Institute Withdrawal Assessment for Alcohol, revised) stratifies risk for mild, moderate, severe withdrawal, and possible DTs. Heavy steady drinkers have the highest seizure/DT risk. CAGE and AUDIT are screening tools for alcohol use disorder, not withdrawal severity. Beers Criteria = inappropriate meds in elderly.",src:"Q5"}
 ];
 
-const Q=[
-{t:'nic',q:"According to the lecture, nicotine withdrawal symptoms can begin as early as:",o:["30 minutes after quitting","2 hours after quitting","12 hours after quitting","24 hours after quitting"],c:1,e:"From lecture: 'Acute withdrawal symptoms can begin in 2 hours after quitting smoking.' Symptoms peak within 24-48 hours and decline over 10 days to several weeks."},
-{t:'nic',q:"Which of the following is NOT listed as a nicotine withdrawal symptom in the lecture?",o:["Severe cravings and irritability","Increased appetite and weight gain","Hallucinations and psychosis","Difficulty concentrating and insomnia"],c:2,e:"The lecture lists cravings, irritability, difficulty concentrating, restlessness, impatience, anger, anxiety, increased appetite, weight gain, and insomnia. Hallucinations and psychosis are NOT associated with nicotine withdrawal."},
-{t:'nic',q:"Bupropion (Wellbutrin/Zyban) aids smoking cessation through which mechanism?",o:["Partial nicotine receptor agonism","Gamma-Aminobutyric Acid (GABA) receptor activation","Dopamine and norepinephrine reuptake inhibition plus nicotinic receptor antagonism","Selective Serotonin Reuptake Inhibitor (SSRI) activity"],c:2,e:"From lecture: Bupropion is a dopamine/norepinephrine reuptake inhibitor (NDRI) AND acts as an antagonist at specific nicotinic receptor subtypes. It delays relapse and reduces weight gain from cessation."},
-{t:'nic',q:"Varenicline works for smoking cessation by:",o:["Fully blocking all nicotinic receptors","Partially stimulating nicotine receptors to reduce withdrawal while minimizing smoking satisfaction","Increasing Gamma-Aminobutyric Acid (GABA) levels to reduce anxiety","Blocking dopamine reuptake"],c:1,e:"From lecture: Varenicline is a partial nicotine agonist. It partially stimulates the receptor (reducing withdrawal) while simultaneously minimizing the satisfaction/reward from smoking."},
-{t:'nic',q:"What is the fatal dose of nicotine in an adult, and what causes death?",o:["30 milligrams (mg); cardiac arrest","60 mg; respiratory failure from paralysis of breathing muscles","100 mg; hepatic failure","120 mg; cerebral hemorrhage"],c:1,e:"From lecture: '60 mg of nicotine can be fatal in an adult due to respiratory failure (paralysis of the muscles that control breathing).' Poisoning can occur by inhalation, swallowing tobacco, or skin absorption."},
-{t:'nic',q:"Dysphoria and anhedonia after nicotine cessation may linger for:",o:["A few days","1-2 weeks","Several months","Over a year in most cases"],c:2,e:"From lecture: 'Dysphoria and anhedonia may linger for several months.' Acute symptoms peak at 24-48 hours and decline over 10 days to weeks, but mood effects persist much longer."},
-{t:'opi',q:"Which of the following is characteristic of opiate withdrawal but would NOT be expected in alcohol withdrawal?",o:["Tachycardia","Goose bumps and restless legs","Seizures","Diaphoresis"],c:1,e:"Goose bumps (piloerection) and restless legs are classic opiate withdrawal signs. Seizures are characteristic of alcohol/benzodiazepine withdrawal but NOT opiate withdrawal. The lecture states opiate withdrawal is NOT life-threatening."},
-{t:'opi',q:"According to the lecture, acute opioid withdrawal is:",o:["Considered life-threatening due to seizure risk","NOT considered life-threatening","Always requires Intensive Care Unit (ICU) admission","Fatal without medication management"],c:1,e:"From lecture: 'Acute opioid withdrawal is not considered life-threatening.' This is a key distinction from alcohol and benzodiazepine withdrawal, which CAN be fatal. However, opiate withdrawal causes profound physical illness and emotional distress."},
-{t:'opi',q:"Protracted opiate abstinence syndrome can persist for up to:",o:["2 weeks","1 month","3 months","6 months"],c:3,e:"From lecture: 'Opiate abstinence syndrome or protracted abstinence syndrome can persist for up to six months.' Symptoms include depression, abnormal stress responses, drug hunger, and anxiety."},
-{t:'opi',q:"Which medication is given specifically for diarrhea during opiate withdrawal?",o:["Promethazine","Dicyclomine","Loperamide","Diphenhydramine (Benadryl)"],c:2,e:"From lecture symptomatic relief: Diarrhea = Loperamide. Vomiting = Promethazine. Abdominal cramping = Dicyclomine. Irritability/agitation = Benzodiazepines. Nasal sniffles = Diphenhydramine (Benadryl)."},
-{t:'opi',q:"The Mu opioid receptor is primarily responsible for which effects?",o:["Hallucinations and olfaction","Body temperature and fertility","Analgesia, euphoria, sedation, respiratory depression, and constipation","Motor integration and cognitive function"],c:2,e:"From lecture: Mu receptors have high affinity for morphine and produce analgesia, euphoria, sedation, respiratory depression, and constipation (gastrointestinal motility). Kappa = body temp/fertility. Delta = hallucinations/olfaction/cognition."},
-{t:'opi',q:"What distinguishes opiates from opioids?",o:["Opiates are synthetic; opioids are natural","Opiates are natural alkaloids from the poppy plant; opioids include all natural, semisynthetic, and synthetic drugs mimicking opiate actions","They are the same thing","Opioids only refer to prescription medications"],c:1,e:"From lecture: Opiates are natural (morphine, codeine from poppy). Opioids are the broader class including opiates plus semisynthetic (heroin, oxycodone) and synthetic (fentanyl, methadone) drugs."},
-{t:'dts',q:"Delirium Tremens (DTs) typically occurs within what timeframe after alcohol cessation?",o:["2-6 hours","8-12 hours","24-72 hours","5-7 days"],c:2,e:"From lecture: DTs usually occur within the first 24-72 hours after cessation of alcohol. It is the most severe manifestation of alcohol withdrawal and carries high mortality risk."},
-{t:'dts',q:"Which clinical tool is used to predict alcohol withdrawal severity and Delirium Tremens (DTs) risk?",o:["PHQ-9","Clinical Institute Withdrawal Assessment (CIWA)","CAGE questionnaire","AUDIT-C"],c:1,e:"From lecture: 'The Clinical Institute Withdrawal Assessment for alcohol is a clinical tool used to help predict which patients are at risk for mild withdrawal, moderate withdrawal, severe withdrawal, or possible DTs.'"},
-{t:'dts',q:"When a patient with liver cirrhosis needs benzodiazepine treatment for alcohol withdrawal, which drug is preferred and why?",o:["Diazepam (Valium) because it has a longer half-life","Chlordiazepoxide (Librium) because it is first-line","Lorazepam (Ativan) because it does NOT require hepatic metabolism","Alprazolam (Xanax) because of rapid onset"],c:2,e:"From lecture: 'The liver metabolizes Librium. In cases of liver cirrhosis, Lorazepam (Ativan) may be used instead since it does not require hepatic metabolization.' This is a classic clinical decision point."},
-{t:'dts',q:"Which vitamin is considered essential neuroprotective intervention during alcohol withdrawal?",o:["Vitamin C","Vitamin D","Thiamine (Vitamin B-1)","Vitamin B-12"],c:2,e:"From lecture: 'Vitamin B-1 (Thiamine) 100 mg IM/PO is essential for neuroprotective intervention.' Also given: Folate (B-9) and Magnesium sulfate for post-withdrawal seizures."},
-{t:'dts',q:"Disulfiram (Antabuse) works by:",o:["Blocking opioid receptors involved in alcohol reward","Inhibiting acetaldehyde dehydrogenase so the liver cannot metabolize alcohol","Activating Gamma-Aminobutyric Acid (GABA) receptors to reduce cravings","Partially stimulating dopamine receptors"],c:1,e:"From lecture: Antabuse inhibits acetaldehyde dehydrogenase. Circulating acetaldehyde causes flushing, sweating, nausea, vomiting, difficulty breathing, dizziness. Aversive therapy requiring full consent. Patient must be alcohol-free 12 hours before starting."},
-{t:'dts',q:"Naltrexone (Vivitrol) for alcohol cravings requires the patient to be opioid-free for:",o:["24 hours","3-5 days","7-10 days","30 days"],c:2,e:"From lecture: Patient must be opioid-free 7-10 days before starting. Contraindicated in current opioid use. A Naloxone challenge test is recommended. Urine Drug Screen (UDS) must be negative for opioids. Monthly injection costs $1,294 per vial."},
-{t:'dts',q:"Alcohol causes blackouts by:",o:["Destroying hippocampal neurons permanently","Suppressing the transcription of memory protein formation and long-term encoding","Blocking all sensory input to the cortex","Depleting serotonin in the prefrontal cortex"],c:1,e:"From lecture: Alcohol inhibits NMDA glutamate receptors in hippocampus, amygdala, and striatum. It causes blackouts by 'suppressing the transcription of memory protein formation and long-term encoding of memory.'"},
-{t:'tox',q:"The triad of opioid toxicity consists of (green highlighted in lecture):",o:["Tachycardia, hypertension, and tremors","Miosis (pupillary constriction), stupor/coma, and respiratory failure","Mydriasis (dilated pupils), agitation, and seizures","Bradycardia, hypothermia, and muscle rigidity"],c:1,e:"From lecture (green highlighted): 1) Miosis (pupillary constriction) — characteristic of ALL opiates EXCEPT meperidine (Demerol). 2) Stupor or comatose state. 3) Respiratory failure from decreased brainstem CO2 sensitivity. Respirations <12/min suggest acute intoxication."},
-{t:'tox',q:"Which opiate is the exception to miosis (pupillary constriction) in opioid toxicity?",o:["Morphine","Fentanyl","Meperidine (Demerol)","Methadone"],c:2,e:"From lecture: 'Miosis: Pupillary constriction is characteristic of all opiates except meperidine (Demerol).' This is because meperidine has anticholinergic properties that can cause mydriasis (dilation) instead."},
-{t:'tox',q:"Respirations below what rate suggest acute opioid intoxication?",o:["20 breaths per minute","16 breaths per minute","12 breaths per minute","8 breaths per minute"],c:2,e:"From lecture: 'Respirations less than 12 breaths per minute suggest acute opioid intoxication.' Opiates cause respiratory depression by decreasing the brainstem's sensitivity to carbon dioxide."},
-{t:'tox',q:"According to the Drug Enforcement Administration (DEA), fentanyl is the leading cause of death for Americans between what ages?",o:["12 and 17","18 and 45","25 and 54","45 and 65"],c:1,e:"From lecture: 'According to the DEA, fentanyl is the leading cause of death for Americans between the ages of 18 and 45.' Between Jan-Feb 2026, DEA seized over 4.7 million fentanyl pills and nearly 2,396 pounds of powder."},
-{t:'ant',q:"Naloxone (Narcan) has a short duration of action. How long does it last?",o:["15-30 minutes","1-2 hours","4-6 hours","8-12 hours"],c:1,e:"From lecture (highlighted): 'Naloxone's duration of action is short (1-2 hours), multiple doses may be necessary.' In contrast, Nalmefene has a longer duration of 8-12 hours. Narcan nasal spray can be given by anyone without training; no prescription required."},
-{t:'ant',q:"Clonidine (Catapres) treats opiate withdrawal by:",o:["Blocking opioid receptors","Inhibiting noradrenergic pathways from the Locus Coeruleus Nucleus","Activating Gamma-Aminobutyric Acid (GABA) receptors","Partially stimulating Mu opioid receptors"],c:1,e:"From lecture: Clonidine is a presynaptic alpha-2 agonist that inhibits activation of noradrenergic pathways from the Locus Coeruleus, quieting withdrawal symptoms. Used outpatient for ~7 days. Must taper over 2-4 days to avoid rebound hypertension."},
-{t:'ant',q:"Buprenorphine (Subutex) is unique because it acts as:",o:["A full Mu receptor agonist","Both an agonist AND antagonist at the Mu receptor (50% binds, 50% blocks)","A pure Mu receptor antagonist","A Kappa receptor selective agonist"],c:1,e:"From lecture: Buprenorphine is a synthetic opiate acting as both agonist and antagonist at Mu receptor — 50% binds to and 50% blocks. Does NOT produce euphoria, lower overdose risk. Schedule III, tapered over 5-10 days."},
-{t:'ant',q:"Why was Naloxone (Narcan) added to Buprenorphine to create Suboxone?",o:["To increase analgesic effects","As an additional safeguard against injectable overdose","To extend the half-life","To reduce constipation side effects"],c:1,e:"From lecture: 'Narcan was added to this medication by the FDA as an additional safeguard against injectable overdose.' If someone tries to inject Suboxone, the Naloxone precipitates withdrawal."},
-{t:'ant',q:"Before starting Naltrexone (Vivitrol) for alcohol cravings, which test is recommended?",o:["Liver function test","Naloxone challenge test","Electroencephalogram (EEG)","Thyroid panel"],c:1,e:"From lecture: 'A Naloxone challenge test is recommended' before starting Vivitrol. UDS must be negative for opioids. Patient must be opioid-free 7-10 days. Contraindicated in current opioid use/dependence."},
-{t:'ant',q:"Methadone maintenance is the standard of care for which specific population?",o:["Adolescents with first-time opiate use","Pregnant women with active opiate addiction","Elderly patients with chronic pain","Patients with concurrent benzodiazepine dependence"],c:1,e:"From lecture: 'Methadone maintenance is the treatment recommendation and the standard of care for pregnant women who have an active opiate addiction.' Opiate withdrawal stress can cause miscarriage, preterm labor, fetal distress, or fetal demise."},
-{t:'ant',q:"Nalmefene differs from Naloxone primarily in:",o:["Route of administration only","Duration of action (8-12 hours vs. 1-2 hours)","Receptor selectivity","Being available over the counter"],c:1,e:"From lecture: Naloxone lasts 1-2 hours (may need multiple doses). Nalmefene has a longer duration of 8-12 hours. Both can be given IV. This longer duration can be advantageous when reversing long-acting opioids."},
-{t:'ant',q:"How long should Clonidine (Catapres) be tapered when discontinuing, and why?",o:["Immediately stopped; no taper needed","Tapered over 2-4 days to avoid rebound hypertension","Tapered over 2-4 weeks to avoid seizures","Tapered over 6 months to prevent relapse"],c:1,e:"From lecture: 'This medication should be tapered over 2 to 4 days when discontinuing to avoid rebound hypertension.' Clonidine is used outpatient for approximately 7 days during opiate withdrawal."},
-{t:'tox',q:"In the 1990s, which clinical change contributed to the opioid epidemic?",o:["Opioids were reclassified as Schedule IV drugs","Pain was designated as the '5th vital sign' and opioid use expanded from cancer to chronic pain","Methadone clinics were defunded","Generic opioids became available over the counter"],c:1,e:"From lecture: 'In the 1990s, clinical guidelines to improve pain management insisted that pain should be treated as the 5th vital sign.' This led to expansion from cancer to chronic pain, and patients with depression/anxiety were at higher risk for overdose and more likely to receive higher opioid and benzodiazepine doses."},
-{t:'dts',q:"How does Acamprosate (Campral) help maintain alcohol sobriety?",o:["Causes aversive reaction when alcohol is consumed","Acts as a GABA agonist and glutamate receptor inhibitor, reducing cravings","Blocks opioid receptors involved in alcohol reward","Replaces alcohol at GABA binding sites"],c:1,e:"From lecture: 'Campral (acamprosate) is considered a GABA agonist and an inhibitor of glutamate receptor activity.' It reduces cravings and increases abstinence by altering the development of tolerance. More effective than placebo."},
+// =================== UNKNOWN POOL (built from lecture PDFs - topics list) ===================
+// Sourced strictly from Alcohol_Cannabis_Nicotine.pdf, Cocaine/Meth.pdf, opiates.pdf, Depression.pdf, Anxiety.pdf, Bipolar.pdf
+const UNKNOWN = [
+  // EPS / DRUG-INDUCED MOVEMENT DISORDERS
+  {q:"Which of the following is NOT one of the four classic types of Extrapyramidal Symptoms (EPS)?",
+   o:["Acute Dystonia","Akathisia","Drug-induced Parkinsonism","Tardive Dyskinesia"],a:3,topic:"EPS",
+   e:"The four 'acute' EPS are: dystonia, akathisia, akinesia (pseudoparkinsonism/drug-induced parkinsonism). Tardive Dyskinesia is technically a LATE-onset (tardive) EPS, distinct from the acute EPS group. All four are dopamine-blockade related, but TD is delayed and often irreversible."},
+  {q:"Akathisia is best described as:",
+   o:["Sustained muscle contractions causing twisting","An extreme subjective feeling of internal restlessness with inability to sit still","Mask-like face with shuffling gait","Involuntary lip-smacking and tongue-thrusting"],a:1,topic:"EPS",
+   e:"Akathisia = motor restlessness + inability to sit still. Often misdiagnosed as anxiety/agitation. Treated with propranolol (beta-blocker) or benztropine."},
+  {q:"Drug-induced Parkinsonism (pseudoparkinsonism) typically appears within what timeframe of starting an antipsychotic?",
+   o:["Hours to days","Days to weeks (within 30 days typically)","6 months to 1 year","Only after years of treatment"],a:1,topic:"EPS",
+   e:"Pseudoparkinsonism usually appears within 5–30 days of starting an antipsychotic. Tardive Dyskinesia, by contrast, requires months to years of D2 blockade."},
+  {q:"Tardive Dyskinesia is considered one of the most serious antipsychotic complications because:",
+   o:["It is always fatal within weeks","It can be permanent/irreversible even after discontinuing the drug","It only affects pediatric patients","It indicates the antipsychotic is working"],a:1,topic:"EPS",
+   e:"TD can persist or worsen even after the offending drug is stopped. Risk factors: older age, female, long-term high-dose typical antipsychotic use."},
+
+  // CLOZAPINE / SUICIDE-REDUCING MEDS
+  {q:"Clozapine (Clozaril) is reserved for treatment-resistant schizophrenia primarily because of which life-threatening side effect requiring weekly bloodwork?",
+   o:["Hepatotoxicity","Agranulocytosis","Stevens-Johnson syndrome","Pancreatitis"],a:1,topic:"Clozapine",
+   e:"Clozapine can cause AGRANULOCYTOSIS (severely low neutrophils → fatal infection). Patients require weekly CBC/ANC monitoring for the first 6 months, then less frequent."},
+  {q:"Clozapine is unique among antipsychotics because it is the only one with FDA approval to:",
+   o:["Treat positive symptoms only","Reduce the risk of suicide in schizophrenia","Replace lithium for bipolar","Cure Parkinson's disease"],a:1,topic:"Clozapine",
+   e:"Clozapine is the ONLY antipsychotic FDA-approved to reduce suicidality in schizophrenia. Despite its serious side effects, this is a key clinical advantage."},
+  {q:"Beyond clozapine for schizophrenia, which medication is well-established as reducing the risk of suicide in bipolar disorder?",
+   o:["Valproate","Carbamazepine","Lithium","Lamotrigine"],a:2,topic:"Suicide Risk Reduction",
+   e:"LITHIUM has the strongest evidence base for suicide risk reduction in bipolar disorder, independent of its mood-stabilizing effects."},
+  {q:"Beyond agranulocytosis, clozapine carries a black box warning for which other serious side effect?",
+   o:["Hair loss","Seizures and myocarditis","Hypothyroidism only","Tooth decay"],a:1,topic:"Clozapine",
+   e:"Clozapine has FIVE black box warnings: agranulocytosis, seizures, myocarditis/cardiomyopathy, orthostatic hypotension, and increased mortality in elderly with dementia-related psychosis."},
+
+  // STIMULANT-INDUCED HALLUCINATIONS
+  {q:"Formication, a tactile hallucination of bugs crawling under or on the skin, is especially prevalent with which substances?",
+   o:["Alcohol and benzodiazepines","Methamphetamine and cocaine (stimulant-induced psychosis)","Opioids and cannabis","Nicotine and caffeine"],a:1,topic:"Stimulant Psychosis",
+   e:"Tactile hallucinations (formication) are highly characteristic of methamphetamine and cocaine intoxication/psychosis. Up to 80% of cocaine use disorder patients report psychotic symptoms."},
+  {q:"What percentage of individuals exposed to methamphetamine develop methamphetamine-induced psychotic disorder according to the 2018 meta-analysis cited in lecture?",
+   o:["5–10%","15–25%","36.5–42.7%","Over 75%"],a:2,topic:"Stimulant Psychosis",
+   e:"A 2018 meta-analysis found 36.5–42.7% of meth users develop meth-induced psychotic disorder. Risk DOUBLES when combined with marijuana or alcohol."},
+
+  // METH NEUROTOXICITY
+  {q:"Methamphetamine neurotoxicity damages which neurotransmitter systems most prominently?",
+   o:["GABA and glutamate only","Serotonin and dopamine nerve terminals","Acetylcholine only","Endorphin receptors only"],a:1,topic:"Meth Neurotoxicity",
+   e:"Meth damages SEROTONIN and DOPAMINE nerve terminals. Deficits → slower motor skills, memory issues, and Parkinson-related dementia."},
+  {q:"Which structural brain changes are documented from chronic methamphetamine use?",
+   o:["Increased white matter and brain growth","11% reduction in white matter, 7% increase in neuronal death, 8% loss of hippocampal tissue","No measurable structural changes","Only reversible vascular changes"],a:1,topic:"Meth Neurotoxicity",
+   e:"Per lecture: 11% white matter reduction, 7% increase in neuronal death/scar tissue, 8% hippocampal tissue loss. Also damages the blood-brain barrier. Brain hyperthermia contributes."},
+  {q:"The newer P2P (phenyl-2-propanone) form of methamphetamine that resurfaced in 2021 is associated with:",
+   o:["Less brain damage than ephedrine-based meth","Faster, more severe brain damage and mental health deterioration","Reduced psychotic symptoms","No different effects than older forms"],a:1,topic:"Meth Neurotoxicity",
+   e:"P2P meth causes faster, steeper deterioration: violent paranoia, hallucinations, conspiracy theories, isolation, massive memory loss, jumbled speech."},
+
+  // BLACKOUTS (ALCOHOL)
+  {q:"Alcohol-induced blackouts occur because alcohol:",
+   o:["Increases dopamine in the cortex","Suppresses transcription of memory protein formation and long-term encoding of memory","Stimulates the hippocampus","Activates NMDA receptors"],a:1,topic:"Blackouts",
+   e:"Alcohol INHIBITS NMDA glutamate receptors (especially in hippocampus, amygdala, striatum) AND suppresses memory protein transcription → blackouts. Can lead to hazardous behaviors and legal consequences."},
+  {q:"Which brain regions are most affected by alcohol's NMDA-receptor inhibition, explaining memory and motor impairment?",
+   o:["Cerebellum and brainstem only","Hippocampus, amygdala, and striatum","Prefrontal cortex only","Thalamus only"],a:1,topic:"Blackouts",
+   e:"Alcohol inhibits NMDA glutamate receptors particularly in the hippocampus (memory), amygdala (emotion), and striatum (motor) — explaining memory + motor impairment."},
+
+  // PREDNISONE / STEROID PSYCH SYMPTOMS
+  {q:"Prednisone and other corticosteroids are recognized in psychopharmacology lectures as a common cause of:",
+   o:["Reduced anxiety symptoms","Drug-induced psychiatric symptoms including anxiety, mania, depression, or psychosis","Permanent cognitive enhancement","Sedation only"],a:1,topic:"Prednisone Psych",
+   e:"Steroids (prednisone) are listed among hormones that can induce anxiety/mood symptoms. They can cause steroid-induced mania/psychosis (high dose), depression (during taper), and anxiety. Always consider steroid use in new psychiatric presentations."},
+  {q:"Per the anxiety lecture, which medications/substances can INDUCE anxiety symptoms?",
+   o:["Bronchodilators, decongestants, steroids, stimulants, caffeine, nicotine","Only illegal substances","Only psychiatric medications","Only herbal supplements"],a:0,topic:"Prednisone Psych",
+   e:"Lecture list of anxiety-inducing agents: bronchodilators (albuterol, theophylline), decongestants (Sudafed), steroids/thyroxine, stimulants, antivirals (interferon), antihistamines (esp. in children), caffeine, Ma Huang, ginkgo, nicotine."},
+
+  // LITHIUM TOXICITY
+  {q:"Which factor most commonly precipitates acute lithium toxicity in a stable patient?",
+   o:["Eating leafy greens","Dehydration, low-sodium diet, NSAIDs, or thiazide diuretics","Taking it with food","Daily exercise"],a:1,topic:"Lithium Toxicity",
+   e:"Lithium has a NARROW therapeutic index (0.6–1.2 mEq/L). Anything that reduces renal lithium clearance — dehydration, sodium loss, NSAIDs, ACE inhibitors, thiazides — can push levels into toxic range."},
+  {q:"Per the quiz, acute lithium toxicity prominent symptoms are:",
+   o:["Increased thirst, urination, weight gain","Headache, cognitive slowing, tremor","Diarrhea, vomiting, and ataxia","Acne, nausea, hyperthyroidism"],a:2,topic:"Lithium Toxicity",
+   e:"Acute lithium toxicity = GI distress (diarrhea, vomiting) + cerebellar signs (ataxia). Progressive: tremor → confusion → seizures → coma. Levels >1.5 mEq/L = toxic."},
+
+  // ACUTE ALCOHOL WITHDRAWAL
+  {q:"Acute alcohol withdrawal carries the risk of which life-threatening complications?",
+   o:["Mild headache only","Seizure, cerebral vascular accident (stroke), and delirium tremens","Only nausea","Hair loss"],a:1,topic:"Alcohol Withdrawal",
+   e:"Alcohol withdrawal can be FATAL. Three serious risks: seizures, stroke (CVA), delirium tremens (DTs). DTs typically occur 24–72 hours after cessation. CIWA-Ar scale used for risk stratification."},
+  {q:"Delirium Tremens (DTs) presents with which constellation of symptoms?",
+   o:["Sedation and slow heart rate","Profound confusion, agitation, insomnia, fever, tachycardia, diaphoresis, restlessness","Constipation and dry mouth","Muscle weakness only"],a:1,topic:"Alcohol Withdrawal",
+   e:"DTs = the most severe manifestation of alcohol withdrawal. Profound confusion + autonomic hyperactivity (fever, tachycardia, sweating). Mortality if untreated. Heavy steady drinkers at highest risk."},
+  {q:"DTs typically begin within what timeframe after the cessation of alcohol?",
+   o:["1–6 hours","24–72 hours","1–2 weeks","30+ days"],a:1,topic:"Alcohol Withdrawal",
+   e:"DTs typically occur within the first 24–72 hours after cessation. Earlier withdrawal symptoms (tremor, anxiety) start at 6–12 hours; seizures peak at 24–48 hours."},
+
+  // FASD (ALL 4)
+  {q:"Per the FASD umbrella lecture slide, which of the following are recognized Fetal Alcohol Spectrum Disorders?",
+   o:["FAS, pFAS, ARND, ARBD","Only FAS","FAS and Down Syndrome","FAS and ADHD"],a:0,topic:"FASD",
+   e:"FASD umbrella per lecture slide: FAS (Fetal Alcohol Syndrome), pFAS (Partial FAS), ARND (Alcohol-Related Neurodevelopmental Disorder), and ARBD (Alcohol-Related Birth Defects). ND-PAE (Neurobehavioral Disorder Associated with Prenatal Alcohol Exposure) is also referenced as a screening category."},
+  {q:"The triad of symptoms required for diagnosing Fetal Alcohol Syndrome (FAS) includes:",
+   o:["High birth weight, large head, advanced motor skills","Growth deficiency, craniofacial abnormalities, and CNS dysfunction (intellectual disability)","Only facial features","Only intellectual disability"],a:1,topic:"FASD",
+   e:"FAS triad: (1) growth deficiency (<10th percentile), (2) craniofacial abnormalities (short palpebral fissures, smooth philtrum, thin upper lip, microcephaly), (3) CNS dysfunction/intellectual disability. FAS is the leading PREVENTABLE cause of intellectual disability in the US."},
+  {q:"What percentage of people with FASD remain UNDIAGNOSED according to lecture?",
+   o:["About 10%","About 50%","Approximately 95%","100% are diagnosed at birth"],a:2,topic:"FASD",
+   e:"95% of people with FASD are undiagnosed. Frequently misdiagnosed as ADHD. Most children diagnosed around age 6. Significant outcomes: 61% school disruptions, 60% legal involvement, 73–80% of FAS kids in foster/adoptive placement."},
+  {q:"Which brain damage finding is characteristic of FASD?",
+   o:["Increased corpus callosum size","Partial or complete agenesis of the corpus callosum, frontal cortex/hippocampal damage, cerebellar hypoplasia","No detectable brain changes","Only spinal cord changes"],a:1,topic:"FASD",
+   e:"FASD brain damage (PERMANENT): partial/complete agenesis of corpus callosum (intellectual disability + seizures), damage to frontal cortex and hippocampus (memory + communication), cerebellar hypoplasia (movement + balance issues)."},
+
+  // BINGE DRINKING
+  {q:"Per CDC/lecture, binge drinking is defined as:",
+   o:["1+ drink per day","Women: 4+ drinks in 2–3 hours; Men: 5+ drinks in 2–3 hours","10+ drinks per week","Only daily drinking"],a:1,topic:"Binge Drinking",
+   e:"Binge drinking = Women 4+ drinks in 2–3 hours; Men 5+ drinks in 2–3 hours. Monthly midlife binge drinking DOUBLES risk of long-term cognitive impairment. Binge drinking in pregnancy → FASD risk."},
+  {q:"Monthly binge drinking in midlife has what long-term consequence per lecture?",
+   o:["No long-term effects","Doubles the risk of long-term cognitive impairment later in life","Improves memory","Reduces stroke risk"],a:1,topic:"Binge Drinking",
+   e:"Per lecture: monthly binge drinking in midlife DOUBLES risk of long-term cognitive impairment. Alcohol poisoning kills ~6 people every day in the US."},
+
+  // ANTABUSE
+  {q:"Antabuse (Disulfiram) works by:",
+   o:["Blocking opioid receptors","Inhibiting acetaldehyde dehydrogenase, causing toxic acetaldehyde buildup if alcohol is consumed","Stimulating dopamine release","Replacing alcohol's effects"],a:1,topic:"Antabuse",
+   e:"Antabuse blocks acetaldehyde dehydrogenase → acetaldehyde accumulates if patient drinks → flushing, sweating, nausea, vomiting, dyspnea, dizziness. AVERSIVE therapy — requires full informed consent."},
+  {q:"Patients on Antabuse must avoid alcohol-containing products including which non-beverage items?",
+   o:["Only beer and wine","Vinegar, aftershave, perfumes, mouthwash, cough medication","Only hard liquor","Only at restaurants"],a:1,topic:"Antabuse",
+   e:"Even tiny amounts of alcohol trigger the reaction. Avoid: vinegar, aftershave, perfumes, mouthwash, cough syrup. Continue avoiding for 2 WEEKS after stopping Antabuse. Caution: may induce mania in bipolar patients."},
+  {q:"Before starting Antabuse, the patient must be alcohol-free for at least:",
+   o:["1 hour","12 hours","1 week","30 days"],a:1,topic:"Antabuse",
+   e:"Patient must be alcohol-free for at least 12 hours before starting Antabuse to avoid immediate severe reaction."},
+
+  // CLONIDINE
+  {q:"Clonidine (Catapres) is classified as a/an:",
+   o:["Beta-blocker","Alpha-2 agonist (antihypertensive)","Benzodiazepine","Opioid agonist"],a:1,topic:"Clonidine",
+   e:"Clonidine is an ALPHA-2 AGONIST antihypertensive. FDA approved for ADHD; off-label for anxiety in children, opioid withdrawal, PTSD prevention (acute), and rehab settings."},
+  {q:"Which side effect of sudden clonidine discontinuation is most dangerous?",
+   o:["Hair loss","Rebound hypertension that can cause stroke (especially when combined with a beta-blocker)","Mild headache only","Constipation"],a:1,topic:"Clonidine",
+   e:"Sudden clonidine discontinuation = nervousness, agitation, REBOUND HYPERTENSION → stroke risk. Risk is amplified when combined with a beta-blocker. Always taper."},
+  {q:"In opioid withdrawal protocols, clonidine is used because it:",
+   o:["Replaces opioids at the mu receptor","Suppresses autonomic withdrawal symptoms (sweating, tachycardia, anxiety) via alpha-2 agonism","Causes euphoria","Increases respiratory drive"],a:1,topic:"Clonidine",
+   e:"Clonidine reduces sympathetic outflow (alpha-2 agonist), suppressing the autonomic storm of opioid withdrawal. Used in rapid anesthesia-aided detox combined with naltrexone/Narcan."},
+
+  // VIVITROL (NALTREXONE)
+  {q:"Vivitrol (extended-release naltrexone injection) for alcohol use disorder works by:",
+   o:["Causing nausea when alcohol is consumed","Blocking opioid receptors involved in the rewarding effects of alcohol","Replacing alcohol","Inhibiting acetaldehyde dehydrogenase"],a:1,topic:"Vivitrol",
+   e:"Vivitrol is an OPIOID ANTAGONIST. Blocking opioid receptors reduces the reward/euphoria of alcohol → reduced cravings and consumption. Good for binge drinkers and patients not ready for full abstinence."},
+  {q:"What is the critical contraindication and pre-treatment requirement for Vivitrol?",
+   o:["Must be opioid-free for 7–10 days; contraindicated in current opioid use","Must be sleep-deprived","Must avoid all dairy","Must be over age 65"],a:0,topic:"Vivitrol",
+   e:"Patient MUST be opioid-free for 7–10 DAYS before starting Vivitrol. Contraindicated in current opioid use/dependence — would precipitate severe withdrawal. Naloxone challenge test recommended; UDS must be negative."},
+  {q:"Vivitrol monitoring concerns include:",
+   o:["No monitoring needed","Closely monitor for depression and suicidality; patients may report apathy or anhedonia with long-term use","Only weight monitoring","Only liver monitoring"],a:1,topic:"Vivitrol",
+   e:"Long-term Vivitrol can cause apathy, anhedonia. Monitor for depression and suicidality. Severe injection-site reactions occur — sometimes requiring surgery. Cost: ~$1,294/vial monthly."},
+
+  // COCAINE WITHDRAWAL IN BABIES
+  {q:"Per lecture, what proportion of babies born to cocaine-using mothers experience withdrawal symptoms?",
+   o:["All (100%)","Approximately 1/3","Less than 5%","None"],a:1,topic:"Cocaine in Babies",
+   e:"~1/3 of babies born to cocaine-using mothers experience withdrawal symptoms. Up to 40% of cocaine-exposed infants have congenital anomalies, brain malformation, or cardiovascular abnormalities."},
+  {q:"Cocaine withdrawal symptoms in newborns include:",
+   o:["Excessive sleeping and weight gain","Seizures, lethargy, hyperactive reflexes, vomiting, high-pitched crying, and restlessness","Increased appetite only","No symptoms"],a:1,topic:"Cocaine in Babies",
+   e:"Cocaine-exposed neonate withdrawal: seizures, lethargy, hyperactive reflexes, vomiting, high-pitched crying, restlessness. Cocaine in pregnancy also linked to miscarriage, placental abruption, stillbirth, congenital anomalies."},
+
+  // PROPRANOLOL (BETA-BLOCKER)
+  {q:"Propranolol (Inderal), a beta-blocker, has which key psychiatric use?",
+   o:["First-line for major depression","Performance anxiety and akathisia (antipsychotic-induced restlessness)","Treatment of psychosis","Long-term anxiety treatment"],a:1,topic:"Propranolol",
+   e:"Propranolol blocks beta receptors, reducing sympathetic symptoms (rapid heartbeat, tremor, sweating) of performance anxiety. Also used for akathisia from antipsychotics, migraine, tremors."},
+  {q:"Which patient population should AVOID propranolol?",
+   o:["Healthy young adults","Patients with asthma, COPD, slow heart rate, or diabetes","Patients with high blood pressure","Patients with anxiety"],a:1,topic:"Propranolol",
+   e:"Propranolol can aggravate asthma/COPD (bronchoconstriction), worsen bradycardia, mask hypoglycemia in diabetics. Poor choice for competitive endurance athletes. Taper to avoid rebound hypertension."},
+  {q:"Beyond performance anxiety, what are propranolol's medical uses listed in the anxiety lecture?",
+   o:["Only psychiatric uses","Chest pain, coronary artery disease, migraine headaches, and tremors","Only sleep disorders","Only diabetes"],a:1,topic:"Propranolol",
+   e:"Propranolol uses (lecture green-highlighted slide): chest pain, CAD, migraine headaches, tremors, performance anxiety. Taper over several weeks to avoid rebound hypertension."},
+
+  // MJ AND SCHIZOPHRENIA
+  {q:"Per the Swedish study referenced in lecture, young people who heavily smoked marijuana by age 18 were ___ times more likely to develop schizophrenia:",
+   o:["1.5","3","6","20"],a:2,topic:"MJ & Schizophrenia",
+   e:"Swedish study: heavy marijuana use by age 18 = 6x increased schizophrenia risk. High-potency cannabis = 5x higher probability of psychotic disorder diagnosis vs nonusers."},
+  {q:"High-potency cannabis use is associated with what increased risk for psychotic disorders?",
+   o:["No increased risk","2x higher","5x higher probability of psychotic disorder","100x higher"],a:2,topic:"MJ & Schizophrenia",
+   e:"Per lecture: 'High-potency cannabis was associated with five times higher probability of having a diagnosis of a psychotic disorder compared with cannabis nonusers.' Swedish and New Zealand studies confirm increased psychosis risk in young people."},
+  {q:"Methamphetamine + marijuana or alcohol increases psychosis risk by what factor?",
+   o:["No additional risk","Cuts risk in half","Doubles the already 5x baseline meth psychosis risk","Eliminates psychosis risk"],a:2,topic:"MJ & Schizophrenia",
+   e:"Meth psychosis is 5x more likely with meth alone — but combining with marijuana or alcohol DOUBLES that risk (effectively 10x baseline)."},
+
+  // SECONDHAND SMOKE - COCAINE
+  {q:"Secondhand cocaine smoke is recognized as a health hazard for young children and can cause:",
+   o:["No measurable effects","Seizures (generalized and focal), especially in children below 8 years","Improved attention","Only minor cough"],a:1,topic:"Secondhand Smoke",
+   e:"Secondhand cocaine smoke can INDUCE SEIZURES in infants of cocaine-smoking parents. Generalized and focal seizures are more common in children below 8 years. Infants are most susceptible — passive inhalation of free-base vapors."},
+  {q:"Children exposed to secondhand TOBACCO smoke have increased risk of:",
+   o:["Improved lung function","SIDS, asthma, pneumonia, bronchitis, and ear infections","No health effects","Only allergies"],a:1,topic:"Secondhand Smoke",
+   e:"Secondhand tobacco smoke in children: increased SIDS, asthma, pneumonia, bronchitis, ear infections. Tar deposition in lung membranes causes the damage."},
+
+  // OPIOID TOXICITY (bonus - reinforces Quiz 5)
+  {q:"The classic triad of opioid toxicity (overdose) consists of:",
+   o:["Mydriasis, hypertension, and tachycardia","Miosis (pinpoint pupils), stupor/coma, and respiratory depression","Fever, sweating, and diarrhea","Tremor, confusion, and seizures"],a:1,topic:"Opioid Toxicity",
+   e:"Classic opioid toxicity triad: MIOSIS (pinpoint pupils — except meperidine/Demerol), STUPOR/COMA, RESPIRATORY DEPRESSION (<12 breaths/min suggests acute intoxication). Naloxone reverses."},
+  {q:"Naloxone (Narcan) duration of action is short, requiring:",
+   o:["A single dose lasting 24 hours","Multiple doses may be necessary (1–2 hour duration)","Continuous IV infusion always","No re-dosing ever"],a:1,topic:"Opioid Toxicity",
+   e:"Naloxone duration: only 1–2 hours. Multiple doses may be needed if opioid is long-acting. Nalmefene has a longer duration (8–12 hours). Narcan nasal spray is OTC and can be administered without medical training."}
 ];
 
-let mode='flash',cf='all',fi=0,fd=[],qi=0,qd=[],st={s:0,c:0,k:0},flipped=false;
-function gf(a){return cf==='all'?[...a]:a.filter(x=>x.t===cf)}
-function sh(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function setMode(m){mode=m;document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));document.getElementById({flash:'nf',quiz:'nq',ref:'nr',share:'ns'}[m]).classList.add('active');document.getElementById('fR').style.display=m==='share'?'none':'flex';if(m==='flash')rf();else if(m==='quiz')showQuizConfig();else if(m==='ref')renderRef();else renderShare();us()}
-function ft(t){cf=t;document.querySelectorAll('.flt').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');if(mode==='flash')rf();else if(mode==='quiz')showQuizConfig();else if(mode==='ref')renderRef()}
-function us(){const tot=mode==='quiz'?qd.length:fd.length,idx=mode==='quiz'?qi:fi;document.getElementById('s1').textContent=st.s;document.getElementById('s2').textContent=st.c;document.getElementById('s3').textContent=st.k;document.getElementById('s4').textContent=Math.max(0,tot-idx);document.getElementById('pf').style.width=(tot>0?(idx/tot*100):0)+'%'}
-function rf(){fd=sh(gf(C));fi=0;flipped=false;rfc()}
-function rfc(){const el=document.getElementById('ct');if(fi>=fd.length){el.innerHTML='<div class="card" style="text-align:center;padding:40px"><h2>Round Complete!</h2><p style="color:var(--text-dim);margin:12px 0">Reviewed '+fd.length+' cards. Correct: '+st.c+'</p><div class="br"><button class="btn bp" onclick="rf();st={s:0,c:0,k:0};us()">Shuffle &amp; Restart</button></div></div>';return}
-const c=fd[fi];el.innerHTML='<div style="text-align:center;margin-bottom:8px"><span class="tb '+TC[c.t]+'">'+TL[c.t]+'</span><span style="color:var(--text-dim);font-size:.8em;margin-left:8px">'+(fi+1)+' / '+fd.length+'</span></div><div class="fc-wrap" onclick="flip()"><div class="fc" id="fc"><div class="face ff"><div class="q">'+c.q+'</div></div><div class="face fb"><div class="a">'+c.a+'</div></div></div></div><p class="fhint" id="fh">tap card to reveal answer</p><div class="cb hidden" id="cb"><button class="ba" onclick="rate(0)">Again</button><button class="bh" onclick="rate(1)">Hard</button><button class="bg" onclick="rate(2)">Good</button><button class="be" onclick="rate(3)">Easy</button></div>';flipped=false;us()}
-function flip(){if(!flipped){document.getElementById('fc').classList.add('flipped');flipped=true;document.getElementById('fh').textContent='rate your confidence \u2193';document.getElementById('cb').classList.remove('hidden')}}
-function rate(r){st.s++;if(r>=2){st.c++;st.k++}else{st.k=0;if(r===0)fd.push(fd[fi])}fi++;rfc()}
+// Combined pool for "mix"
+const ALL = [...KNOWN.map(x=>({...x,pool:'known'})), ...UNKNOWN.map(x=>({...x,pool:'unknown'}))];
 
-function showQuizConfig(){const pool=gf(Q);const el=document.getElementById('ct');el.innerHTML='<div class="quiz-config"><h2 style="color:var(--accent)">Quiz Setup</h2><p>Each attempt pulls <strong>10 random questions</strong> from a pool of <strong>'+pool.length+'</strong> — different every time.</p><div class="br"><button class="btn bp" onclick="startQuiz()">Start Quiz</button></div><p class="pool-info">Filter by topic above to narrow the pool, or leave on "All Topics" for mixed practice.</p></div>';us()}
-function startQuiz(){const pool=gf(Q);qd=sh(pool).slice(0,Math.min(QUIZ_SIZE,pool.length));qi=0;st={s:0,c:0,k:0};rqq()}
-function rqq(){const el=document.getElementById('ct');if(qi>=qd.length){const p=qd.length>0?Math.round(st.c/qd.length*100):0;const pool=gf(Q);el.innerHTML='<div class="card" style="text-align:center;padding:40px"><h2>Quiz Complete!</h2><p style="font-size:2em;font-weight:700;color:'+(p>=80?'var(--success)':p>=60?'var(--warning)':'var(--danger)')+'">'+p+'%</p><p style="color:var(--text-dim);margin:8px 0">'+st.c+' / '+qd.length+' correct</p><div class="br"><button class="btn bp" onclick="startQuiz()">New Random Quiz ('+Math.min(QUIZ_SIZE,pool.length)+' from '+pool.length+')</button></div><p class="pool-info">Each attempt draws different questions from the pool.</p></div>';return}
-const q=qd[qi];el.innerHTML='<div class="card"><span class="tb '+TC[q.t]+'">'+TL[q.t]+'</span><span style="color:var(--text-dim);font-size:.8em;float:right">'+(qi+1)+' / '+qd.length+'</span><h2 style="color:var(--text);font-size:1em;margin-top:8px">'+q.q+'</h2><div id="qo">'+q.o.map(function(o,i){return '<button class="qo" onclick="aq('+i+')" data-i="'+i+'">'+String.fromCharCode(65+i)+') '+o+'</button>'}).join('')+'</div><div id="qe" class="hidden"></div><div id="qn" class="hidden br"><button class="btn bp" onclick="qi++;rqq();us()">Next Question &rarr;</button></div></div>';us()}
-function aq(i){const q=qd[qi];document.querySelectorAll('.qo').forEach(function(b){b.disabled=true;const bi=parseInt(b.dataset.i);if(bi===q.c)b.classList.add('correct');if(bi===i&&i!==q.c)b.classList.add('incorrect')});st.s++;if(i===q.c){st.c++;st.k++}else st.k=0;document.getElementById('qe').classList.remove('hidden');document.getElementById('qe').innerHTML='<div class="expl"><strong>'+(i===q.c?'\u2713 Correct!':'\u2717 Incorrect')+'</strong><br>'+q.e+'</div>';document.getElementById('qn').classList.remove('hidden');us()}
-
-function renderRef(){const el=document.getElementById('ct');const S=[
-{n:'Nicotine Withdrawal & Cessation',t:'nic',cl:'var(--purple)',i:[
-{k:'Onset (from lecture)',v:'Acute withdrawal begins in 2 HOURS after quitting',m:1},
-{k:'Peak',v:'Symptoms peak within 24-48 hours, decline over 10 days to several weeks',m:1},
-{k:'Symptoms',v:'Severe cravings, irritability, difficulty concentrating, restlessness, impatience, anger, anxiety, increased appetite, weight gain, insomnia',m:1},
-{k:'Long-term',v:'Dysphoria and anhedonia may linger for SEVERAL MONTHS'},
-{k:'Nicotine mechanism',v:'Central Nervous System (CNS) stimulant; activates acetylcholine receptors; increases dopamine in mesocorticolimbic reward system'},
-{k:'Fatal dose',v:'60 milligrams (mg) = fatal in adult (respiratory failure from breathing muscle paralysis)'},
-{k:'Bupropion (Wellbutrin/Zyban)',v:'Norepinephrine-Dopamine Reuptake Inhibitor (NDRI) + nicotinic receptor antagonist. FDA-approved for cessation. Delays relapse, reduces weight gain.',m:1},
-{k:'Varenicline',v:'Partial nicotine agonist. Partially stimulates receptor (reduces withdrawal) while minimizing smoking satisfaction/reward.',m:1},
-{k:'Nicotine Replacement Therapies (NRTs)',v:'Gum, patches, lozenges (PREPs). Also snus, e-cigarettes (safety concerns).'},
-{k:'Vaping concern (highlighted)',v:'Vitamin E acetate in THC vaping products strongly linked to lung injury. Smoke and vaping aerosol linked to lung inflammation and lowered immune function.',m:1},
-]},
-{n:'Opiate Withdrawal',t:'opi',cl:'var(--pink)',i:[
-{k:'Key distinction',v:'Acute opioid withdrawal is NOT life-threatening (unlike alcohol/benzo withdrawal)',m:1},
-{k:'Symptoms (from lecture)',v:'Vomiting, clammy skin, nasal sniffles, diarrhea, irritability, agitation, leg muscle rubbing, goose bumps, restless legs, flu-like symptoms, body aches, abdominal cramping',m:1},
-{k:'Protracted abstinence',v:'Can persist UP TO 6 MONTHS: depression, abnormal stress responses, drug hunger, anxiety',m:1},
-{k:'Symptomatic meds (from lecture)',v:'Vomiting = Promethazine. Diarrhea = Loperamide. Cramping = Dicyclomine. Agitation = Benzodiazepines. Sniffles = Diphenhydramine (Benadryl)',m:1},
-{k:'Opiate vs. opioid',v:'Opiates = natural (morphine, codeine). Opioids = broader class including semisynthetic (heroin, oxycodone) and synthetic (fentanyl, methadone)'},
-{k:'Opioid receptors',v:'Mu = analgesia, euphoria, sedation, respiratory depression, constipation. Kappa = body temp, fertility. Delta = hallucinations, olfaction, cognition',m:1},
-]},
-{n:'Delirium Tremens (DTs) / Alcohol Withdrawal',t:'dts',cl:'var(--danger)',i:[
-{k:'DTs definition',v:'Most severe manifestation of alcohol withdrawal. HIGH MORTALITY RISK.',m:1},
-{k:'DTs timing',v:'Usually within first 24-72 hours after alcohol cessation',m:1},
-{k:'DTs symptoms',v:'Profound confusion, agitation, insomnia, fever, tachycardia, diaphoresis, restlessness',m:1},
-{k:'4 assessment signs',v:'Tachycardia, Hypertension, Tremors, Diaphoresis',m:1},
-{k:'CIWA',v:'Clinical Institute Withdrawal Assessment — predicts risk for mild, moderate, severe withdrawal, or DTs',m:1},
-{k:'Risk factor',v:'Individual who drinks heavily and in a steady manner = greater risk for seizures or DTs'},
-{k:'DTs treatment',v:'Intensive Care Unit (ICU): IV benzodiazepines, Thiamine, cardiac monitoring, seizure precautions',m:1},
-{k:'Librium vs. Ativan',v:'Chlordiazepoxide (Librium) = first choice (liver metabolized). Lorazepam (Ativan) = liver cirrhosis (no hepatic metabolism needed)',m:1},
-{k:'Supplements',v:'Thiamine (B-1) 100 mg IM/PO = neuroprotection. Folate (B-9). Magnesium sulfate = post-withdrawal seizures',m:1},
-{k:'Disulfiram (Antabuse)',v:'Inhibits acetaldehyde dehydrogenase. Aversive therapy. Alcohol-free 12 hours before starting. Avoid ALL alcohol-containing products for 2 weeks after stopping',m:1},
-{k:'Acamprosate (Campral)',v:'GABA agonist + glutamate inhibitor. Reduces cravings.',m:1},
-{k:'Naltrexone (Vivitrol)',v:'Opioid antagonist blocking alcohol reward. Opioid-free 7-10 days first. Naloxone challenge test. Monthly injection ($1,294). Monitor depression/suicidality.',m:1},
-{k:'Alcohol mechanism',v:'Activates GABA + serotonin, inhibits glutamate (NMDA receptors). Blackouts from suppressed memory protein formation.'},
-]},
-{n:'Opiate Toxicity',t:'tox',cl:'var(--accent)',i:[
-{k:'Toxicity triad (green highlighted)',v:'1) Miosis (pupillary constriction) — ALL opiates EXCEPT Meperidine (Demerol). 2) Stupor/coma. 3) Respiratory failure (decreased brainstem CO2 sensitivity)',m:1},
-{k:'Clinical marker',v:'Respirations less than 12 breaths/minute suggest acute opioid intoxication',m:1},
-{k:'Meperidine exception',v:'Only opiate that does NOT cause miosis (has anticholinergic properties)',m:1},
-{k:'Fentanyl (from lecture)',v:'Leading cause of death for Americans ages 18-45 (Drug Enforcement Administration (DEA))'},
-{k:'5th vital sign',v:'1990s: pain treated as 5th vital sign → expanded opioid use from cancer to chronic pain → epidemic'},
-{k:'Common side effects',v:'Sedation, nausea, constipation, respiratory depression, pruritus, endocrine dysfunction, depression, nightmares'},
-{k:'Opioid classifications',v:'Full agonist (morphine, fentanyl). Partial agonist (buprenorphine). Mixed agonist-antagonist. Pure antagonist (naloxone)',m:1},
-]},
-{n:'Antidotes / Withdrawal Medications',t:'ant',cl:'var(--teal)',i:[
-{k:'Naloxone (Narcan)',v:'Opioid antagonist blocking Mu receptors. Duration 1-2 HOURS (may need multiple doses). Nasal spray, no prescription needed, anyone can give it.',m:1},
-{k:'Nalmefene',v:'Opioid antagonist with LONGER duration: 8-12 hours. Given IV.',m:1},
-{k:'Clonidine (Catapres)',v:'Alpha-2 agonist. Inhibits noradrenergic pathways from Locus Coeruleus. Outpatient ~7 days. TAPER over 2-4 days (rebound hypertension).',m:1},
-{k:'Buprenorphine (Subutex)',v:'Mu agonist/antagonist (50/50). No euphoria, lower overdose risk. Schedule III. Taper over 5-10 days.',m:1},
-{k:'Suboxone (Buprenorphine + Naloxone)',v:'Naloxone added as safeguard against injectable overdose. If injected, Naloxone precipitates withdrawal.',m:1},
-{k:'Naltrexone',v:'FDA-approved to prevent opioid relapse in patients with NO physical dependence. Stop 36 hours before surgery.',m:1},
-{k:'Methadone',v:'Opiate agonist. Schedule II. Methadone clinics only. Long half-life (24 hours). Overdoses can be fatal. Requires EKG, labs, Urine Drug Screen (UDS).',m:1},
-{k:'Pregnancy standard of care',v:'Methadone maintenance = standard of care. Buprenorphine also considered (lower OD risk, outpatient). Withdrawal stress can cause miscarriage, fetal demise.',m:1},
-{k:'Neonatal Abstinence Syndrome (NAS)',v:'Newborns exposed to opioids: uncoordinated sucking, poor feeding, irritability, high-pitched cry, diarrhea, seizures. Increased 82% (2010-2017).'},
-{k:'Rapid Anesthesia-Aided Detox',v:'Narcan/Naltrexone + Clonidine IV under general anesthesia (4-6 hours). For detox-phobic patients. Trained anesthesiologist required.'},
-]},
+// =================== FLASHCARDS (UNKNOWN topics only - no known questions per user) ===================
+const FLASH = [
+  {f:"What are the 4 classic types of EPS?",b:"<strong>Acute Dystonia</strong> (sustained contractions), <strong>Akathisia</strong> (motor restlessness), <strong>Akinesia/Pseudoparkinsonism</strong> (drug-induced parkinsonism), <strong>Tardive Dyskinesia</strong> (late, often irreversible).<br>All from D2 blockade in the nigrostriatal pathway. TD is the most serious.",t:"EPS",mk:1},
+  {f:"How does drug-induced parkinsonism present and when?",b:"Shuffling gait, bradykinesia, mask-like face, tremor, rigidity. Onset within <strong>5–30 days</strong> of starting antipsychotic. Reversible if drug is stopped or anticholinergic added (benztropine).",t:"EPS",mk:1},
+  {f:"What is Tardive Dyskinesia and why is it serious?",b:"Late-onset involuntary movements: rhythmic lip-smacking, tongue-thrusting, may progress to limbs. <strong>Often IRREVERSIBLE</strong> even after stopping the antipsychotic. Risk: chronic D2 blockade, older age, female, typical antipsychotics.",t:"EPS",mk:1},
+  {f:"Clozapine: why reserved + monitoring?",b:"Reserved for <strong>treatment-resistant schizophrenia</strong>. Causes <strong>agranulocytosis</strong> (fatal infection risk) → weekly CBC/ANC × 6 months. 5 black box warnings: agranulocytosis, seizures, myocarditis, orthostasis, dementia mortality.",t:"Clozapine",mk:1},
+  {f:"Clozapine's UNIQUE clinical advantage?",b:"Only antipsychotic <strong>FDA-approved to reduce SUICIDE</strong> in schizophrenia. Worth the monitoring burden in suicidal/treatment-resistant patients.",t:"Clozapine",mk:1},
+  {f:"Which med reduces suicide risk in BIPOLAR?",b:"<strong>LITHIUM</strong> — strongest evidence base for suicide reduction in bipolar disorder, independent of mood-stabilizing effect.",t:"Suicide Reduction",mk:1},
+  {f:"Tactile hallucinations of bugs crawling on skin = ?",b:"<strong>Formication</strong>. Highly characteristic of <strong>methamphetamine and cocaine</strong>-induced psychosis. Up to 80% of cocaine use disorder pts report psychotic symptoms.",t:"Stimulant Psychosis",mk:1},
+  {f:"Methamphetamine neurotoxic effects?",b:"Damages <strong>serotonin & dopamine</strong> nerve terminals → motor slowing, memory issues, Parkinson-related dementia. Structural: 11% white matter ↓, 7% neuronal death ↑, 8% hippocampal loss. Damages BBB. Brain hyperthermia contributes.",t:"Meth Neurotoxicity",mk:1},
+  {f:"How does alcohol cause blackouts?",b:"Inhibits <strong>NMDA glutamate receptors</strong> in hippocampus, amygdala, striatum → memory/motor impairment. Suppresses transcription of memory protein formation → no long-term encoding. Hazardous behaviors and legal consequences result.",t:"Blackouts",mk:1},
+  {f:"Prednisone & psychiatric symptoms?",b:"Steroids can induce: <strong>anxiety, mania/psychosis (high dose), depression (during taper)</strong>. Always consider steroid use in new psych presentation. Listed with other anxiety-inducing agents: bronchodilators, decongestants, stimulants, caffeine, nicotine.",t:"Prednisone",mk:1},
+  {f:"Lithium toxicity: triggers and symptoms?",b:"Narrow therapeutic index (0.6–1.2 mEq/L). Triggered by <strong>dehydration, low sodium, NSAIDs, thiazides, ACE inhibitors</strong>. Acute symptoms: <strong>diarrhea, vomiting, ataxia</strong> → tremor → confusion → seizures → coma.",t:"Lithium Toxicity",mk:1},
+  {f:"Acute alcohol withdrawal — life-threatening risks?",b:"<strong>Seizures, stroke (CVA), and Delirium Tremens (DTs)</strong>. DTs occur 24–72 hr after cessation: profound confusion, agitation, fever, tachycardia, diaphoresis, restlessness. Use CIWA-Ar to risk-stratify.",t:"Alcohol Withdrawal",mk:1},
+  {f:"FAS triad of symptoms?",b:"(1) <strong>Growth deficiency</strong> (<10th percentile), (2) <strong>Craniofacial abnormalities</strong> (short palpebral fissures, smooth philtrum, thin upper lip, microcephaly), (3) <strong>CNS dysfunction / intellectual disability</strong>. Leading PREVENTABLE cause of intellectual disability in US.",t:"FASD",mk:1},
+  {f:"FASD umbrella — name all 4 (per lecture slide)",b:"<strong>FAS</strong> (Fetal Alcohol Syndrome), <strong>pFAS</strong> (Partial FAS), <strong>ARND</strong> (Alcohol-Related Neurodevelopmental Disorder), <strong>ARBD</strong> (Alcohol-Related Birth Defects). Also referenced: ND-PAE (screening). 95% undiagnosed.",t:"FASD",mk:1},
+  {f:"Binge drinking definition (CDC/lecture)?",b:"Women: <strong>4+ drinks in 2–3 hrs</strong>. Men: <strong>5+ drinks in 2–3 hrs</strong>. Monthly midlife binge = <strong>doubles cognitive impairment risk</strong> later in life. In pregnancy → FASD risk.",t:"Binge Drinking",mk:1},
+  {f:"Antabuse mechanism + critical patient education",b:"<strong>Disulfiram</strong> blocks acetaldehyde dehydrogenase → toxic acetaldehyde buildup if pt drinks → flushing, nausea, vomiting, dyspnea. Avoid <strong>vinegar, mouthwash, aftershave, perfumes, cough syrup</strong> for 2 WEEKS after stopping. Aversive therapy → full consent required. Can induce mania in bipolar.",t:"Antabuse",mk:1},
+  {f:"Clonidine class + key warning",b:"<strong>Alpha-2 agonist</strong> antihypertensive. FDA: ADHD; off-label anxiety, opioid withdrawal, PTSD prevention. <strong>NEVER stop abruptly</strong> → rebound HTN → stroke. Risk worse with beta-blocker combo. Taper.",t:"Clonidine",mk:1},
+  {f:"Vivitrol mechanism + critical contraindication",b:"<strong>Naltrexone XR injection</strong> — opioid antagonist that blocks reward of alcohol. Pt MUST be <strong>opioid-free 7–10 days</strong> before starting (else precipitated withdrawal). Naloxone challenge test + negative UDS required. Monitor for depression/suicidality, anhedonia.",t:"Vivitrol",mk:1},
+  {f:"Cocaine withdrawal in babies — symptoms?",b:"~1/3 of cocaine-exposed babies show withdrawal: <strong>seizures, lethargy, hyperactive reflexes, vomiting, high-pitched crying, restlessness</strong>. Up to 40% have congenital anomalies/brain malformation/cardiovascular issues.",t:"Cocaine Babies",mk:1},
+  {f:"Propranolol (Inderal) psych uses + cautions",b:"Beta-blocker. Uses: <strong>performance anxiety, akathisia, tremors, migraine, chest pain</strong>. AVOID in: <strong>asthma/COPD, bradycardia, diabetes</strong> (masks hypoglycemia). Poor for endurance athletes. <strong>Taper</strong> to avoid rebound HTN.",t:"Propranolol",mk:1},
+  {f:"Marijuana use & schizophrenia risk in young people?",b:"Heavy MJ by age 18 = <strong>6x</strong> schizophrenia risk (Swedish study). High-potency cannabis = <strong>5x</strong> higher psychotic disorder diagnosis. Studies in Sweden + New Zealand confirm.",t:"MJ & Schiz",mk:1},
+  {f:"Secondhand cocaine smoke — pediatric risk?",b:"Health hazard for young children — passive inhalation of free-base vapors. Can <strong>induce seizures</strong> (generalized + focal) in infants/children of cocaine-smoking parents. Most common in kids under 8.",t:"Secondhand",mk:1},
+  {f:"Opioid toxicity classic triad?",b:"<strong>Miosis</strong> (pinpoint pupils — except meperidine), <strong>Stupor/coma</strong>, <strong>Respiratory depression</strong> (<12 breaths/min). Naloxone reverses (1–2 hr duration → may need re-dosing).",t:"Opioid Tox",mk:1},
+  {f:"Akathisia treatment options?",b:"<strong>Propranolol</strong> (beta-blocker) is first-line. Also: benztropine (anticholinergic), benzodiazepines (lorazepam). Lower the antipsychotic dose if possible.",t:"EPS",mk:1}
 ];
-let h='';const fl=cf==='all'?S:S.filter(function(s){return s.t===cf});
-for(let si=0;si<fl.length;si++){const s=fl[si];h+='<div class="rs"><h2 style="border-color:'+s.cl+'">'+s.n+'</h2><ul>'+s.i.map(function(x){return '<li '+(x.m?'class="mk"':'')+'><strong style="color:'+s.cl+'">'+x.k+':</strong> '+x.v+'</li>'}).join('')+'</ul></div>'}
-h+='<div class="mn"><div class="mt">Cramming Strategy</div><p style="margin-top:6px;font-size:.85em"><strong>1. Active Recall:</strong> Flashcards + quiz = 2-3x more effective than re-reading.<br><strong>2. Random pool:</strong> Quiz pulls 10 from '+Q.length+' questions — take it multiple times to see them all.<br><strong>3. Spaced retrieval:</strong> Round now \u2192 15-min break \u2192 another round \u2192 sleep \u2192 morning review.<br><strong>4. Rate honestly:</strong> "Again" cards recycle. Stumbling = your weak spot.</p></div>';
-el.innerHTML=h;us()}
 
-function renderShare(){document.getElementById('ct').innerHTML='<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px"><h3 style="color:var(--accent);text-align:center;margin-bottom:12px">Share This Study Tool</h3><div style="max-width:600px;margin:0 auto;font-size:.88em;line-height:1.8;color:var(--text-dim)"><strong style="color:var(--accent)">For your GitHub Pages:</strong><br>Download this file. Rename to <code style="color:var(--accent)">index.html</code> if needed. Drop it into your repo, overwriting the old one. Push. Live in 60 seconds.<br><br><strong style="color:var(--accent)">Direct share:</strong><br>Send the .html file via email/Slack/text. Opens in any browser. No internet needed after download.<br><br><strong style="color:var(--warning)">Quiz Pool Feature:</strong> Each quiz attempt randomly pulls 10 questions from a pool of '+Q.length+'. Take it multiple times to see all possible questions.</div></div>'}
+// =================== STATE ===================
+let stats={s:0,c:0,st:0,bs:0};
+let session={qIdx:0,qPool:[],qActive:[],wrongTopics:{}};
+let flash={idx:0,flipped:false,deck:[]};
+let qSeen=new Set();
 
-rf();us();
+// =================== TABS ===================
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    render(t.dataset.tab);
+  };
+});
+
+function render(tab){
+  if(tab==='quiz')renderQuiz();
+  else if(tab==='flash')renderFlash();
+  else if(tab==='ref')renderRef();
+  else if(tab==='share')renderShare();
+}
+
+// =================== QUIZ ===================
+function renderQuiz(){
+  if(session.qActive.length===0){
+    document.getElementById('ct').innerHTML=`
+      <div class="card">
+        <h3 style="color:var(--accent);margin-bottom:6px;font-size:1.05em">Choose Your Quiz Pool</h3>
+        <p style="color:var(--text-dim);font-size:.85em;margin-bottom:14px">All known questions are verbatim from your <em>Psychopharm Quizzes.md</em> file (Quizzes 3–5). Unknown questions are built from the lecture PDFs covering your topic list.</p>
+        <div class="qmode">
+          <button class="known-btn" onclick="startQuiz('known')">
+            KNOWN ONLY
+            <span class="desc">${KNOWN.length} q · from Quizzes 3–5 .md</span>
+          </button>
+          <button class="unknown-btn" onclick="startQuiz('unknown')">
+            UNKNOWN ONLY
+            <span class="desc">${UNKNOWN.length} q · final topics from PDFs</span>
+          </button>
+          <button class="mix-btn" onclick="startQuiz('mix')">
+            MIXED POOL
+            <span class="desc">${KNOWN.length+UNKNOWN.length} q · all combined</span>
+          </button>
+        </div>
+        <div style="text-align:center;margin-top:16px">
+          <button class="btn btn-ai" onclick="openAi()">⚡ AI Adaptive Quiz</button>
+          <p style="color:var(--text-dim);font-size:.75em;margin-top:6px">Generate fresh questions targeting your weak topics (requires Claude.ai)</p>
+        </div>
+      </div>
+      <div class="statbar">
+        <div class="stat">Session: <strong>${stats.s}</strong> seen</div>
+        <div class="stat">Correct: <strong>${stats.c}</strong></div>
+        <div class="stat">Best streak: <strong>${stats.bs}</strong></div>
+      </div>`;
+    return;
+  }
+  showQuestion();
+}
+
+function startQuiz(mode){
+  let pool;
+  if(mode==='known')pool=KNOWN.map(x=>({...x,pool:'known'}));
+  else if(mode==='unknown')pool=UNKNOWN.map(x=>({...x,pool:'unknown'}));
+  else pool=ALL.slice();
+  // Shuffle
+  for(let i=pool.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [pool[i],pool[j]]=[pool[j],pool[i]];
+  }
+  session.qActive=pool;
+  session.qIdx=0;
+  session.qMode=mode;
+  showQuestion();
+}
+
+function showQuestion(){
+  const q=session.qActive[session.qIdx];
+  if(!q){
+    document.getElementById('ct').innerHTML=`
+      <div class="card" style="text-align:center">
+        <h3 style="color:var(--accent2);margin-bottom:8px">Pool Complete!</h3>
+        <p style="color:var(--text-dim);margin-bottom:14px">You've gone through all questions in this pool.</p>
+        ${Object.keys(session.wrongTopics).length>0?`<p style="font-size:.85em;color:var(--warning);margin-bottom:14px">Topics to review: ${Object.entries(session.wrongTopics).sort((a,b)=>b[1]-a[1]).map(x=>x[0]+' ('+x[1]+')').join(', ')}</p>`:''}
+        <button class="btn" onclick="session.qActive=[];session.wrongTopics={};renderQuiz()">Back to Mode Select</button>
+        <button class="btn btn-sec" onclick="startQuiz(session.qMode)" style="margin-left:8px">Restart This Pool</button>
+      </div>`;
+    return;
+  }
+  const tot=session.qActive.length;
+  document.getElementById('ct').innerHTML=`
+    <div class="statbar">
+      <div class="stat">Q <strong>${session.qIdx+1}</strong>/${tot}</div>
+      <div class="stat">Correct: <strong>${stats.c}</strong></div>
+      <div class="stat">Streak: <strong>${stats.st}</strong></div>
+      <button class="btn btn-sec" style="font-size:.78em;padding:5px 10px;margin-left:auto" onclick="session.qActive=[];session.wrongTopics={};renderQuiz()">↩ Pools</button>
+    </div>
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="q-source ${q.pool}">${q.pool==='known'?'KNOWN · '+q.src:'UNKNOWN · '+(q.topic||'')}</span>
+        <span></span>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div id="opts">
+        ${q.o.map((o,i)=>`<button class="opt" onclick="ans(${i})">${o}</button>`).join('')}
+      </div>
+      <div id="expl"></div>
+      <div id="next"></div>
+    </div>`;
+}
+
+function ans(i){
+  const q=session.qActive[session.qIdx];
+  const opts=document.querySelectorAll('.opt');
+  opts.forEach(o=>o.disabled=true);
+  opts[q.a].classList.add('correct');
+  stats.s++;
+  if(i===q.a){
+    stats.c++;
+    stats.st++;
+    if(stats.st>stats.bs)stats.bs=stats.st;
+  }else{
+    opts[i].classList.add('wrong');
+    stats.st=0;
+    const t=q.topic||q.src||'misc';
+    session.wrongTopics[t]=(session.wrongTopics[t]||0)+1;
+  }
+  document.getElementById('expl').innerHTML=`<div class="expl"><strong>${i===q.a?'✓ Correct':'✗ Incorrect'}.</strong> ${q.e}</div>`;
+  document.getElementById('next').innerHTML=`<div class="btn-row"><button class="btn" onclick="session.qIdx++;showQuestion()">Next →</button></div>`;
+}
+
+// =================== FLASHCARDS ===================
+function renderFlash(){
+  if(flash.deck.length===0){
+    flash.deck=FLASH.slice();
+    for(let i=flash.deck.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [flash.deck[i],flash.deck[j]]=[flash.deck[j],flash.deck[i]];
+    }
+    flash.idx=0;
+    flash.flipped=false;
+  }
+  const c=flash.deck[flash.idx];
+  if(!c){
+    document.getElementById('ct').innerHTML=`
+      <div class="card" style="text-align:center">
+        <h3 style="color:var(--accent2);margin-bottom:8px">Deck Complete!</h3>
+        <button class="btn" onclick="flash.deck=[];renderFlash()">Reshuffle Deck</button>
+      </div>`;
+    return;
+  }
+  document.getElementById('ct').innerHTML=`
+    <div class="statbar">
+      <div class="stat">Card <strong>${flash.idx+1}</strong>/${flash.deck.length}</div>
+      <div class="stat">Topic: <strong>${c.t}</strong></div>
+      ${c.mk?'<div class="stat" style="color:var(--gold)">★ Must-know</div>':''}
+    </div>
+    <div class="flash" onclick="flash.flipped=!flash.flipped;renderFlash()">
+      <div class="lbl">${flash.flipped?'Answer':'Question'}</div>
+      <div class="topic">${c.t}</div>
+      ${flash.flipped?`<div class="a">${c.b}</div>`:`<div class="q">${c.f}</div>`}
+      <div class="hint">${flash.flipped?'Rate yourself below':'Tap to flip'}</div>
+    </div>
+    ${flash.flipped?`
+    <div class="rate">
+      <button class="again" onclick="rate(0)">Again</button>
+      <button class="hard" onclick="rate(1)">Hard</button>
+      <button class="good" onclick="rate(2)">Good</button>
+      <button class="easy" onclick="rate(3)">Easy</button>
+    </div>`:''}`;
+}
+
+function rate(r){
+  if(r===0){
+    // re-insert card 3 positions later
+    flash.deck.splice(flash.idx+3,0,flash.deck[flash.idx]);
+  }
+  flash.deck.splice(flash.idx,1);
+  flash.flipped=false;
+  if(flash.idx>=flash.deck.length)flash.idx=0;
+  renderFlash();
+}
+
+// =================== QUICK REFERENCE ===================
+const REF=[
+  {n:"EPS — 4 Types",cl:"#5eb3ff",t:"eps",i:[
+    {k:"Acute Dystonia",v:"Sustained muscle contractions (torticollis, oculogyric crisis). Onset hours-days. Treat: IM benztropine.",mk:1},
+    {k:"Akathisia",v:"Inner restlessness, can't sit still. Treat: propranolol (1st line), benztropine, lorazepam.",mk:1},
+    {k:"Akinesia / Pseudoparkinsonism",v:"Drug-induced parkinsonism — shuffling gait, bradykinesia, mask-like face, tremor. Onset 5–30 days. From nigrostriatal D2 blockade.",mk:1},
+    {k:"Tardive Dyskinesia (TD)",v:"Late-onset, often IRREVERSIBLE. Lip-smacking, tongue-thrusting, choreiform movements. Most serious complication.",mk:1}
+  ]},
+  {n:"Clozapine (Clozaril)",cl:"#ff6b8a",t:"cloz",i:[
+    {k:"Indication",v:"Treatment-resistant schizophrenia. ONLY antipsychotic FDA-approved to reduce SUICIDE in schizophrenia.",mk:1},
+    {k:"Black Box ×5",v:"Agranulocytosis · Seizures · Myocarditis · Orthostatic hypotension · Increased mortality (elderly w/ dementia psychosis)",mk:1},
+    {k:"Monitoring",v:"Weekly CBC/ANC × 6 months → biweekly × 6 months → monthly. REMS program required."},
+    {k:"Suicide reduction",v:"Clozapine = schizophrenia. LITHIUM = bipolar disorder. Both are unique in proven suicide-risk reduction.",mk:1}
+  ]},
+  {n:"Stimulant-Induced Psychosis",cl:"#ffb86c",t:"stim",i:[
+    {k:"Formication",v:"Tactile hallucination of bugs crawling on/under skin. Hallmark of meth + cocaine psychosis.",mk:1},
+    {k:"Cocaine psychotic sx",v:"Up to 80% of cocaine use disorder pts. Paranoia, delusions, hallucinations ('cocainomania')."},
+    {k:"Meth psychosis rate",v:"36.5–42.7% develop meth-induced psychotic disorder (2018 meta-analysis). 5x more likely with meth alone; DOUBLED if combined w/ MJ or alcohol.",mk:1}
+  ]},
+  {n:"Methamphetamine Neurotoxicity",cl:"#a78bfa",t:"meth",i:[
+    {k:"NT damage",v:"Damages SEROTONIN and DOPAMINE nerve terminals → motor slowing, memory deficits, Parkinson-related dementia.",mk:1},
+    {k:"Structural changes",v:"11% white matter ↓ · 7% neuronal death/scar tissue ↑ · 8% hippocampal tissue loss · BBB damage. Brain hyperthermia contributes.",mk:1},
+    {k:"P2P meth (2021+)",v:"Newer phenyl-2-propanone meth = faster, more severe brain damage. Violent paranoia, hallucinations, conspiracy theories, massive memory loss."}
+  ]},
+  {n:"Alcohol — Blackouts",cl:"#7dd3a3",t:"alc",i:[
+    {k:"Mechanism",v:"Inhibits NMDA glutamate receptors in hippocampus, amygdala, striatum + suppresses memory protein transcription = no long-term encoding.",mk:1},
+    {k:"Consequences",v:"Hazardous behaviors, legal consequences, no recall of events."}
+  ]},
+  {n:"Acute Alcohol Withdrawal & DTs",cl:"#ff6b8a",t:"alc",i:[
+    {k:"Life-threatening risks",v:"Seizures · Stroke (CVA) · Delirium Tremens (DTs).",mk:1},
+    {k:"DTs presentation",v:"Profound confusion, agitation, insomnia, fever, tachycardia, diaphoresis, restlessness. MOST SEVERE manifestation.",mk:1},
+    {k:"DTs timing",v:"24–72 hours after cessation. Heavy steady drinkers at highest risk. CIWA-Ar tool used to risk-stratify.",mk:1},
+    {k:"Treatment",v:"Benzodiazepines (lorazepam, chlordiazepoxide) + thiamine + folate + electrolytes. Watch for Wernicke's."}
+  ]},
+  {n:"Binge Drinking",cl:"#ffb86c",t:"alc",i:[
+    {k:"CDC Definition",v:"Women: 4+ drinks in 2–3 hrs. Men: 5+ drinks in 2–3 hrs.",mk:1},
+    {k:"Long-term risk",v:"Monthly midlife binge = DOUBLES long-term cognitive impairment risk.",mk:1},
+    {k:"In pregnancy",v:"↑ FASD risk. Alcohol poisoning kills ~6 people/day in US."}
+  ]},
+  {n:"FASD — All 4 (Umbrella)",cl:"#5eb3ff",t:"fasd",i:[
+    {k:"FAS (Fetal Alcohol Syndrome)",v:"Most visible. Triad: growth deficiency + craniofacial features + CNS dysfunction. Leading PREVENTABLE cause of intellectual disability in US.",mk:1},
+    {k:"pFAS (Partial FAS)",v:"Some FAS features but not full criteria.",mk:1},
+    {k:"ARND (Alcohol-Related Neurodevelopmental Disorder)",v:"CNS abnormalities + cognitive/behavioral issues without facial features.",mk:1},
+    {k:"ARBD (Alcohol-Related Birth Defects)",v:"Physical malformations from prenatal alcohol exposure (cardiac, renal, skeletal).",mk:1},
+    {k:"ND-PAE",v:"Also referenced — Neurobehavioral Disorder Associated with Prenatal Alcohol Exposure (screening tool/category)."},
+    {k:"Statistics",v:"95% undiagnosed. Often misdiagnosed as ADHD. Diagnosed ~age 6. 61% school disruptions. 60% legal involvement. 73–80% in foster/adoptive care."},
+    {k:"Brain damage",v:"PERMANENT. Corpus callosum agenesis, frontal cortex/hippocampal damage, cerebellar hypoplasia."}
+  ]},
+  {n:"Antabuse (Disulfiram)",cl:"#a78bfa",t:"meds",i:[
+    {k:"MOA",v:"Inhibits acetaldehyde dehydrogenase → toxic acetaldehyde accumulates if pt drinks → flushing, nausea, vomiting, dyspnea, dizziness.",mk:1},
+    {k:"Pre-treatment",v:"Patient must be alcohol-free ≥12 hours before starting.",mk:1},
+    {k:"Avoid for 2 weeks after stopping",v:"Vinegar, aftershave, perfumes, mouthwash, cough medication.",mk:1},
+    {k:"Caution",v:"AVERSIVE therapy — full informed consent required. May induce mania in bipolar."}
+  ]},
+  {n:"Vivitrol (Naltrexone XR)",cl:"#7dd3a3",t:"meds",i:[
+    {k:"MOA",v:"Opioid antagonist — blocks reward of alcohol → ↓cravings, ↓consumption.",mk:1},
+    {k:"Critical contraindication",v:"Current opioid use/dependence. Pt MUST be opioid-free 7–10 DAYS before starting (else precipitated withdrawal).",mk:1},
+    {k:"Pre-treatment",v:"Naloxone challenge test recommended. UDS must be negative for opioids."},
+    {k:"Monitoring",v:"Closely monitor for depression, suicidality, anhedonia. Severe injection-site reactions (rare, may need surgery)."}
+  ]},
+  {n:"Clonidine (Catapres)",cl:"#ffb86c",t:"meds",i:[
+    {k:"Class",v:"Alpha-2 agonist antihypertensive.",mk:1},
+    {k:"Uses",v:"FDA: ADHD. Off-label: anxiety in children, opioid withdrawal (suppresses autonomic sx), PTSD prevention (acute), rehab settings."},
+    {k:"Critical warning",v:"NEVER stop abruptly — rebound HTN → STROKE. Risk amplified with beta-blocker combo. Always taper.",mk:1}
+  ]},
+  {n:"Propranolol (Inderal)",cl:"#5eb3ff",t:"meds",i:[
+    {k:"Class",v:"Beta-blocker.",mk:1},
+    {k:"Psych uses",v:"Performance anxiety · Akathisia (1st-line for antipsychotic-induced restlessness) · Tremors.",mk:1},
+    {k:"Medical uses",v:"Chest pain, CAD, migraine headaches, tremors.",mk:1},
+    {k:"AVOID in",v:"Asthma/COPD (bronchoconstriction), bradycardia, diabetes (masks hypoglycemia). Poor for endurance athletes.",mk:1},
+    {k:"Discontinuation",v:"TAPER over several weeks to avoid rebound HTN."}
+  ]},
+  {n:"Lithium Toxicity",cl:"#ff6b8a",t:"li",i:[
+    {k:"Therapeutic range",v:"0.6–1.2 mEq/L. Toxic >1.5. Severe >2.0.",mk:1},
+    {k:"Triggers",v:"Dehydration, low-sodium diet, NSAIDs, ACE inhibitors, thiazide diuretics — anything that ↓ renal Li clearance.",mk:1},
+    {k:"Acute symptoms",v:"GI: diarrhea, vomiting. Cerebellar: ataxia. Then tremor → confusion → seizures → coma.",mk:1},
+    {k:"Treatment",v:"Hold drug, hydrate (NS), check level. Severe: hemodialysis."}
+  ]},
+  {n:"Cocaine in Babies",cl:"#a78bfa",t:"preg",i:[
+    {k:"Withdrawal incidence",v:"~1/3 of babies born to cocaine-using mothers experience withdrawal.",mk:1},
+    {k:"Withdrawal symptoms",v:"Seizures, lethargy, hyperactive reflexes, vomiting, high-pitched crying, restlessness.",mk:1},
+    {k:"Other risks",v:"Up to 40% have congenital anomalies/brain malformation/cardiovascular abnormalities. Increased miscarriage, placental abruption, stillbirth."}
+  ]},
+  {n:"Marijuana & Schizophrenia",cl:"#7dd3a3",t:"mj",i:[
+    {k:"Swedish study",v:"Heavy MJ use by age 18 = 6× schizophrenia risk.",mk:1},
+    {k:"High-potency cannabis",v:"5× higher psychotic disorder diagnosis vs nonusers.",mk:1},
+    {k:"Combined w/ meth",v:"Doubles meth psychosis risk (already 5× baseline)."}
+  ]},
+  {n:"Secondhand Smoke",cl:"#ffb86c",t:"smoke",i:[
+    {k:"Cocaine smoke",v:"Health hazard for young children. Can INDUCE seizures (generalized + focal) in infants of cocaine-smoking parents. Most common <8 years.",mk:1},
+    {k:"Tobacco smoke",v:"↑SIDS, asthma, pneumonia, bronchitis, ear infections in children. Tar deposition damages lung membranes."}
+  ]},
+  {n:"Prednisone & Psych Sx",cl:"#a78bfa",t:"steroid",i:[
+    {k:"Effects",v:"Can induce: anxiety, mania/psychosis (high dose), depression (during taper). Always consider in new psych presentation.",mk:1},
+    {k:"Other anxiety inducers (lecture)",v:"Bronchodilators, decongestants, steroids, stimulants, antivirals (interferon), antihistamines (in kids), caffeine, Ma Huang, ginkgo, nicotine."}
+  ]},
+  {n:"Opioid Toxicity",cl:"#ff6b8a",t:"op",i:[
+    {k:"Classic triad",v:"Miosis (pinpoint pupils — except meperidine) · Stupor/coma · Respiratory depression.",mk:1},
+    {k:"Threshold",v:"Respirations <12/min suggests acute opioid intoxication.",mk:1},
+    {k:"Antidote",v:"NALOXONE (Narcan). Onset rapid; duration only 1–2 hr → may need re-dosing for long-acting opioids. Nalmefene = longer (8–12 hr)."}
+  ]}
+];
+
+function renderRef(){
+  let cf='all';
+  const tabs=[
+    {k:'all',l:'All'},{k:'eps',l:'EPS'},{k:'cloz',l:'Clozapine'},{k:'stim',l:'Stim Psychosis'},
+    {k:'meth',l:'Meth Neurotox'},{k:'alc',l:'Alcohol'},{k:'fasd',l:'FASD'},
+    {k:'meds',l:'Antabuse/Vivitrol/Clonidine/Propranolol'},{k:'li',l:'Lithium'},
+    {k:'preg',l:'Cocaine Babies'},{k:'mj',l:'MJ & Schiz'},{k:'smoke',l:'Smoke'},
+    {k:'steroid',l:'Prednisone'},{k:'op',l:'Opioid Tox'}
+  ];
+  document.getElementById('ct').innerHTML=`
+    <div class="filter-row" id="filterRow">
+      ${tabs.map(t=>`<button class="${t.k===cf?'active':''}" onclick="filterRef('${t.k}')">${t.l}</button>`).join('')}
+    </div>
+    <div id="refContent"></div>`;
+  filterRef('all');
+}
+
+function filterRef(cf){
+  document.querySelectorAll('#filterRow button').forEach(b=>{
+    b.classList.toggle('active',b.textContent.toLowerCase().includes(cf)||(cf==='all'&&b.textContent==='All'));
+  });
+  const fl=cf==='all'?REF:REF.filter(s=>s.t===cf);
+  let h='';
+  for(const s of fl){
+    h+=`<div class="ref-section"><h2 style="border-color:${s.cl}">${s.n}</h2><ul>`;
+    for(const x of s.i){
+      h+=`<li ${x.mk?'class="must"':''}><strong style="color:${s.cl}">${x.k}:</strong> ${x.v}${x.mk?'<span class="mk-badge">MUST KNOW</span>':''}</li>`;
+    }
+    h+=`</ul></div>`;
+  }
+  document.getElementById('refContent').innerHTML=h;
+}
+
+// =================== AI ADAPTIVE ===================
+function openAi(){
+  const modal=document.getElementById('aiModal');
+  const body=document.getElementById('aiBody');
+  modal.classList.add('show');
+  // Build weak-topic summary
+  const wt=Object.entries(session.wrongTopics).sort((a,b)=>b[1]-a[1]);
+  body.innerHTML=`
+    <p style="font-size:.88em;color:var(--text-dim);margin-bottom:12px">
+      ${wt.length>0?`Weak topics so far: <strong style="color:var(--warning)">${wt.slice(0,3).map(x=>x[0]).join(', ')}</strong>`:'No wrong answers tracked yet — pick topics manually.'}
+    </p>
+    <p style="font-size:.85em;margin-bottom:10px">Generate 5 fresh practice questions targeting:</p>
+    <select id="aiTopic" style="width:100%;padding:8px;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:6px;margin-bottom:10px">
+      <option value="">— Pick a topic —</option>
+      ${wt.length>0?'<option value="weak">My weak topics</option>':''}
+      <option value="EPS">EPS / Movement disorders</option>
+      <option value="Clozapine">Clozapine</option>
+      <option value="Stimulant Psychosis">Stimulant psychosis (formication, meth, cocaine)</option>
+      <option value="Meth Neurotoxicity">Meth neurotoxicity</option>
+      <option value="Blackouts">Alcohol blackouts</option>
+      <option value="Alcohol Withdrawal">Acute alcohol withdrawal / DTs</option>
+      <option value="FASD">FASD (all 4)</option>
+      <option value="Binge Drinking">Binge drinking</option>
+      <option value="Antabuse">Antabuse</option>
+      <option value="Clonidine">Clonidine</option>
+      <option value="Vivitrol">Vivitrol</option>
+      <option value="Propranolol">Propranolol</option>
+      <option value="Lithium Toxicity">Lithium toxicity</option>
+      <option value="Cocaine in Babies">Cocaine withdrawal in babies</option>
+      <option value="MJ & Schizophrenia">Marijuana & schizophrenia</option>
+      <option value="Secondhand Smoke">Secondhand smoke</option>
+      <option value="Prednisone Psych">Prednisone psych symptoms</option>
+      <option value="Opioid Toxicity">Opioid toxicity</option>
+    </select>
+    <button class="btn btn-ai" style="width:100%" onclick="generateAi()">Generate Questions</button>
+    <div id="aiResult" style="margin-top:12px"></div>
+  `;
+}
+
+function closeAi(){
+  document.getElementById('aiModal').classList.remove('show');
+}
+
+async function generateAi(){
+  const topicSel=document.getElementById('aiTopic').value;
+  if(!topicSel){alert('Pick a topic first');return;}
+  let topic=topicSel;
+  if(topicSel==='weak'){
+    const wt=Object.entries(session.wrongTopics).sort((a,b)=>b[1]-a[1]);
+    topic=wt.slice(0,3).map(x=>x[0]).join(', ');
+  }
+  const result=document.getElementById('aiResult');
+  result.innerHTML=`<div class="ai-loading"><div class="spinner"></div><div>Generating questions...</div></div>`;
+  
+  try {
+    const res=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:1500,
+        messages:[{
+          role:"user",
+          content:`You are creating practice questions for a doctoral-level Clinical Psychopharmacology final exam (PP7360). The student needs questions on: ${topic}.
+
+Generate 5 multiple-choice questions in this exact JSON format (no markdown, no preamble):
+
+[
+  {"q":"question text","o":["opt A","opt B","opt C","opt D"],"a":2,"e":"explanation"}
+]
+
+Where "a" is the 0-indexed correct answer. Make questions clinically relevant, appropriately challenging for a doctoral student with biology/chemistry background, and grounded in standard psychopharmacology (Stahl, Julien). Cover mechanisms, side effects, contraindications, clinical decision-making. Spell out abbreviations on first use.`
+        }]
+      })
+    });
+    const data=await res.json();
+    let text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('\n');
+    text=text.replace(/```json|```/g,'').trim();
+    const qs=JSON.parse(text);
+    
+    // Inject into the active quiz pool and start quiz
+    const aiQuestions=qs.map(q=>({...q,pool:'ai',topic:topic,src:'AI'}));
+    session.qActive=aiQuestions;
+    session.qIdx=0;
+    session.qMode='ai';
+    closeAi();
+    showQuestion();
+  } catch(err){
+    result.innerHTML=`<div style="color:var(--danger);font-size:.85em;padding:10px;background:rgba(255,107,138,.1);border-radius:6px">
+      <strong>Error:</strong> ${err.message}<br><br>
+      <span style="color:var(--text-dim)">AI generation requires running this in Claude.ai (it has API access). Won't work on GitHub Pages without an API key. Use the Known/Unknown/Mix pools instead.</span>
+    </div>`;
+  }
+}
+
+// =================== SHARE ===================
+function renderShare(){
+  document.getElementById('ct').innerHTML=`
+    <div class="card">
+      <h3 style="color:var(--accent);margin-bottom:12px">Deploy / Share</h3>
+      <div class="share-step"><strong>For your GitHub Pages deployment:</strong> File is named <code>index.html</code>. Drop into your repo, push, you're live in 60 seconds.</div>
+      <div class="share-step"><strong>iPad / Phone access:</strong> Self-contained single file. Works offline once loaded. Open in Safari/Chrome.</div>
+      <div class="share-step"><strong>AI Adaptive Quiz works in:</strong> Claude.ai artifacts (where it has API access). On GitHub Pages it'll show an error — use Known/Unknown/Mix pools instead.</div>
+      <div class="share-step"><strong>Privacy:</strong> Everything runs in browser. No data sent anywhere. Progress resets on page reload.</div>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--accent);margin-bottom:8px;font-size:1em">Pool Stats</h3>
+      <p style="font-size:.85em;color:var(--text-dim);line-height:1.6">
+        <strong>${KNOWN.length}</strong> known questions (verbatim from Quizzes 3–5 .md)<br>
+        <strong>${UNKNOWN.length}</strong> unknown questions (built from lecture PDFs)<br>
+        <strong>${KNOWN.length+UNKNOWN.length}</strong> total in mixed pool<br>
+        <strong>${FLASH.length}</strong> flashcards (unknown topics only)<br>
+        <strong>${REF.length}</strong> quick reference sections
+      </p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--accent);margin-bottom:8px;font-size:1em">Cramming Strategy</h3>
+      <p style="font-size:.83em;color:var(--text-dim);line-height:1.65">
+        <strong style="color:var(--text)">1.</strong> Start with <strong>Unknown only</strong> quiz — these are the topics you flagged as needing study.<br>
+        <strong style="color:var(--text)">2.</strong> Then drill <strong>Known only</strong> — these are exact quiz questions guaranteed to appear.<br>
+        <strong style="color:var(--text)">3.</strong> Run <strong>Mixed</strong> rounds for interleaving (proven to boost retention 2-3x vs blocked practice).<br>
+        <strong style="color:var(--text)">4.</strong> Review weak-topic flashcards before bed — sleep consolidates.<br>
+        <strong style="color:var(--text)">5.</strong> Morning of exam: hit Quick Reference for the must-know items.
+      </p>
+    </div>`;
+}
+
+// Init
+render('quiz');
 </script>
 </body>
 </html>
