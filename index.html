@@ -197,8 +197,8 @@ const KNOWN = [
 
   // QUIZ 5
   {q:"When do you start to see nicotine withdrawal?",
-   o:["2-4 hours","12 hours","24-48 hours","72-96 hours"],a:2,
-   e:"Acute symptoms begin ~2 hours after quitting; PEAK at 24–48 hours, decline over 10 days to weeks. Dysphoria/anhedonia can linger months.",src:"Q5"},
+   o:["2-4 hours","12 hours","24-48 hours","72-96 hours"],a:0,
+   e:"Acute nicotine withdrawal symptoms BEGIN within ~2 hours of quitting. Per lecture: symptoms then PEAK at 24–48 hours and decline over the next 10 days to several weeks. Dysphoria/anhedonia can linger for months.",src:"Q5"},
   {q:"Medications for smoking cessation:",
    o:["Methadone and Suboxone","Chantix and Wellbutrin","Naltrexone and Antabuse","Clonidine and Buspirone"],a:1,
    e:"Chantix (varenicline, partial nicotinic agonist) and Wellbutrin/Zyban (bupropion, NDRI) are the two FDA-approved smoking cessation medications.",src:"Q5"},
@@ -399,6 +399,9 @@ const UNKNOWN = [
    e:"Meth psychosis is 5x more likely with meth alone — but combining with marijuana or alcohol DOUBLES that risk (effectively 10x baseline)."},
 
   // SECONDHAND SMOKE - COCAINE
+  {q:"When do nicotine withdrawal symptoms PEAK after quitting?",
+   o:["Within 2 hours","12 hours","24-48 hours","2 weeks"],a:2,topic:"Nicotine Withdrawal",
+   e:"Critical timing distinction: Nicotine withdrawal BEGINS within ~2 hours of quitting, then PEAKS at 24–48 hours, and declines over the next 10 days to several weeks. Dysphoria/anhedonia can linger for months. Don't confuse 'when do you start to see' withdrawal (2 hrs) with 'when does it peak' (24–48 hrs)."},
   {q:"Secondhand cocaine smoke is recognized as a health hazard for young children and can cause:",
    o:["No measurable effects","Seizures (generalized and focal), especially in children below 8 years","Improved attention","Only minor cough"],a:1,topic:"Secondhand Smoke",
    e:"Secondhand cocaine smoke can INDUCE SEIZURES in infants of cocaine-smoking parents. Generalized and focal seizures are more common in children below 8 years. Infants are most susceptible — passive inhalation of free-base vapors."},
@@ -443,6 +446,7 @@ const FLASH = [
   {f:"Marijuana use & schizophrenia risk in young people?",b:"Heavy MJ by age 18 = <strong>6x</strong> schizophrenia risk (Swedish study). High-potency cannabis = <strong>5x</strong> higher psychotic disorder diagnosis. Studies in Sweden + New Zealand confirm.",t:"MJ & Schiz",mk:1},
   {f:"Secondhand cocaine smoke — pediatric risk?",b:"Health hazard for young children — passive inhalation of free-base vapors. Can <strong>induce seizures</strong> (generalized + focal) in infants/children of cocaine-smoking parents. Most common in kids under 8.",t:"Secondhand",mk:1},
   {f:"Opioid toxicity classic triad?",b:"<strong>Miosis</strong> (pinpoint pupils — except meperidine), <strong>Stupor/coma</strong>, <strong>Respiratory depression</strong> (<12 breaths/min). Naloxone reverses (1–2 hr duration → may need re-dosing).",t:"Opioid Tox",mk:1},
+  {f:"Nicotine withdrawal — BEGIN vs PEAK timing?",b:"<strong>BEGIN</strong>: within ~2 hours of quitting (acute symptoms appear).<br><strong>PEAK</strong>: 24–48 hours.<br><strong>Decline</strong>: over 10 days to several weeks.<br><strong>Linger</strong>: dysphoria/anhedonia can persist months.<br>Don't confuse onset with peak — both show up as quiz answer choices.",t:"Nicotine WD",mk:1},
   {f:"Akathisia treatment options?",b:"<strong>Propranolol</strong> (beta-blocker) is first-line. Also: benztropine (anticholinergic), benzodiazepines (lorazepam). Lower the antipsychotic dose if possible.",t:"EPS",mk:1}
 ];
 
